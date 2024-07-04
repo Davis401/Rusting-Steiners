@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmqihira2abkg"]
+
+[ext_resource type="Script" path="res://UI/main_menu.gd" id="1_2qkdf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n3mkn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkjpc"]
+bg_color = Color(0.168627, 0.168627, 0.168627, 1)
+
+[sub_resource type="Theme" id="Theme_jok85"]
+Button/colors/font_color = Color(0.890196, 0.890196, 0.890196, 1)
+Button/colors/font_focus_color = Color(0.168627, 0.168627, 0.168627, 1)
+Button/colors/font_hover_color = Color(0.168627, 0.168627, 0.168627, 1)
+Button/colors/font_hover_pressed_color = Color(0.168627, 0.168627, 0.168627, 1)
+Button/colors/font_pressed_color = Color(0.168627, 0.168627, 0.168627, 1)
+Button/font_sizes/font_size = 32
+Button/styles/disabled = SubResource("StyleBoxEmpty_n3mkn")
+Button/styles/focus = SubResource("StyleBoxFlat_qkjpc")
+Button/styles/hover = SubResource("StyleBoxFlat_qkjpc")
+Button/styles/normal = SubResource("StyleBoxFlat_qkjpc")
+Button/styles/pressed = SubResource("StyleBoxFlat_qkjpc")
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_jok85")
+script = ExtResource("1_2qkdf")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_bottom = 22
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "START"
+
+[node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "SETTINGS"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "QUIT"

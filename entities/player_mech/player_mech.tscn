@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://v2b55h11rppm"]
+
+[ext_resource type="Script" path="res://entities/player_mech/player_mech.gd" id="1_8j82k"]
+[ext_resource type="PackedScene" uid="uid://snw1ev62d7aw" path="res://components/energy_component.tscn" id="2_g845v"]
+[ext_resource type="PackedScene" uid="uid://c08n456hikpba" path="res://components/health_component.tscn" id="2_pdrve"]
+[ext_resource type="Script" path="res://UI/DebugUI.gd" id="4_xbcny"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bxa8a"]
+size = Vector3(0.7, 1.6, 0.7)
+
+[node name="PlayerMech" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+script = ExtResource("1_8j82k")
+
+[node name="EnergyComponent" parent="." instance=ExtResource("2_g845v")]
+max_energy = 200.0
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_pdrve")]
+max_health = 1000.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_bxa8a")
+
+[node name="Neck" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+
+[node name="Head" type="Node3D" parent="Neck"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Neck/Head"]
+
+[node name="Camera3D" type="Camera3D" parent="Neck/Head"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DebugUI" type="MarginContainer" parent="CanvasLayer" node_paths=PackedStringArray("health_component", "energy_component")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 22
+script = ExtResource("4_xbcny")
+health_component = NodePath("../../HealthComponent")
+energy_component = NodePath("../../EnergyComponent")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/DebugUI"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DebugUI/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/DebugUI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/DebugUI/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Health:  "
+
+[node name="HealthValue" type="Label" parent="CanvasLayer/DebugUI/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/DebugUI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/DebugUI/PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Energy: "
+
+[node name="EnergyValue" type="Label" parent="CanvasLayer/DebugUI/PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "0"
