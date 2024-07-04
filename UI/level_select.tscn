@@ -28,7 +28,3 @@ theme_override_constants/margin_bottom = 22
 [node name="GridContainer" type="GridContainer" parent="MarginContainer"]
 layout_mode = 2
 columns = 5
-
-[node name="Button" type="Button" parent="MarginContainer/GridContainer"]
-layout_mode = 2
-text = "LEVEL"

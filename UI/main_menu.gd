@@ -2,6 +2,8 @@ extends Control
 
 signal start_game_pressed
 
+const LEVEL_SELECT = preload("res://UI/level_select.tscn")
+
 @export var first_focus_button: Button
 @export var sound_hover : AudioStream
 @export var sound_click : AudioStream
@@ -15,8 +17,6 @@ func _ready():
 func _process(delta):
 	pass
 	
-func _on_start_game_button_pressed():
-	emit_signal("start_game_pressed")
 
 #func open_settings_menu():
 	#options_tab_menu.show()
@@ -25,3 +25,8 @@ func _on_start_game_button_pressed():
 
 func quit():
 	get_tree().quit()
+
+
+func _on_start_button_pressed():
+	get_tree().change_scene_to_packed(LEVEL_SELECT)
+	emit_signal("start_game_pressed")

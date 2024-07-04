@@ -1,9 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://354y0re3jbp8"]
+[gd_scene load_steps=5 format=3 uid="uid://354y0re3jbp8"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_k3xgx"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_erygr"]
+sky_top_color = Color(0.517647, 0.372549, 0.647059, 1)
+sky_horizon_color = Color(0.870588, 0.580392, 0.352941, 1)
+ground_bottom_color = Color(0.301961, 0, 0.305882, 1)
+ground_horizon_color = Color(0.870588, 0.580392, 0.352941, 1)
+
+[sub_resource type="Sky" id="Sky_esb6t"]
+sky_material = SubResource("ProceduralSkyMaterial_erygr")
+
+[sub_resource type="Environment" id="Environment_y841m"]
+background_mode = 2
+sky = SubResource("Sky_esb6t")
+fog_enabled = true
+fog_light_color = Color(0.713726, 0.741176, 0.784314, 1)
+
 [node name="DemoLevel" type="Node3D"]
 script = ExtResource("1_k3xgx")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_y841m")
 
 [node name="PlayerSpawn" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5131, 0)
