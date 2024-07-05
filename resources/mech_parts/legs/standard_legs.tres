@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MechaLegs" load_steps=2 format=3 uid="uid://hcvifldd2js1"]
+
+[ext_resource type="Script" path="res://resources/mech_parts/mecha_legs.gd" id="1_q2r13"]
+
+[resource]
+script = ExtResource("1_q2r13")
+weight_capacity = 500.0
+base_movement_speed = 3.0
+acceleration = 10.0
+boosting_movement_speed = 20.0
+jump_power = 4.5
+display_name = "Basic Legs"

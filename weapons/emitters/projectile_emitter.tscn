@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://5dsokgcjwj2d"]
+
+[ext_resource type="Script" path="res://weapons/emitters/projectile_emitter.gd" id="1_7m4jh"]
+
+[node name="ProjectileEmitter" type="Node3D"]
+script = ExtResource("1_7m4jh")
+projectile_type = null

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="MechaHead" load_steps=2 format=3 uid="uid://bs0gh5h4r56gc"]
+
+[ext_resource type="Script" path="res://resources/mech_parts/mecha_head.gd" id="1_sqj6v"]
+
+[resource]
+script = ExtResource("1_sqj6v")
+weight = 100.0
+display_name = "Basic Head"

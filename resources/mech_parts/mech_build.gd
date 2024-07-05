@@ -1,8 +1,8 @@
 class_name MechaBuild
 extends Resource
 
-var head:MechaHead
-var chest:MechaChest
-var left_arm:MechaArm
-var right_arm:MechaArm
-var legs:MechaLegs
+@export var head:MechaHead
+@export var chest:MechaChest
+@export var left_arm:MechaArm
+@export var right_arm:MechaArm
+@export var legs:MechaLegs

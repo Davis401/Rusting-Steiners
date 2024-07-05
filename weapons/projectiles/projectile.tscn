@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://botq55mye4yrt"]
+
+[ext_resource type="Script" path="res://weapons/projectiles/projectile.gd" id="1_rsoem"]
+
+[node name="Projectile" type="Node3D"]
+script = ExtResource("1_rsoem")
+
+[node name="Graphics" type="Node3D" parent="."]
+
+[node name="CollisionRayCast" type="RayCast3D" parent="."]
+enabled = false
+collision_mask = 5
+hit_from_inside = true

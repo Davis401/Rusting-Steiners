@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MechaArm" load_steps=3 format=3 uid="uid://bsv3pdce0r3us"]
+
+[ext_resource type="Script" path="res://resources/mech_parts/mecha_arm.gd" id="1_itqs4"]
+[ext_resource type="PackedScene" uid="uid://bbulksqjfy61e" path="res://weapons/controllers/machine_gun_controller.tscn" id="1_q4t75"]
+
+[resource]
+script = ExtResource("1_itqs4")
+weight = 50.0
+arm_controller = ExtResource("1_q4t75")
+display_name = "Machine Gun"

@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch0m8i08wkpak"]
+
+[ext_resource type="FontFile" uid="uid://dpm4dokao617s" path="res://assets/fonts/FerriteCoreDX-Light.ttf" id="1_u22bq"]
+[ext_resource type="Script" path="res://UI/pause_menu.gd" id="2_b38m5"]
+
+[sub_resource type="Theme" id="Theme_ddmt3"]
+Button/fonts/font = ExtResource("1_u22bq")
+Label/fonts/font = ExtResource("1_u22bq")
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ddmt3")
+script = ExtResource("2_b38m5")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -176.0
+offset_right = 176.0
+offset_bottom = 20.0
+grow_horizontal = 2
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="GameMenu" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 400
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/GameMenu"]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="ContinueButton" type="Button" parent="Panel/GameMenu/VBoxContainer"]
+layout_mode = 2
+text = "Continue"
+
+[node name="SettingsButton" type="Button" parent="Panel/GameMenu/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Setting"
+
+[node name="ExitMissionButton" type="Button" parent="Panel/GameMenu/VBoxContainer"]
+layout_mode = 2
+text = "Exit Mission"
+
+[node name="QuitButton" type="Button" parent="Panel/GameMenu/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="Panel/GameMenu/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Panel/GameMenu/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Panel/GameMenu/VBoxContainer/ExitMissionButton" to="." method="_on_exit_mission_button_pressed"]
+[connection signal="pressed" from="Panel/GameMenu/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

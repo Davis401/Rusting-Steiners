@@ -1,12 +1,22 @@
 class_name AttackEmitter
 extends Node3D
 
+var bodies_to_exclude = []
+var damage = 1
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func set_damage(d:int):
+	damage = d
+	for child in get_children():
+		if child is AttackEmitter:
+			child.set_damage(d)
 
+func set_bodies_to_exclude(bodies):
+	bodies_to_exclude = bodies
+	for child in get_children():
+		if child is AttackEmitter:
+			child.set_bodies_to_exclude(bodies)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func attack():
+	for child in get_children():
+		if child is AttackEmitter:
+			child.attack()
