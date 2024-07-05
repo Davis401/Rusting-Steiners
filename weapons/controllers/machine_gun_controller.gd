@@ -8,4 +8,4 @@ var firing = false
 func on_hold()->void:
 	if fire_timer.is_stopped():
 		fire_timer.start(.05)
-		attack_emitter.fire()
+		attack_emitter.attack()
