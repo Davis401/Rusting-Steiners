@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgag1yfcgrjot"]
+
+[ext_resource type="Script" path="res://components/lock_on_target_component.gd" id="1_wrayd"]
+[ext_resource type="Texture2D" uid="uid://cmqm037iifdup" path="res://assets/reticles/crosshair043.png" id="2_kc34g"]
+
+[node name="LockOnTargetComponent" type="Node3D" groups=["lock_on_target"]]
+script = ExtResource("1_wrayd")
+
+[node name="HUDIcon" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_kc34g")

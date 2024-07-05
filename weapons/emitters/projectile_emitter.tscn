@@ -4,4 +4,3 @@
 
 [node name="ProjectileEmitter" type="Node3D"]
 script = ExtResource("1_7m4jh")
-projectile_type = null

@@ -1,10 +1,11 @@
+class_name AreaDamageEmitter
 extends AttackEmitter
 
 @export var attack_radius := 1.0
 @export var offset_by_radius := false
 @onready var ray_cast_3d = $RayCast3D
 
-func attack():
+func attack() ->void:
 	var query_params := PhysicsShapeQueryParameters3D.new()
 	query_params.shape = SphereShape3D.new()
 	query_params.shape.radius = attack_radius

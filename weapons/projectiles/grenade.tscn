@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqiifr3ao13qa"]
+
+[ext_resource type="PackedScene" uid="uid://chwf2tp4m80n0" path="res://weapons/emitters/area_damage_emitter.tscn" id="1_rtler"]
+[ext_resource type="Script" path="res://weapons/projectiles/grenade.gd" id="1_wb0l6"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_7kkdp"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_mhkym"]
+albedo_color = Color(0, 0.117647, 0.101961, 1)
+
+[node name="Grenade" type="Node3D"]
+script = ExtResource("1_wb0l6")
+
+[node name="Graphics" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Graphics"]
+mesh = SubResource("SphereMesh_7kkdp")
+surface_material_override/0 = SubResource("ORMMaterial3D_mhkym")
+
+[node name="CollisionRaycast" type="RayCast3D" parent="."]
+enabled = false
+collision_mask = 17
+collide_with_areas = true
+
+[node name="AreaDamageEmitter" parent="." instance=ExtResource("1_rtler")]

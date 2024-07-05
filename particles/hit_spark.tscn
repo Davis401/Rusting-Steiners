@@ -39,7 +39,6 @@ color_ramp = SubResource("GradientTexture1D_ee455")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 material_overlay = SubResource("StandardMaterial3D_4e2ok")
-emitting = false
 amount = 16
 one_shot = true
 explosiveness = 0.9

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyclv70ecyeu4"]
+
+[ext_resource type="Script" path="res://entities/enemies/enemy.gd" id="1_26seq"]
+[ext_resource type="PackedScene" uid="uid://c08n456hikpba" path="res://components/health_component.tscn" id="2_7elvg"]
+[ext_resource type="PackedScene" uid="uid://bgag1yfcgrjot" path="res://components/lock_on_target_component.tscn" id="3_dkqn1"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_2e4br"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gjnih"]
+
+[node name="Enemy" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_26seq")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_7elvg")]
+max_health = 1000.0
+
+[node name="LockOnTargetComponent" parent="." instance=ExtResource("3_dkqn1")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConcavePolygonShape3D_2e4br")
+
+[node name="Graphics" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Graphics"]
+mesh = SubResource("BoxMesh_gjnih")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.735149, 0)
+billboard = 2
+text = "1000"
+font_size = 100
