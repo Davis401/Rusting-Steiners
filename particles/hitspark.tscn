@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://ccuosqjnwdwth"]
+
+[ext_resource type="Script" path="res://particles/hitspark.gd" id="1_22s40"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8snhi"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_gmj00"]
+offsets = PackedFloat32Array(0, 0.0978261, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.999999, 0.964743, 0.491138, 1, 0.262089, 2.61711e-07, 9.62615e-08, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1uyfh"]
+gradient = SubResource("Gradient_gmj00")
+
+[sub_resource type="Curve" id="Curve_po21s"]
+_data = [Vector2(0, 0), 0.0, 6.75604, 0, 0, Vector2(1, 0), -2.71795, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_45p5j"]
+curve = SubResource("Curve_po21s")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gccqm"]
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+scale_min = 0.01
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_45p5j")
+color_ramp = SubResource("GradientTexture1D_1uyfh")
+
+[sub_resource type="QuadMesh" id="QuadMesh_561f1"]
+
+[node name="Hitspark" type="Node3D"]
+script = ExtResource("1_22s40")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_8snhi")
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 0.9
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_gccqm")
+draw_pass_1 = SubResource("QuadMesh_561f1")
+
+[connection signal="finished" from="GPUParticles3D" to="." method="_on_gpu_particles_3d_finished"]

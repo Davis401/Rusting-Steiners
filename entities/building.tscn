@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cie0qj7fbya4q"]
+
+[ext_resource type="Texture2D" uid="uid://bm0qh4a06ar6s" path="res://assets/textures/Windows_256.png" id="1_c26uv"]
+[ext_resource type="Script" path="res://entities/building.gd" id="2_32prx"]
+[ext_resource type="PackedScene" uid="uid://c08n456hikpba" path="res://components/health_component.tscn" id="3_t1wyk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oy36v"]
+albedo_texture = ExtResource("1_c26uv")
+uv1_scale = Vector3(4, 4, 4)
+uv1_triplanar = true
+
+[node name="Building" type="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+use_collision = true
+collision_layer = 5
+material = SubResource("StandardMaterial3D_oy36v")
+script = ExtResource("2_32prx")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_t1wyk")]
+max_health = 10.0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

@@ -1,7 +1,8 @@
 class_name Projectile
 extends Node3D
 
-@onready var collision_raycast = $CollisionRayCast
+@onready var collision_raycast = $CollisionRaycast
+
 
 @export var speed = 30
 @export var show_after_time := 0.1
@@ -60,10 +61,10 @@ func on_hit(hit_collider:Node3D, hit_pos: Vector3, hit_normal: Vector3)->void:
 	
 
 func damage_target(hit_collider:Node3D, hit_pos: Vector3, hit_normal: Vector3)->void:
-	var damage_data = {}
+	var damage_data = DamageData.new()
 	damage_data.amount = damage
 	damage_data.hit_pos = hit_pos
-	hit_collider.hurt(damage_data.amount)
+	hit_collider.hurt(damage_data)
 	
 
 func destroy()->void:

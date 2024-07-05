@@ -1,3 +1,3 @@
 extends Node
 
-var current_build:MechaBuild
+@export var current_build:MechaBuild

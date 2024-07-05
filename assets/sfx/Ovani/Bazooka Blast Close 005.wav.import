@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://j2hin2buesqq"
+path="res://.godot/imported/Bazooka Blast Close 005.wav-c77a99eee1e2a520e1a437f90fb69f8d.sample"
+
+[deps]
+
+source_file="res://assets/sfx/Ovani/Bazooka Blast Close 005.wav"
+dest_files=["res://.godot/imported/Bazooka Blast Close 005.wav-c77a99eee1e2a520e1a437f90fb69f8d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -31,7 +31,7 @@ func on_health_change(_health_current:float, _health_max:float, has_increased:bo
 		damage_taken.emit()
 	
 
-func on_death()->void:
+func on_death(_health_current:float, _health_max:float)->void:
 	death.emit()
 	parent_position = get_parent().global_position
 	

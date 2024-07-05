@@ -7,6 +7,9 @@ extends CharacterBody3D
 @export var MOUSE_SENS : float = 0.25
 @export var LERP_SPEED : float = 10.0
 
+var turning_sounds = [preload("res://assets/sfx/Ovani/Tractor Gear Shift A.wav"), preload("res://assets/sfx/Ovani/Tractor Gear Shift B.wav"), preload("res://assets/sfx/Ovani/Tractor Gear Shift C.wav")]
+@onready var turn_player = $AudioPlayers/TurnPlayer
+
 var normal_speed := 5.0
 var boosting_speed := 8.0
 var jump_power := 4.5
@@ -24,22 +27,30 @@ var is_movement_paused : bool = false
 var is_dead : bool = false
 
 #Components
-@onready var energy_component = $EnergyComponent
-@onready var health_component = $HealthComponent
+@onready var energy_component:EnergyComponent = $EnergyComponent
+@onready var health_component:HealthComponent = $HealthComponent
 
+@onready var neck: Node3D  = $Neck
+@onready var head: Node3D  = $Neck/Head
+@onready var camera:Camera3D = $Neck/Head/Camera3D
+@onready var animation_player:AnimationPlayer = $Neck/Head/AnimationPlayer
+@onready var left_weapon: Node3D  = %LeftWeapon
+@onready var right_weapon: Node3D  = %RightWeapon
 
-@onready var neck = $Neck
-@onready var head = $Neck/Head
-@onready var camera = $Neck/Head/Camera3D
-@onready var animation_player = $Neck/Head/AnimationPlayer
-@onready var left_weapon = %LeftWeapon
-@onready var right_weapon = %RightWeapon
+@onready var step_timer: Timer = $StepTimer
 
 @onready var pause_menu = $CanvasLayer/PauseMenu
+
+
+@onready var step_left = $AudioPlayers/StepLeft
+@onready var step_right = $AudioPlayers/StepRight
+var step_players = []
+var step_idx = 0
 
 @onready var self_rid: RID = self.get_rid()
 
 func _ready() ->void:
+	step_players = [step_left, step_right]
 	randomize() 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if build != null:
@@ -72,10 +83,19 @@ func _input(event) ->void:
 		rotate_y(deg_to_rad(-event.relative.x * MOUSE_SENS))
 		neck.rotate_x(deg_to_rad(-event.relative.y * MOUSE_SENS))
 		neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+		if !turn_player.playing:
+			turn_player.stream = turning_sounds.pick_random()
+			turn_player.pitch_scale = randf_range(0.9, 1.1)
+			turn_player.play()
+		
 	if event.is_action_pressed("fire_left_arm") && left_weapon.get_child(0) != null && left_weapon.get_child(0) is WeaponController:
 		left_weapon.get_child(0).on_press()
 	if event.is_action_pressed("fire_right_arm") && right_weapon.get_child(0) != null && right_weapon.get_child(0) is WeaponController:
 		right_weapon.get_child(0).on_press()
+	if event.is_action_released("fire_left_arm") && left_weapon.get_child(0) != null && left_weapon.get_child(0) is WeaponController:
+		left_weapon.get_child(0).on_release()
+	if event.is_action_released("fire_right_arm") && right_weapon.get_child(0) != null && right_weapon.get_child(0) is WeaponController:
+		right_weapon.get_child(0).on_release()
 	if event.is_action_pressed("boost"):
 		if !is_boosting and energy_component and energy_component.current_energy > 0:
 			is_boosting = true
@@ -133,6 +153,14 @@ func _physics_process(delta) ->void:
 	
 	velocity += gravity_vec
 	move_and_slide()
+	
+	if is_on_floor() and !is_boosting and velocity.length() >= 0.2:
+		if step_timer.time_left <= 0:
+			var sfx_player = step_players[step_idx]
+			step_idx = (step_idx + 1) % 2
+			sfx_player.pitch_scale = randf_range(0.8, 1.2)
+			sfx_player.play()
+			step_timer.start(0.8)
 
 func _process(_delta)->void:
 	if Input.is_action_pressed("fire_left_arm") && left_weapon.get_child(0) != null && left_weapon.get_child(0) is WeaponController:

@@ -1,20 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://354y0re3jbp8"]
+[gd_scene load_steps=7 format=3 uid="uid://354y0re3jbp8"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_k3xgx"]
 [ext_resource type="PackedScene" uid="uid://cyclv70ecyeu4" path="res://entities/enemies/enemy.tscn" id="2_nwuhg"]
+[ext_resource type="PackedScene" uid="uid://cie0qj7fbya4q" path="res://entities/building.tscn" id="3_5oswg"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_erygr"]
-sky_top_color = Color(0.517647, 0.372549, 0.647059, 1)
-sky_horizon_color = Color(0.870588, 0.580392, 0.352941, 1)
-ground_bottom_color = Color(0.301961, 0, 0.305882, 1)
-ground_horizon_color = Color(0.870588, 0.580392, 0.352941, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vvl54"]
 
-[sub_resource type="Sky" id="Sky_esb6t"]
-sky_material = SubResource("ProceduralSkyMaterial_erygr")
+[sub_resource type="Sky" id="Sky_g1upr"]
+sky_material = SubResource("ProceduralSkyMaterial_vvl54")
 
 [sub_resource type="Environment" id="Environment_y841m"]
-background_mode = 2
-sky = SubResource("Sky_esb6t")
+sky = SubResource("Sky_g1upr")
 fog_enabled = true
 fog_light_color = Color(0.713726, 0.741176, 0.784314, 1)
 
@@ -40,6 +36,129 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.08975, 0.5, 46.6619)
 
 [node name="Enemy4" parent="Entities" instance=ExtResource("2_nwuhg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.92971, 0.5, 46.6619)
+
+[node name="Building" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.18479, 0, -12.089)
+
+[node name="Building2" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.81521, 0.881836, -12.089)
+size = Vector3(1, 2.76367, 1)
+
+[node name="Building13" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.81521, 0.881836, -23.9064)
+size = Vector3(1, 2.76367, 1)
+
+[node name="Building14" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.81521, 0.881836, -32.6548)
+size = Vector3(1, 2.76367, 1)
+
+[node name="Building24" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.81521, 0.881836, 14.4463)
+size = Vector3(1, 2.76367, 1)
+
+[node name="Building15" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.81521, 0.881836, 11.6714)
+size = Vector3(1, 2.76367, 1)
+
+[node name="Building16" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.81521, 0.881836, 25.5634)
+size = Vector3(1, 2.76367, 1)
+
+[node name="Building3" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.66774, 0.881836, -15.0455)
+size = Vector3(1.29492, 2.76367, 1)
+
+[node name="Building4" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.93532, 0.881836, -18.2139)
+size = Vector3(1.83008, 2.76367, 1)
+
+[node name="Building20" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.93532, 0.881836, -3.67591)
+size = Vector3(1.83008, 2.76367, 1)
+
+[node name="Building21" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.93532, 0.881836, 19.2925)
+size = Vector3(1.83008, 2.76367, 1)
+
+[node name="Building22" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.81417, 0.881836, 19.2925)
+size = Vector3(1.83008, 2.76367, 1)
+
+[node name="Building23" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.81417, 0.881836, 1.51002)
+size = Vector3(1.83008, 2.76367, 1)
+
+[node name="Building5" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.93532, 0.47168, -20.8719)
+size = Vector3(1.83008, 1.94336, 1)
+
+[node name="Building27" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.93532, 0.47168, 5.77606)
+size = Vector3(1.83008, 1.94336, 1)
+
+[node name="Building28" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.93532, 0.47168, 22.1787)
+size = Vector3(1.83008, 1.94336, 1)
+
+[node name="Building29" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.06468, 0.47168, 22.1787)
+size = Vector3(1.83008, 1.94336, 1)
+
+[node name="Building6" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.24424, 0.47168, -20.1458)
+size = Vector3(1.83008, 1.94336, 2.45215)
+
+[node name="Building17" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.24424, 0.47168, 7.24165)
+size = Vector3(1.83008, 1.94336, 2.45215)
+
+[node name="Building18" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.24424, 0.47168, 28.1615)
+size = Vector3(1.83008, 1.94336, 2.45215)
+
+[node name="Building19" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.24424, 0.47168, 37.1207)
+size = Vector3(1.83008, 1.94336, 2.45215)
+
+[node name="Building7" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.24424, -0.0185547, -24.3362)
+size = Vector3(1.83008, 0.962891, 2.45215)
+
+[node name="Building8" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.24424, -0.0185547, -30.5972)
+size = Vector3(1.83008, 0.962891, 0.882324)
+
+[node name="Building9" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.24424, -0.0185547, -18.0419)
+size = Vector3(1.83008, 0.962891, 0.882324)
+
+[node name="Building10" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.24424, -0.0185547, -10.2085)
+size = Vector3(1.83008, 0.962891, 0.882324)
+
+[node name="Building30" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.24424, -0.0185547, -2.35218)
+size = Vector3(1.83008, 0.962891, 0.882324)
+
+[node name="Building31" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.24424, -0.0185547, 15.5902)
+size = Vector3(1.83008, 0.962891, 0.882324)
+
+[node name="Building11" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.24424, -0.0185547, -27.519)
+size = Vector3(1.83008, 0.962891, 0.882324)
+
+[node name="Building25" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.24424, -0.0185547, -6.65963)
+size = Vector3(1.83008, 0.962891, 0.882324)
+
+[node name="Building26" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.24424, -0.0185547, 13.4146)
+size = Vector3(1.83008, 0.962891, 0.882324)
+
+[node name="Building12" parent="Entities" instance=ExtResource("3_5oswg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.53339, -0.0185547, -27.519)
+size = Vector3(1.83008, 0.962891, 0.882324)
 
 [node name="LevelTerrain" type="Node3D" parent="."]
 

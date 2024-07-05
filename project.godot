@@ -15,6 +15,11 @@ run/main_scene="res://UI/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*res://autoloads/global.tscn"
+AudioManager="*res://autoloads/audio_manager.tscn"
+
 [display]
 
 window/size/viewport_width=1920
@@ -78,3 +83,30 @@ pause={
 [physics]
 
 3d/physics_engine="JoltPhysics3D"
+
+[shader_globals]
+
+affine_texture_mapping={
+"type": "bool",
+"value": true
+}
+vertex_snap_intensity={
+"type": "int",
+"value": 0
+}
+texture_filtering={
+"type": "bool",
+"value": false
+}
+cull_distance={
+"type": "float",
+"value": 64.0
+}
+vertex_snap_resolution={
+"type": "ivec2",
+"value": Vector2i(160, 120)
+}
+texture_lod_halve_distance={
+"type": "float",
+"value": 0.0
+}

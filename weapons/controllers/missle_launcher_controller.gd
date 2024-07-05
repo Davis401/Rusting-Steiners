@@ -33,18 +33,20 @@ func on_hold()->void:
 
 #Called when released
 func on_release()->void:
+	print("Released")
 	if !lock_on_timer.paused:
 		lock_on_timer.stop()
 	while targets.size() > 0:
 		var t = targets.pop_back()
 		t.locked_on = false
+	targets = []
 		
 
 
 func _on_lock_on_timer_timeout()->void:
 	if lock_on_target != null:
 		lock_on_target.locked_on = true
-		targets.apwpend(lock_on_target)
+		targets.append(lock_on_target)
 		lock_on_target = null
 		locking_on = false
 		if targets.size() < max_targets:
