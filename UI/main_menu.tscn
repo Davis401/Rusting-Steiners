@@ -25,7 +25,7 @@ Button/styles/hover = SubResource("StyleBoxFlat_ty0dw")
 Button/styles/normal = SubResource("StyleBoxFlat_qkjpc")
 Button/styles/pressed = SubResource("StyleBoxFlat_ty0dw")
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("first_focus_button")]
+[node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,9 +34,32 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_jok85")
 script = ExtResource("1_2qkdf")
-first_focus_button = NodePath("MarginContainer/VBoxContainer/StartButton")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="GameMenu" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 432.0
+offset_bottom = 301.0
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 140
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameMenu"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="StoreButton" type="Button" parent="GameMenu/VBoxContainer"]
+layout_mode = 2
+text = "Store"
+
+[node name="BuildButton" type="Button" parent="GameMenu/VBoxContainer"]
+layout_mode = 2
+text = "Build"
+
+[node name="MissionsButton" type="Button" parent="GameMenu/VBoxContainer"]
+layout_mode = 2
+text = "Missions"
+
+[node name="StartMenu" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -44,23 +67,28 @@ anchor_bottom = 1.0
 offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_bottom = 40
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_bottom = 140
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="StartMenu"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_constants/separation = 22
 
-[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="StartButton" type="Button" parent="StartMenu/VBoxContainer"]
 layout_mode = 2
-text = "START"
+text = "Start"
 
-[node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="StartMenu/VBoxContainer"]
 layout_mode = 2
-text = "SETTINGS"
+text = "Settings"
 
-[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="StartMenu/VBoxContainer"]
 layout_mode = 2
-text = "QUIT"
+text = "Quit"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="GameMenu/VBoxContainer/StoreButton" to="." method="_on_store_button_pressed"]
+[connection signal="pressed" from="GameMenu/VBoxContainer/BuildButton" to="." method="_on_build_button_pressed"]
+[connection signal="pressed" from="GameMenu/VBoxContainer/MissionsButton" to="." method="_on_missions_button_pressed"]
+[connection signal="pressed" from="StartMenu/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="StartMenu/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

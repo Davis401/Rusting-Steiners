@@ -4,7 +4,11 @@
 [ext_resource type="Script" path="res://UI/pause_menu.gd" id="2_b38m5"]
 
 [sub_resource type="Theme" id="Theme_ddmt3"]
+Button/colors/font_color = Color(0.890196, 0.890196, 0.890196, 1)
+Button/font_sizes/font_size = 24
 Button/fonts/font = ExtResource("1_u22bq")
+Label/colors/font_color = Color(0.890196, 0.890196, 0.890196, 1)
+Label/font_sizes/font_size = 32
 Label/fonts/font = ExtResource("1_u22bq")
 
 [node name="PauseMenu" type="Control"]
@@ -28,12 +32,9 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -176.0
-offset_right = 176.0
-offset_bottom = 20.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 39.0
 grow_horizontal = 2
 text = "PAUSED"
 horizontal_alignment = 1
@@ -46,28 +47,36 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 400
-theme_override_constants/margin_top = 100
+theme_override_constants/margin_top = 200
 theme_override_constants/margin_right = 400
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/GameMenu"]
 layout_mode = 2
-theme_override_constants/separation = 22
+theme_override_constants/separation = 20
 
 [node name="ContinueButton" type="Button" parent="Panel/GameMenu/VBoxContainer"]
+custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Continue"
 
 [node name="SettingsButton" type="Button" parent="Panel/GameMenu/VBoxContainer"]
 visible = false
+custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Setting"
 
 [node name="ExitMissionButton" type="Button" parent="Panel/GameMenu/VBoxContainer"]
+custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Exit Mission"
 
 [node name="QuitButton" type="Button" parent="Panel/GameMenu/VBoxContainer"]
+custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Quit"
 
 [connection signal="pressed" from="Panel/GameMenu/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

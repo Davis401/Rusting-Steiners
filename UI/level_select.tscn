@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://dy558xptangkv"]
+[gd_scene load_steps=6 format=3 uid="uid://dy558xptangkv"]
 
 [ext_resource type="FontFile" uid="uid://dpm4dokao617s" path="res://assets/fonts/FerriteCoreDX-Light.ttf" id="1_8nvp5"]
 [ext_resource type="Script" path="res://UI/level_select.gd" id="1_r6t8u"]
 [ext_resource type="Resource" uid="uid://bcfb61g34lkbl" path="res://levels/demo_level.tres" id="2_vag4d"]
+[ext_resource type="FontFile" uid="uid://dgm2v7yghigh" path="res://assets/fonts/FerriteCoreDX-Regular.ttf" id="4_wbrdq"]
 
 [sub_resource type="Theme" id="Theme_tb3cy"]
+Button/colors/font_color = Color(0.890196, 0.890196, 0.890196, 1)
 Button/fonts/font = ExtResource("1_8nvp5")
+Label/colors/font_color = Color(0.890196, 0.890196, 0.890196, 1)
+Label/font_sizes/font_size = 32
 Label/fonts/font = ExtResource("1_8nvp5")
 
 [node name="LevelSelect" type="Control"]
@@ -19,29 +23,64 @@ theme = SubResource("Theme_tb3cy")
 script = ExtResource("1_r6t8u")
 levels = Array[Resource("res://resources/level_data.gd")]([ExtResource("2_vag4d")])
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 22
-theme_override_constants/margin_top = 22
-theme_override_constants/margin_right = 22
-theme_override_constants/margin_bottom = 22
-
-[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
-layout_mode = 2
-columns = 5
-
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 20.0
 grow_horizontal = 2
-text = "LEVEL SELECT"
+theme_override_font_sizes/font_size = 32
+text = "Mission Select"
+horizontal_alignment = 1
+
+[node name="MissionListContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 80.0
+offset_bottom = 80.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+
+[node name="MissionList" type="VBoxContainer" parent="MissionListContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="MissionInfoContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -680.0
+offset_bottom = 880.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+tooltip_text = "<null>"
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+
+[node name="PanelContainer" type="PanelContainer" parent="MissionInfoContainer"]
+custom_minimum_size = Vector2(600, 800)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MissionInfoContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="MissionInfo" type="Label" parent="MissionInfoContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(540, 740)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("4_wbrdq")
+theme_override_font_sizes/font_size = 24
+text = "Placeholder Mission info
+You gotta KILL them all dude! Every last one kil kill kill kill kill killkill kill kill kill kill  kill kill kill kill killkill kill kill kill kill kill kill kill kill kill kill kill kill kill kill  kill kill kill kill killkill kill kill kill kill"
+autowrap_mode = 3

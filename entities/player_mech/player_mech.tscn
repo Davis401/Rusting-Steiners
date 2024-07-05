@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://v2b55h11rppm"]
+[gd_scene load_steps=23 format=3 uid="uid://v2b55h11rppm"]
 
 [ext_resource type="Script" path="res://entities/player_mech/player_mech.gd" id="1_8j82k"]
 [ext_resource type="Resource" uid="uid://cx82xnrvhq870" path="res://resources/mech_parts/chest/standard_chest.tres" id="2_56d0m"]
@@ -15,6 +15,7 @@
 [ext_resource type="FontFile" uid="uid://dpm4dokao617s" path="res://assets/fonts/FerriteCoreDX-Light.ttf" id="11_42rwg"]
 [ext_resource type="Script" path="res://entities/player_mech/UI.gd" id="11_cmofo"]
 [ext_resource type="Texture2D" uid="uid://derq7j577m4jq" path="res://assets/reticles/crosshair007.png" id="11_kp0kp"]
+[ext_resource type="AudioStream" uid="uid://dpqnjb23ockyh" path="res://assets/sfx/thrusterFire_000.ogg" id="16_clu5a"]
 [ext_resource type="AudioStream" uid="uid://dn1tptaapfmg8" path="res://assets/sfx/Ovani/MechStep1.mp3" id="16_roaqu"]
 
 [sub_resource type="Resource" id="Resource_7srlk"]
@@ -204,6 +205,12 @@ one_shot = true
 [node name="EngineHum" type="AudioStreamPlayer3D" parent="AudioPlayers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
 stream = ExtResource("10_y8sd2")
+volume_db = -30.0
+autoplay = true
+
+[node name="Thruster" type="AudioStreamPlayer3D" parent="AudioPlayers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
+stream = ExtResource("16_clu5a")
 volume_db = -30.0
 autoplay = true
 

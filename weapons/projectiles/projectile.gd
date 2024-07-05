@@ -4,7 +4,7 @@ extends Node3D
 @onready var collision_raycast = $CollisionRaycast
 
 
-@export var speed = 30
+@export var initial_speed = 30
 @export var show_after_time := 0.1
 @export var delete_on_hit_after_time := -1.0
 
@@ -16,6 +16,7 @@ var last_pos : Vector3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() ->void:
+	add_to_group("instantiated")
 	hide()
 	await get_tree().create_timer(show_after_time).timeout
 	show()
@@ -30,7 +31,7 @@ func _physics_process(delta)->void:
 
 func process_movement(delta)->void:
 	last_pos = global_position
-	global_position += -global_transform.basis.z * speed * delta
+	global_position += -global_transform.basis.z * initial_speed * delta
 	
 
 func set_bodies_to_exclude(bte: Array):

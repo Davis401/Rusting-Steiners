@@ -4,6 +4,8 @@
 [ext_resource type="Script" path="res://weapons/projectiles/grenade.gd" id="1_wb0l6"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_7kkdp"]
+radius = 0.25
+height = 0.5
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_mhkym"]
 albedo_color = Color(0, 0.117647, 0.101961, 1)

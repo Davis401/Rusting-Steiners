@@ -9,6 +9,7 @@ extends CharacterBody3D
 
 var turning_sounds = [preload("res://assets/sfx/Ovani/Tractor Gear Shift A.wav"), preload("res://assets/sfx/Ovani/Tractor Gear Shift B.wav"), preload("res://assets/sfx/Ovani/Tractor Gear Shift C.wav")]
 @onready var turn_player = $AudioPlayers/TurnPlayer
+@onready var thruster = $AudioPlayers/Thruster
 
 var normal_speed := 5.0
 var boosting_speed := 8.0
@@ -167,6 +168,10 @@ func _process(_delta)->void:
 		left_weapon.get_child(0).on_hold()
 	if Input.is_action_pressed("fire_right_arm") && right_weapon.get_child(0) != null && right_weapon.get_child(0) is WeaponController:
 		right_weapon.get_child(0).on_hold()
+	if is_boosting:
+		thruster.play()
+	else:
+		thruster.stop()
 
 # Signal from Pause Menu
 func _on_pause_menu_resume() ->void:
