@@ -1,4 +1,4 @@
 class_name MechaHead
 extends MechaPart
 
-@export var weight:float
+@export var accuracy:float

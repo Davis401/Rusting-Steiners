@@ -1,0 +1,111 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuqp5236hm4c2"]
+
+[ext_resource type="Theme" uid="uid://bjwry7i4vasob" path="res://UI/pause_menu.tres" id="1_loxxs"]
+[ext_resource type="Script" path="res://UI/settings_menu.gd" id="2_000gg"]
+
+[node name="SettingsMenu" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_loxxs")
+script = ExtResource("2_000gg")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 200
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer_Resolution" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 40)
+layout_mode = 2
+alignment = 1
+
+[node name="ResolutionLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Resolution"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Resolution"
+
+[node name="ResolutionOptionButton" type="OptionButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Resolution"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer_WindowMode" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 40)
+layout_mode = 2
+alignment = 1
+
+[node name="WindowModeLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_WindowMode"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Window"
+
+[node name="WindowModeOptionButton" type="OptionButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_WindowMode"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer_RenderScale" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 40)
+layout_mode = 2
+alignment = 1
+
+[node name="RenderScaleLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_RenderScale"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 16
+text = "Render Scale"
+
+[node name="RenderScaleSlider" type="HSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_RenderScale"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_force_pass_scroll_events = false
+min_value = 0.25
+max_value = 2.0
+step = 0.05
+value = 1.25
+
+[node name="RenderScaleCurrentValueLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_RenderScale"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "1"
+
+[node name="CloseButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Close"
+
+[connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_RenderScale/RenderScaleSlider" to="." method="_on_render_scale_slider_value_changed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]

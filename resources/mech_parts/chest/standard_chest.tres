@@ -4,7 +4,9 @@
 
 [resource]
 script = ExtResource("1_ysjbo")
-weight = 200.0
 max_health = 1000.0
 max_energy = 1000.0
+id = "basic_chest"
 display_name = "Basic Chest"
+cost = 0
+weight = 200

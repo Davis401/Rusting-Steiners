@@ -5,6 +5,8 @@
 
 [resource]
 script = ExtResource("1_itqs4")
-weight = 50.0
 arm_controller = ExtResource("1_q4t75")
+id = "machine_gun_arm"
 display_name = "Machine Gun"
+cost = 0
+weight = 50

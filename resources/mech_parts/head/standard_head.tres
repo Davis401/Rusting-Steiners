@@ -4,5 +4,8 @@
 
 [resource]
 script = ExtResource("1_sqj6v")
-weight = 100.0
+accuracy = 100.0
+id = "basic_head"
 display_name = "Basic Head"
+cost = 0
+weight = 50

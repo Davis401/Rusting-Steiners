@@ -24,7 +24,8 @@ AudioManager="*res://autoloads/audio_manager.tscn"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
+window/size/window_width_override=1920
+window/size/window_height_override=1080
 
 [input]
 
@@ -125,30 +126,3 @@ fire_right_shoulder={
 [physics]
 
 3d/physics_engine="JoltPhysics3D"
-
-[shader_globals]
-
-affine_texture_mapping={
-"type": "bool",
-"value": true
-}
-vertex_snap_intensity={
-"type": "int",
-"value": 0
-}
-texture_filtering={
-"type": "bool",
-"value": false
-}
-cull_distance={
-"type": "float",
-"value": 64.0
-}
-vertex_snap_resolution={
-"type": "ivec2",
-"value": Vector2i(160, 120)
-}
-texture_lod_halve_distance={
-"type": "float",
-"value": 0.0
-}

@@ -35,8 +35,11 @@ var is_dead : bool = false
 @onready var head: Node3D  = $Neck/Head
 @onready var camera:Camera3D = $Neck/Head/Camera3D
 @onready var animation_player:AnimationPlayer = $Neck/Head/AnimationPlayer
-@onready var left_weapon: Node3D  = %LeftWeapon
-@onready var right_weapon: Node3D  = %RightWeapon
+
+@onready var left_arm_weapon: Node3D = %LeftArmWeapon
+@onready var right_arm_weapon: Node3D = %RightArmWeapon
+@onready var left_shoulder_weapon: Node3D = %LeftShoulderWeapon
+@onready var right_shoulder_weapon: Node3D = %RightShoulderWeapon
 
 @onready var step_timer: Timer = $StepTimer
 
@@ -62,11 +65,16 @@ func _ready() ->void:
 			energy_component.set_energy_attribute(build.chest.max_energy, build.chest.max_energy)
 		if build.left_arm != null:
 			var left_arm_controller = build.left_arm.arm_controller.instantiate()
-			left_weapon.add_child(left_arm_controller)
+			left_arm_weapon.add_child(left_arm_controller)
 		if build.right_arm != null:
 			var right_arm_controller = build.right_arm.arm_controller.instantiate()
-			right_weapon.add_child(right_arm_controller)
-			left_weapon.get_child(0)
+			right_arm_weapon.add_child(right_arm_controller)
+		if build.left_shoulder != null:
+			var left_shoulder_controller = build.left_shoulder.shoulder_controller.instantiate()
+			left_shoulder_weapon.add_child(left_shoulder_controller)
+		if build.right_shoulder != null:
+			var right_shoulder_controller = build.right_shoulder.shoulder_controller.instantiate()
+			right_shoulder_weapon.add_child(right_shoulder_controller)
 		if build.legs != null:
 			normal_speed =  build.legs.base_movement_speed
 			boosting_speed =  build.legs.boosting_movement_speed
@@ -88,15 +96,26 @@ func _input(event) ->void:
 			turn_player.stream = turning_sounds.pick_random()
 			turn_player.pitch_scale = randf_range(0.9, 1.1)
 			turn_player.play()
-		
-	if event.is_action_pressed("fire_left_arm") && left_weapon.get_child(0) != null && left_weapon.get_child(0) is WeaponController:
-		left_weapon.get_child(0).on_press()
-	if event.is_action_pressed("fire_right_arm") && right_weapon.get_child(0) != null && right_weapon.get_child(0) is WeaponController:
-		right_weapon.get_child(0).on_press()
-	if event.is_action_released("fire_left_arm") && left_weapon.get_child(0) != null && left_weapon.get_child(0) is WeaponController:
-		left_weapon.get_child(0).on_release()
-	if event.is_action_released("fire_right_arm") && right_weapon.get_child(0) != null && right_weapon.get_child(0) is WeaponController:
-		right_weapon.get_child(0).on_release()
+	#Arm Weapons
+	if event.is_action_pressed("fire_left_arm") && left_arm_weapon.get_child(0) != null && left_arm_weapon.get_child(0) is WeaponController:
+		left_arm_weapon.get_child(0).on_press()
+	if event.is_action_pressed("fire_right_arm") && right_arm_weapon.get_child(0) != null && right_arm_weapon.get_child(0) is WeaponController:
+		right_arm_weapon.get_child(0).on_press()
+	if event.is_action_released("fire_left_arm") && left_arm_weapon.get_child(0) != null && left_arm_weapon.get_child(0) is WeaponController:
+		left_arm_weapon.get_child(0).on_release()
+	if event.is_action_released("fire_right_arm") && right_arm_weapon.get_child(0) != null && right_arm_weapon.get_child(0) is WeaponController:
+		right_arm_weapon.get_child(0).on_release()
+	
+	#Shoudler Weapons
+	if event.is_action_pressed("fire_left_shoulder") && left_shoulder_weapon.get_child(0) != null && left_shoulder_weapon.get_child(0) is WeaponController:
+		left_shoulder_weapon.get_child(0).on_press()
+	if event.is_action_pressed("fire_right_shoulder") && right_shoulder_weapon.get_child(0) != null && right_shoulder_weapon.get_child(0) is WeaponController:
+		right_shoulder_weapon.get_child(0).on_press()
+	if event.is_action_released("fire_left_shoulder") && left_shoulder_weapon.get_child(0) != null && left_shoulder_weapon.get_child(0) is WeaponController:
+		left_shoulder_weapon.get_child(0).on_release()
+	if event.is_action_released("fire_right_shoulder") && right_shoulder_weapon.get_child(0) != null && right_shoulder_weapon.get_child(0) is WeaponController:
+		right_shoulder_weapon.get_child(0).on_release()
+	
 	if event.is_action_pressed("boost"):
 		if !is_boosting and energy_component and energy_component.current_energy > 0:
 			is_boosting = true
@@ -164,10 +183,14 @@ func _physics_process(delta) ->void:
 			step_timer.start(0.8)
 
 func _process(_delta)->void:
-	if Input.is_action_pressed("fire_left_arm") && left_weapon.get_child(0) != null && left_weapon.get_child(0) is WeaponController:
-		left_weapon.get_child(0).on_hold()
-	if Input.is_action_pressed("fire_right_arm") && right_weapon.get_child(0) != null && right_weapon.get_child(0) is WeaponController:
-		right_weapon.get_child(0).on_hold()
+	if Input.is_action_pressed("fire_left_arm") && left_arm_weapon.get_child(0) != null && left_arm_weapon.get_child(0) is WeaponController:
+		left_arm_weapon.get_child(0).on_hold()
+	if Input.is_action_pressed("fire_right_arm") && right_arm_weapon.get_child(0) != null && right_arm_weapon.get_child(0) is WeaponController:
+		right_arm_weapon.get_child(0).on_hold()
+	if Input.is_action_pressed("fire_left_shoulder") && left_shoulder_weapon.get_child(0) != null && left_shoulder_weapon.get_child(0) is WeaponController:
+		left_shoulder_weapon.get_child(0).on_hold()
+	if Input.is_action_pressed("fire_right_shoulder") && right_shoulder_weapon.get_child(0) != null && right_shoulder_weapon.get_child(0) is WeaponController:
+		right_shoulder_weapon.get_child(0).on_hold()
 	if is_boosting:
 		thruster.play()
 	else:

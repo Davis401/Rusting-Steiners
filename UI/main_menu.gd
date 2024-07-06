@@ -5,14 +5,20 @@ const LEVEL_SELECT = preload("res://UI/level_select.tscn")
 @export var sound_hover : AudioStream
 @export var sound_click : AudioStream
 
+var settings_open := false
+
 @onready var game_menu = $GameMenu
 @onready var start_menu = $StartMenu
 @onready var start_button = $StartMenu/VBoxContainer/StartButton
 @onready var store_button = $GameMenu/VBoxContainer/StoreButton
+@onready var settings_menu = $SettingsMenu
+@onready var player_profile = $PlayerProfile
 
 
 func _ready() ->void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	settings_menu.back_pressed.connect(on_setting_closed.bind(settings_menu))
+	settings_menu.hide()
 	if Global.need_to_press_start:
 		game_menu.hide()
 		start_button.grab_focus()
@@ -47,3 +53,24 @@ func _on_missions_button_pressed() ->void:
 
 func _on_quit_button_pressed() ->void:
 	get_tree().quit()
+
+
+func _on_settings_button_pressed()-> void:
+	settings_menu.open()
+	settings_open = true
+	game_menu.hide()
+	start_menu.hide()
+	player_profile.hide()
+
+func on_setting_closed(settings_node: Node) -> void:
+	settings_menu.hide()
+	settings_open = false
+	player_profile.show()
+	start_menu.show()
+	
+	if Global.need_to_press_start:
+		start_button.grab_focus.call_deferred()
+	else:
+		game_menu.show()
+		start_button.hide()
+		store_button.grab_focus.call_deferred()

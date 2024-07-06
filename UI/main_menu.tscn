@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmqihira2abkg"]
+[gd_scene load_steps=8 format=3 uid="uid://dmqihira2abkg"]
 
 [ext_resource type="Script" path="res://UI/main_menu.gd" id="1_2qkdf"]
 [ext_resource type="FontFile" uid="uid://dpm4dokao617s" path="res://assets/fonts/FerriteCoreDX-Light.ttf" id="1_nwj3u"]
+[ext_resource type="PackedScene" uid="uid://cuqp5236hm4c2" path="res://UI/settings_menu.tscn" id="3_l2xha"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n3mkn"]
 
@@ -24,6 +25,9 @@ Button/styles/focus = SubResource("StyleBoxFlat_ty0dw")
 Button/styles/hover = SubResource("StyleBoxFlat_ty0dw")
 Button/styles/normal = SubResource("StyleBoxFlat_qkjpc")
 Button/styles/pressed = SubResource("StyleBoxFlat_ty0dw")
+Label/colors/font_color = Color(0.890196, 0.890196, 0.890196, 1)
+Label/font_sizes/font_size = 32
+Label/fonts/font = ExtResource("1_nwj3u")
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -87,8 +91,53 @@ text = "Settings"
 layout_mode = 2
 text = "Quit"
 
+[node name="PlayerProfile" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerProfile"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PlayerProfile/HBoxContainer"]
+layout_mode = 2
+text = "$"
+
+[node name="Label2" type="Label" parent="PlayerProfile/HBoxContainer"]
+layout_mode = 2
+text = "10000"
+
+[node name="StoreMenu" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BuildMenu" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsMenu" parent="." instance=ExtResource("3_l2xha")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="GameMenu/VBoxContainer/StoreButton" to="." method="_on_store_button_pressed"]
 [connection signal="pressed" from="GameMenu/VBoxContainer/BuildButton" to="." method="_on_build_button_pressed"]
 [connection signal="pressed" from="GameMenu/VBoxContainer/MissionsButton" to="." method="_on_missions_button_pressed"]
 [connection signal="pressed" from="StartMenu/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="StartMenu/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="StartMenu/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

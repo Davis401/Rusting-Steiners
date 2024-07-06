@@ -5,6 +5,8 @@
 
 [resource]
 script = ExtResource("1_0dohb")
-weight = 100.0
 arm_controller = ExtResource("1_t73xy")
+id = "grenade_launcher_arm"
 display_name = "Grenade Launcher"
+cost = 1000
+weight = 100

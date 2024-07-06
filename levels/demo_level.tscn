@@ -1,24 +1,39 @@
-[gd_scene load_steps=7 format=3 uid="uid://354y0re3jbp8"]
+[gd_scene load_steps=9 format=3 uid="uid://354y0re3jbp8"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_k3xgx"]
 [ext_resource type="PackedScene" uid="uid://cyclv70ecyeu4" path="res://entities/enemies/enemy.tscn" id="2_nwuhg"]
 [ext_resource type="PackedScene" uid="uid://cie0qj7fbya4q" path="res://entities/building.tscn" id="3_5oswg"]
+[ext_resource type="Texture2D" uid="uid://dequ1ob5rtdl3" path="res://assets/textures/Concete_256.png" id="4_bns5p"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vvl54"]
+sun_angle_max = 15.0
 
 [sub_resource type="Sky" id="Sky_g1upr"]
 sky_material = SubResource("ProceduralSkyMaterial_vvl54")
 
 [sub_resource type="Environment" id="Environment_y841m"]
+background_mode = 2
 sky = SubResource("Sky_g1upr")
 fog_enabled = true
 fog_light_color = Color(0.713726, 0.741176, 0.784314, 1)
+fog_density = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxgqt"]
+albedo_texture = ExtResource("4_bns5p")
+metallic_specular = 0.0
+uv1_scale = Vector3(20, 20, 20)
 
 [node name="DemoLevel" type="Node3D"]
 script = ExtResource("1_k3xgx")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_y841m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.846537, 0.137777, -0.514191, 0, 0.965926, 0.258819, 0.53233, -0.2191, 0.817692, 0.195959, 0.820304, 0.386296)
+light_color = Color(0.713726, 0.741176, 0.784314, 1)
+light_energy = 0.5
+shadow_enabled = true
 
 [node name="PlayerSpawn" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5131, 0)
@@ -166,3 +181,4 @@ size = Vector3(1.83008, 0.962891, 0.882324)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.191699, -0.539013, 0.259293)
 use_collision = true
 size = Vector3(100, 0.04, 100)
+material = SubResource("StandardMaterial3D_jxgqt")

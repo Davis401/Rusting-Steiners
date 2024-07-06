@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://v2b55h11rppm"]
+[gd_scene load_steps=24 format=3 uid="uid://v2b55h11rppm"]
 
 [ext_resource type="Script" path="res://entities/player_mech/player_mech.gd" id="1_8j82k"]
 [ext_resource type="Resource" uid="uid://cx82xnrvhq870" path="res://resources/mech_parts/chest/standard_chest.tres" id="2_56d0m"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://bsv3pdce0r3us" path="res://resources/mech_parts/arms/machine_gun_arm.tres" id="4_gp2ar"]
 [ext_resource type="Resource" uid="uid://5l02mj26gn4r" path="res://resources/mech_parts/arms/grenade_launcher_arm.tres" id="4_prq6m"]
 [ext_resource type="Script" path="res://UI/DebugUI.gd" id="4_xbcny"]
+[ext_resource type="Resource" uid="uid://cevq76gbnapvx" path="res://resources/mech_parts/shoulders/missile_launcher_shoulder.tres" id="5_s50q5"]
 [ext_resource type="Resource" uid="uid://hcvifldd2js1" path="res://resources/mech_parts/legs/standard_legs.tres" id="5_tv1yi"]
 [ext_resource type="Script" path="res://resources/mech_parts/mech_build.gd" id="6_fx21j"]
 [ext_resource type="PackedScene" uid="uid://ch0m8i08wkpak" path="res://UI/pause_menu.tscn" id="9_q3prr"]
@@ -23,7 +24,9 @@ script = ExtResource("6_fx21j")
 head = ExtResource("3_2lo60")
 chest = ExtResource("2_56d0m")
 left_arm = ExtResource("4_gp2ar")
+left_shoulder = ExtResource("5_s50q5")
 right_arm = ExtResource("4_prq6m")
+right_shoulder = ExtResource("5_s50q5")
 legs = ExtResource("5_tv1yi")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0cfry"]
@@ -188,14 +191,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Neck/Head"]
 
 [node name="Camera3D" type="Camera3D" parent="Neck/Head"]
+fov = 80.0
 
-[node name="LeftWeapon" type="Node3D" parent="Neck/Head"]
+[node name="LeftArmWeapon" type="Node3D" parent="Neck/Head"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.2, -0.5)
 
-[node name="RightWeapon" type="Node3D" parent="Neck/Head"]
+[node name="RightArmWeapon" type="Node3D" parent="Neck/Head"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.2, -0.5)
+
+[node name="LeftShoulderWeapon" type="Node3D" parent="Neck/Head"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.2, -0.5)
+
+[node name="RightShoulderWeapon" type="Node3D" parent="Neck/Head"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.2, -0.5)
 
 [node name="StepTimer" type="Timer" parent="."]
 one_shot = true
