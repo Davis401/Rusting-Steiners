@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MechaLegs" load_steps=2 format=3 uid="uid://04w5iwek0akm"]
+
+[ext_resource type="Script" path="res://resources/mech_parts/mecha_legs.gd" id="1_llpf8"]
+
+[resource]
+script = ExtResource("1_llpf8")
+weight_capacity = 600.0
+base_movement_speed = 6.0
+acceleration = 20.0
+boosting_movement_speed = 20.0
+jump_power = 6.0
+id = "fast_legs"
+display_name = "Feathercarbon Sprinters"
+cost = 500
+weight = 80

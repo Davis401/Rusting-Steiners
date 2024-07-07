@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MechaLegs" load_steps=2 format=3 uid="uid://bvaveyrncgsa1"]
+
+[ext_resource type="Script" path="res://resources/mech_parts/mecha_legs.gd" id="1_4un6x"]
+
+[resource]
+script = ExtResource("1_4un6x")
+weight_capacity = 5000.0
+base_movement_speed = 1.0
+acceleration = 1.0
+boosting_movement_speed = 6.0
+jump_power = 2.0
+id = "heavy_legs"
+display_name = "Industritech Movers"
+cost = 5000
+weight = 500

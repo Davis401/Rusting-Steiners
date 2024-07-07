@@ -253,7 +253,7 @@ horizontal_alignment = 1
 layout_mode = 2
 text = ">"
 
-[node name="Button" type="Button" parent="HBoxContainer/PartsListContainer/VBoxContainer"]
+[node name="BackButton" type="Button" parent="HBoxContainer/PartsListContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
 text = "Back"
@@ -321,3 +321,5 @@ text = "Weight"
 [node name="Label2" type="Label" parent="HBoxContainer/PartInfoContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 text = "500"
+
+[connection signal="pressed" from="HBoxContainer/PartsListContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

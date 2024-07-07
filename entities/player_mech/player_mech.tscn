@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://snw1ev62d7aw" path="res://components/energy_component.tscn" id="2_g845v"]
 [ext_resource type="PackedScene" uid="uid://c08n456hikpba" path="res://components/health_component.tscn" id="2_pdrve"]
 [ext_resource type="Resource" uid="uid://bs0gh5h4r56gc" path="res://resources/mech_parts/head/standard_head.tres" id="3_2lo60"]
+[ext_resource type="Resource" uid="uid://cpg28wwrhivqi" path="res://resources/mech_parts/arms/shotgun_arm.tres" id="4_14iy4"]
 [ext_resource type="Resource" uid="uid://bsv3pdce0r3us" path="res://resources/mech_parts/arms/machine_gun_arm.tres" id="4_gp2ar"]
-[ext_resource type="Resource" uid="uid://5l02mj26gn4r" path="res://resources/mech_parts/arms/grenade_launcher_arm.tres" id="4_prq6m"]
 [ext_resource type="Script" path="res://UI/DebugUI.gd" id="4_xbcny"]
 [ext_resource type="Resource" uid="uid://cevq76gbnapvx" path="res://resources/mech_parts/shoulders/missile_launcher_shoulder.tres" id="5_s50q5"]
 [ext_resource type="Resource" uid="uid://hcvifldd2js1" path="res://resources/mech_parts/legs/standard_legs.tres" id="5_tv1yi"]
@@ -23,9 +23,9 @@
 script = ExtResource("6_fx21j")
 head = ExtResource("3_2lo60")
 chest = ExtResource("2_56d0m")
-left_arm = ExtResource("4_gp2ar")
+left_arm = ExtResource("4_14iy4")
 left_shoulder = ExtResource("5_s50q5")
-right_arm = ExtResource("4_prq6m")
+right_arm = ExtResource("4_gp2ar")
 right_shoulder = ExtResource("5_s50q5")
 legs = ExtResource("5_tv1yi")
 

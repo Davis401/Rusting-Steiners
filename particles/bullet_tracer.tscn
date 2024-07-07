@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://cryuqx5awh84g"]
+
+[ext_resource type="Texture2D" uid="uid://dp3hqdv6fm6fy" path="res://assets/particle_sprites/trace_01.png" id="1_kfxjk"]
+[ext_resource type="Script" path="res://particles/bullet_tracer.gd" id="1_u0pmu"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_7qyke"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rx5my"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 0.968627, 0, 0.341176)
+albedo_texture = ExtResource("1_kfxjk")
+
+[sub_resource type="BoxMesh" id="BoxMesh_fk0xm"]
+size = Vector3(0.005, 0.2, 0.005)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cy8i6"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 0.427451, 1)
+
+[node name="BulletTracer" type="Node3D"]
+script = ExtResource("1_u0pmu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.88178e-16, -2.98023e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, 2.98023e-08, 0, 0, 0.152316)
+mesh = SubResource("QuadMesh_7qyke")
+surface_material_override/0 = SubResource("StandardMaterial3D_rx5my")
+
+[node name="Alt" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.88178e-16, -2.98023e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, 2.98023e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_fk0xm")
+surface_material_override/0 = SubResource("StandardMaterial3D_cy8i6")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

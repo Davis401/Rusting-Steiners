@@ -6,8 +6,8 @@
 script = ExtResource("1_q2r13")
 weight_capacity = 1000.0
 base_movement_speed = 3.0
-acceleration = 10.0
-boosting_movement_speed = 20.0
+acceleration = 5.0
+boosting_movement_speed = 10.0
 jump_power = 4.5
 id = "basic_legs"
 display_name = "Basic Legs"

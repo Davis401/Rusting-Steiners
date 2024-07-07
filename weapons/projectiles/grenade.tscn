@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bqiifr3ao13qa"]
+[gd_scene load_steps=6 format=3 uid="uid://bqiifr3ao13qa"]
 
 [ext_resource type="PackedScene" uid="uid://chwf2tp4m80n0" path="res://weapons/emitters/area_damage_emitter.tscn" id="1_rtler"]
 [ext_resource type="Script" path="res://weapons/projectiles/grenade.gd" id="1_wb0l6"]
+[ext_resource type="PackedScene" uid="uid://byggg6e37f5u2" path="res://particles/explosion_fire_ball.tscn" id="2_03npr"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_7kkdp"]
 radius = 0.25
@@ -9,43 +10,6 @@ height = 0.5
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_mhkym"]
 albedo_color = Color(0, 0.117647, 0.101961, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jwlpn"]
-transparency = 1
-shading_mode = 0
-vertex_color_use_as_albedo = true
-
-[sub_resource type="Gradient" id="Gradient_hrnpj"]
-offsets = PackedFloat32Array(0, 0.084, 0.164, 0.516, 1)
-colors = PackedColorArray(0.890196, 0.890196, 0.890196, 1, 1, 0.886476, 0.36024, 1, 0.831993, 0.109937, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ajxqp"]
-gradient = SubResource("Gradient_hrnpj")
-
-[sub_resource type="Curve" id="Curve_0ly6j"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(0.823741, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_fhiuu"]
-curve = SubResource("Curve_0ly6j")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ett83"]
-angle_min = -360.0
-angle_max = 360.0
-direction = Vector3(0, 0, 0)
-spread = 0.0
-angular_velocity_min = -360.0
-angular_velocity_max = 360.0
-gravity = Vector3(0, 0, 0)
-scale_min = 5.0
-scale_max = 5.0
-scale_curve = SubResource("CurveTexture_fhiuu")
-color = Color(0.890196, 0.890196, 0.890196, 1)
-color_ramp = SubResource("GradientTexture1D_ajxqp")
-
-[sub_resource type="SphereMesh" id="SphereMesh_a5tnh"]
-radial_segments = 8
-rings = 4
 
 [node name="Grenade" type="Node3D"]
 script = ExtResource("1_wb0l6")
@@ -62,13 +26,7 @@ enabled = false
 collision_mask = 17
 collide_with_areas = true
 
-[node name="ExplosionFireBall" type="GPUParticles3D" parent="."]
-material_override = SubResource("StandardMaterial3D_jwlpn")
-emitting = false
-amount = 1
-lifetime = 0.4
-one_shot = true
-process_material = SubResource("ParticleProcessMaterial_ett83")
-draw_pass_1 = SubResource("SphereMesh_a5tnh")
+[node name="ExplosionFireBall" parent="." instance=ExtResource("2_03npr")]
 
 [node name="AreaDamageEmitter" parent="." instance=ExtResource("1_rtler")]
+attack_radius = 5.0

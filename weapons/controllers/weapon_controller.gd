@@ -2,6 +2,7 @@ class_name WeaponController
 extends Node3D
 
 var camera
+var spawn_point_node:Node3D
 
 func _ready()->void:
 	camera = get_viewport().get_camera_3d()

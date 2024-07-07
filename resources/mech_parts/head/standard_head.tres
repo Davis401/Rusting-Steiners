@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_sqj6v")
 accuracy = 100.0
+missile_lock_on_time = 0.1
 id = "basic_head"
 display_name = "Basic Head"
 cost = 0

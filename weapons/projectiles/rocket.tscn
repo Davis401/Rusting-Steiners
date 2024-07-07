@@ -1,18 +1,22 @@
-[gd_scene load_steps=16 format=3 uid="uid://df7vng23qay0w"]
+[gd_scene load_steps=17 format=3 uid="uid://df7vng23qay0w"]
 
 [ext_resource type="Script" path="res://weapons/projectiles/rocket.gd" id="1_ihvef"]
 [ext_resource type="PackedScene" uid="uid://chwf2tp4m80n0" path="res://weapons/emitters/area_damage_emitter.tscn" id="2_ypyrg"]
 [ext_resource type="AudioStream" uid="uid://ce05kjcdkypra" path="res://assets/sfx/Ovani/Missile Trail Loop 003.wav" id="3_g5mct"]
 [ext_resource type="Texture2D" uid="uid://invx7wy20aw7" path="res://assets/particle_sprites/smoke_07.png" id="4_bup5j"]
+[ext_resource type="PackedScene" uid="uid://byggg6e37f5u2" path="res://particles/explosion_fire_ball.tscn" id="5_1f683"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ynn3t"]
 radius = 0.2
 height = 1.5
+radial_segments = 8
+rings = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m0n0j"]
-albedo_color = Color(0.239216, 0.239216, 0.239216, 1)
+albedo_color = Color(0.203922, 0.203922, 0.203922, 1)
 metallic = 1.0
-metallic_specular = 0.0
+metallic_specular = 1.0
+roughness = 0.0
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_gfo36"]
 transparency = 1
@@ -84,3 +88,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.727343)
 material_override = SubResource("ORMMaterial3D_gfo36")
 process_material = SubResource("ParticleProcessMaterial_ngpj8")
 draw_pass_1 = SubResource("QuadMesh_madfl")
+
+[node name="ExplosionFireBall" parent="." instance=ExtResource("5_1f683")]

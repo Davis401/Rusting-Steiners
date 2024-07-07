@@ -40,6 +40,11 @@ var is_dead : bool = false
 @onready var right_arm_weapon: Node3D = %RightArmWeapon
 @onready var left_shoulder_weapon: Node3D = %LeftShoulderWeapon
 @onready var right_shoulder_weapon: Node3D = %RightShoulderWeapon
+@onready var left_arm_weapon_effect_position: Node3D  = %LeftArmWeaponEffectPosition
+@onready var right_arm_weapon_effect_position: Node3D  = %RightArmWeaponEffectPosition
+@onready var left_shoulder_weapon_effect_position: Node3D  = %LeftShoulderWeaponEffectPosition
+@onready var right_shoulder_weapon_effect_position: Node3D  = %RightShoulderWeaponEffectPosition
+
 
 @onready var step_timer: Timer = $StepTimer
 
@@ -70,17 +75,25 @@ func _ready() ->void:
 			health_component.set_health_attribute(build.chest.max_health, build.chest.max_health)
 			energy_component.set_energy_attribute(build.chest.max_energy, build.chest.max_energy)
 		if build.left_arm != null:
-			var left_arm_controller = build.left_arm.arm_controller.instantiate()
+			var left_arm_controller:WeaponController = build.left_arm.arm_controller.instantiate()
+			left_arm_controller.spawn_point_node = left_arm_weapon_effect_position
 			left_arm_weapon.add_child(left_arm_controller)
+			
 		if build.right_arm != null:
-			var right_arm_controller = build.right_arm.arm_controller.instantiate()
+			var right_arm_controller:WeaponController = build.right_arm.arm_controller.instantiate()
+			right_arm_controller.spawn_point_node = right_arm_weapon_effect_position
 			right_arm_weapon.add_child(right_arm_controller)
+			
 		if build.left_shoulder != null:
-			var left_shoulder_controller = build.left_shoulder.shoulder_controller.instantiate()
+			var left_shoulder_controller:WeaponController = build.left_shoulder.shoulder_controller.instantiate()
+			left_shoulder_controller.spawn_point_node = left_shoulder_weapon_effect_position
 			left_shoulder_weapon.add_child(left_shoulder_controller)
+			
 		if build.right_shoulder != null:
-			var right_shoulder_controller = build.right_shoulder.shoulder_controller.instantiate()
+			var right_shoulder_controller:WeaponController = build.right_shoulder.shoulder_controller.instantiate()
+			right_shoulder_controller.spawn_point_node = right_shoulder_weapon_effect_position
 			right_shoulder_weapon.add_child(right_shoulder_controller)
+			
 		if build.legs != null:
 			normal_speed =  build.legs.base_movement_speed
 			boosting_speed =  build.legs.boosting_movement_speed
@@ -240,6 +253,6 @@ func _on_resume_movement() ->void:
 func _reload_options() ->void:
 	pass
 	
-func on_energy_drained():
+func on_energy_drained(ce,me):
 	is_boosting = false
 	is_jump_jetting = false

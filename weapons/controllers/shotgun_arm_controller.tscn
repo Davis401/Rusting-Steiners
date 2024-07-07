@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://ubwmerrww8n2"]
+
+[ext_resource type="Script" path="res://weapons/controllers/shotgun_arm_controller.gd" id="1_yn353"]
+[ext_resource type="PackedScene" uid="uid://dn3ibgxlrn2d7" path="res://weapons/emitters/attack_emitter.tscn" id="2_1d5po"]
+[ext_resource type="PackedScene" uid="uid://chl5r0kyfbyaj" path="res://weapons/emitters/hitscan_attack_emitter.tscn" id="3_er8a3"]
+[ext_resource type="PackedScene" uid="uid://dltlwc4v2tdj3" path="res://weapons/emitters/burst_emitter.tscn" id="3_yhnfg"]
+[ext_resource type="PackedScene" uid="uid://dpqmcfp3vlojh" path="res://weapons/emitters/spray_emiiter.tscn" id="4_y0wkl"]
+
+[node name="ShotgunArmController" type="Node3D"]
+script = ExtResource("1_yn353")
+
+[node name="AttackEmitter" parent="." instance=ExtResource("2_1d5po")]
+
+[node name="BurstEmitter" parent="AttackEmitter" instance=ExtResource("3_yhnfg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="SprayEmiiter" parent="AttackEmitter/BurstEmitter" instance=ExtResource("4_y0wkl")]
+
+[node name="HitscanAttackEmitter" parent="AttackEmitter/BurstEmitter/SprayEmiiter" instance=ExtResource("3_er8a3")]
+
+[node name="FireTimer" type="Timer" parent="."]
+one_shot = true

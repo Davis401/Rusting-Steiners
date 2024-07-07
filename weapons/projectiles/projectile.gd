@@ -3,8 +3,9 @@ extends Node3D
 
 @onready var collision_raycast = $CollisionRaycast
 
-
+@export var max_speed = 300
 @export var initial_speed = 30
+@export var acceleration = 3
 @export var show_after_time := 0.1
 @export var delete_on_hit_after_time := -1.0
 

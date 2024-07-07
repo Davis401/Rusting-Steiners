@@ -16,7 +16,7 @@ func set_bodies_to_exclude(bodies)->void:
 		if child is AttackEmitter:
 			child.set_bodies_to_exclude(bodies)
 
-func attack()->void:
+func attack(params = null)->void:
 	for child in get_children():
 		if child is AttackEmitter:
-			child.attack()
+			child.attack(params)

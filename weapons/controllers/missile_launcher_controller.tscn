@@ -8,10 +8,12 @@
 script = ExtResource("1_j4t82")
 max_targets = 6
 ammo_count = 100
+lock_on_time = 1.0
 
 [node name="AttackEmitter" parent="." instance=ExtResource("2_m6a2r")]
 
 [node name="ProjectileEmitter" parent="AttackEmitter" instance=ExtResource("3_ju68m")]
+projectile_type = 2
 
 [node name="LockOnTimer" type="Timer" parent="."]
 

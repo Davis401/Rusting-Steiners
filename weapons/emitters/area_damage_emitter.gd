@@ -5,11 +5,11 @@ extends AttackEmitter
 @export var offset_by_radius := false
 @onready var ray_cast_3d = $RayCast3D
 
-func attack() ->void:
+func attack(params = null) ->void:
 	var query_params := PhysicsShapeQueryParameters3D.new()
 	query_params.shape = SphereShape3D.new()
 	query_params.shape.radius = attack_radius
-	query_params.collision_mask = 2
+	query_params.collision_mask = 4
 	var tr = global_transform
 	if offset_by_radius:
 		tr.origin = to_global(Vector3.FORWARD * attack_radius)
@@ -19,7 +19,9 @@ func attack() ->void:
 	for intersect_data in intersect_results:
 		var collider : Node3D = intersect_data.collider
 		if collider.has_method("hurt"):
-			collider.hurt(damage)
+			var damage_data = DamageData.new()
+			damage_data.amount = damage
+			collider.hurt(damage_data)
 			
 	super()
 	

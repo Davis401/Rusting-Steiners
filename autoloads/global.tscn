@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://boqokatrul0o2"]
+[gd_scene load_steps=10 format=3 uid="uid://boqokatrul0o2"]
 
 [ext_resource type="Script" path="res://autoloads/global.gd" id="1_01ykd"]
 [ext_resource type="Resource" uid="uid://cx82xnrvhq870" path="res://resources/mech_parts/chest/standard_chest.tres" id="2_l3mb0"]
 [ext_resource type="Resource" uid="uid://bs0gh5h4r56gc" path="res://resources/mech_parts/head/standard_head.tres" id="3_p5lpv"]
+[ext_resource type="Resource" uid="uid://cpg28wwrhivqi" path="res://resources/mech_parts/arms/shotgun_arm.tres" id="4_1omj3"]
 [ext_resource type="Resource" uid="uid://bsv3pdce0r3us" path="res://resources/mech_parts/arms/machine_gun_arm.tres" id="4_yii7p"]
 [ext_resource type="Resource" uid="uid://cevq76gbnapvx" path="res://resources/mech_parts/shoulders/missile_launcher_shoulder.tres" id="5_hil57"]
 [ext_resource type="Resource" uid="uid://hcvifldd2js1" path="res://resources/mech_parts/legs/standard_legs.tres" id="6_d5oo1"]
@@ -12,7 +13,7 @@
 script = ExtResource("7_rr6kv")
 head = ExtResource("3_p5lpv")
 chest = ExtResource("2_l3mb0")
-left_arm = ExtResource("4_yii7p")
+left_arm = ExtResource("4_1omj3")
 left_shoulder = ExtResource("5_hil57")
 right_arm = ExtResource("4_yii7p")
 right_shoulder = ExtResource("5_hil57")

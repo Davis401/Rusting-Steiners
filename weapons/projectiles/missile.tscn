@@ -1,6 +1,115 @@
-[gd_scene load_steps=2 format=3 uid="uid://ced7tp5jb7b20"]
+[gd_scene load_steps=19 format=3 uid="uid://c4o0ajmnokr7c"]
 
 [ext_resource type="Script" path="res://weapons/projectiles/missile.gd" id="1_2l0kb"]
+[ext_resource type="PackedScene" uid="uid://chwf2tp4m80n0" path="res://weapons/emitters/area_damage_emitter.tscn" id="2_o1dpk"]
+[ext_resource type="AudioStream" uid="uid://ce05kjcdkypra" path="res://assets/sfx/Ovani/Missile Trail Loop 003.wav" id="3_0p6h4"]
+[ext_resource type="Texture2D" uid="uid://invx7wy20aw7" path="res://assets/particle_sprites/smoke_07.png" id="4_r67r8"]
+[ext_resource type="PackedScene" uid="uid://byggg6e37f5u2" path="res://particles/explosion_fire_ball.tscn" id="5_oqjpb"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ynn3t"]
+radius = 0.2
+height = 1.5
+radial_segments = 8
+rings = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m0n0j"]
+albedo_color = Color(0.298039, 0.0901961, 0.0980392, 1)
+metallic = 1.0
+metallic_specular = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rveca"]
+top_radius = 0.1
+bottom_radius = 0.4
+height = 1.0
+radial_segments = 8
+rings = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_my5gc"]
+albedo_color = Color(0.278431, 0.278431, 0.278431, 1)
+metallic = 1.0
+metallic_specular = 1.0
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_gfo36"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_r67r8")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_23nym"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.248201, 0.493382), 0.775061, 0.775061, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_wjjd3"]
+curve = SubResource("Curve_23nym")
+
+[sub_resource type="Gradient" id="Gradient_mdyxc"]
+offsets = PackedFloat32Array(0, 0.06, 0.124, 0.18, 0.776, 1)
+colors = PackedColorArray(0.699195, 2.08165e-06, 6.73831e-07, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0.163043, 0.163043, 0.163043, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_52t3k"]
+gradient = SubResource("Gradient_mdyxc")
+
+[sub_resource type="Curve" id="Curve_vuyqh"]
+_data = [Vector2(0.0283019, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hw564"]
+curve = SubResource("Curve_vuyqh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ngpj8"]
+angle_min = -360.0
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 15.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 1, 0)
+damping_max = 1.0
+color_ramp = SubResource("GradientTexture1D_52t3k")
+alpha_curve = SubResource("CurveTexture_wjjd3")
+emission_curve = SubResource("CurveTexture_hw564")
+
+[sub_resource type="QuadMesh" id="QuadMesh_madfl"]
 
 [node name="Missile" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_2l0kb")
+initial_speed = 1
+delete_on_hit_after_time = 1.0
+
+[node name="Graphics" type="Node3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Graphics"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -9.43333e-09, -0.21581)
+mesh = SubResource("CapsuleMesh_ynn3t")
+surface_material_override/0 = SubResource("StandardMaterial3D_m0n0j")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Graphics"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 9.74098e-10, 0.0686335)
+mesh = SubResource("CylinderMesh_rveca")
+surface_material_override/0 = SubResource("StandardMaterial3D_my5gc")
+
+[node name="CollisionRaycast" type="RayCast3D" parent="."]
+
+[node name="AreaDamageEmitter" parent="." instance=ExtResource("2_o1dpk")]
+attack_radius = 10.0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_0p6h4")
+autoplay = true
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.00514e-09, 0.583658)
+material_override = SubResource("ORMMaterial3D_gfo36")
+amount = 32
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_ngpj8")
+draw_pass_1 = SubResource("QuadMesh_madfl")
+
+[node name="ExplosionFireBall" parent="." instance=ExtResource("5_oqjpb")]
