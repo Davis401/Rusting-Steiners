@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ccuosqjnwdwth"]
+[gd_scene load_steps=11 format=3 uid="uid://ccuosqjnwdwth"]
 
 [ext_resource type="Script" path="res://particles/hitspark.gd" id="1_22s40"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8snhi"]
-shading_mode = 0
+transparency = 1
 vertex_color_use_as_albedo = true
 billboard_mode = 3
 billboard_keep_scale = true
@@ -12,8 +12,8 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="Gradient" id="Gradient_gmj00"]
-offsets = PackedFloat32Array(0, 0.0978261, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.999999, 0.964743, 0.491138, 1, 0.262089, 2.61711e-07, 9.62615e-08, 1)
+offsets = PackedFloat32Array(0, 0.488, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1uyfh"]
 gradient = SubResource("Gradient_gmj00")
@@ -37,6 +37,22 @@ color_ramp = SubResource("GradientTexture1D_1uyfh")
 
 [sub_resource type="QuadMesh" id="QuadMesh_561f1"]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8qetw"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0.1, 0)
+scale_min = 0.2
+scale_max = 0.3
+color = Color(0.278431, 0.278431, 0.278431, 0.227451)
+color_ramp = SubResource("GradientTexture1D_1uyfh")
+
+[sub_resource type="SphereMesh" id="SphereMesh_v6ubc"]
+radial_segments = 8
+rings = 4
+
 [node name="Hitspark" type="Node3D"]
 script = ExtResource("1_22s40")
 
@@ -50,4 +66,14 @@ randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_gccqm")
 draw_pass_1 = SubResource("QuadMesh_561f1")
 
-[connection signal="finished" from="GPUParticles3D" to="." method="_on_gpu_particles_3d_finished"]
+[node name="SmokeParticles" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_8snhi")
+emitting = false
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_8qetw")
+draw_pass_1 = SubResource("SphereMesh_v6ubc")
+
+[connection signal="finished" from="SmokeParticles" to="." method="_on_gpu_particles_3d_finished"]

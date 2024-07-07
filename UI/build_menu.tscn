@@ -1,0 +1,323 @@
+[gd_scene load_steps=3 format=3 uid="uid://4nptlc4a00nr"]
+
+[ext_resource type="Theme" uid="uid://bcym26vxhg41f" path="res://UI/main_menu.tres" id="1_cr2wu"]
+[ext_resource type="Script" path="res://UI/build_menu.gd" id="2_vflq2"]
+
+[node name="BuildMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_cr2wu")
+script = ExtResource("2_vflq2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MechDataContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 40
+
+[node name="MechData" type="VBoxContainer" parent="HBoxContainer/MechDataContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="HBoxContainer/MechDataContainer/MechData"]
+layout_mode = 2
+text = "Mech Data"
+horizontal_alignment = 1
+
+[node name="WeightContainer" type="HBoxContainer" parent="HBoxContainer/MechDataContainer/MechData"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/MechDataContainer/MechData/WeightContainer"]
+layout_mode = 2
+text = "Weight"
+
+[node name="CurrentWeightLabel" type="Label" parent="HBoxContainer/MechDataContainer/MechData/WeightContainer"]
+layout_mode = 2
+text = "1000"
+
+[node name="Slash" type="Label" parent="HBoxContainer/MechDataContainer/MechData/WeightContainer"]
+layout_mode = 2
+text = "/"
+
+[node name="Label4" type="Label" parent="HBoxContainer/MechDataContainer/MechData/WeightContainer"]
+layout_mode = 2
+text = "3000"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/MechDataContainer/MechData"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="Label" type="Label" parent="HBoxContainer/MechDataContainer/MechData/HBoxContainer2"]
+layout_mode = 2
+text = "Move Speed"
+
+[node name="Label2" type="Label" parent="HBoxContainer/MechDataContainer/MechData/HBoxContainer2"]
+layout_mode = 2
+text = "500"
+
+[node name="PartsListContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PartsListContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="HeadContainer" type="HBoxContainer" parent="HBoxContainer/PartsListContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/HeadContainer"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Head"
+
+[node name="Button" type="Button" parent="HBoxContainer/PartsListContainer/VBoxContainer/HeadContainer"]
+layout_mode = 2
+text = "<"
+
+[node name="HeadPartLabel" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/HeadContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Head Part"
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="HBoxContainer/PartsListContainer/VBoxContainer/HeadContainer"]
+layout_mode = 2
+text = ">"
+
+[node name="ChestContainer" type="HBoxContainer" parent="HBoxContainer/PartsListContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/ChestContainer"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Chest"
+
+[node name="Button" type="Button" parent="HBoxContainer/PartsListContainer/VBoxContainer/ChestContainer"]
+layout_mode = 2
+text = "<"
+
+[node name="ChestPartLabel" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/ChestContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Chest Part"
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="HBoxContainer/PartsListContainer/VBoxContainer/ChestContainer"]
+layout_mode = 2
+text = ">"
+
+[node name="LeftShoulder" type="HBoxContainer" parent="HBoxContainer/PartsListContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/LeftShoulder"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Left Shoulder"
+
+[node name="Button" type="Button" parent="HBoxContainer/PartsListContainer/VBoxContainer/LeftShoulder"]
+layout_mode = 2
+text = "<"
+
+[node name="LeftShoulderPartLabel" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/LeftShoulder"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Shoulder Part"
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="HBoxContainer/PartsListContainer/VBoxContainer/LeftShoulder"]
+layout_mode = 2
+text = ">"
+
+[node name="RightShoulder" type="HBoxContainer" parent="HBoxContainer/PartsListContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/RightShoulder"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Right Shoulder"
+
+[node name="Button" type="Button" parent="HBoxContainer/PartsListContainer/VBoxContainer/RightShoulder"]
+layout_mode = 2
+text = "<"
+
+[node name="RightShoulderPartLabel" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/RightShoulder"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Shoulder Part"
+
+[node name="Button2" type="Button" parent="HBoxContainer/PartsListContainer/VBoxContainer/RightShoulder"]
+layout_mode = 2
+text = ">"
+
+[node name="LeftArmContainer" type="HBoxContainer" parent="HBoxContainer/PartsListContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/LeftArmContainer"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Left Arm"
+
+[node name="Button" type="Button" parent="HBoxContainer/PartsListContainer/VBoxContainer/LeftArmContainer"]
+layout_mode = 2
+text = "<"
+
+[node name="LeftArmWeaponLabel" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/LeftArmContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Arm Part"
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="HBoxContainer/PartsListContainer/VBoxContainer/LeftArmContainer"]
+layout_mode = 2
+text = ">"
+
+[node name="RightArmContainer" type="HBoxContainer" parent="HBoxContainer/PartsListContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/RightArmContainer"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Right Arm"
+
+[node name="Button" type="Button" parent="HBoxContainer/PartsListContainer/VBoxContainer/RightArmContainer"]
+layout_mode = 2
+text = "<"
+
+[node name="RightArmWeaponLabel" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/RightArmContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Arm Part"
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="HBoxContainer/PartsListContainer/VBoxContainer/RightArmContainer"]
+layout_mode = 2
+text = ">"
+
+[node name="LegsContainer" type="HBoxContainer" parent="HBoxContainer/PartsListContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/LegsContainer"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Legs"
+
+[node name="Button" type="Button" parent="HBoxContainer/PartsListContainer/VBoxContainer/LegsContainer"]
+layout_mode = 2
+text = "<"
+
+[node name="LegsLabel" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/LegsContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Leg Part"
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="HBoxContainer/PartsListContainer/VBoxContainer/LegsContainer"]
+layout_mode = 2
+text = ">"
+
+[node name="Button" type="Button" parent="HBoxContainer/PartsListContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Back"
+
+[node name="PartInfoContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PartInfoContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="HBoxContainer/PartInfoContainer/VBoxContainer"]
+layout_mode = 2
+text = "Part Info"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PartInfoContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 140
+
+[node name="Label" type="Label" parent="HBoxContainer/PartInfoContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Weight"
+
+[node name="Label2" type="Label" parent="HBoxContainer/PartInfoContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "500"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/PartInfoContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 140
+
+[node name="Label" type="Label" parent="HBoxContainer/PartInfoContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Weight"
+
+[node name="Label2" type="Label" parent="HBoxContainer/PartInfoContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "500"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/PartInfoContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 140
+
+[node name="Label" type="Label" parent="HBoxContainer/PartInfoContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Weight"
+
+[node name="Label2" type="Label" parent="HBoxContainer/PartInfoContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "500"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer/PartInfoContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 140
+
+[node name="Label" type="Label" parent="HBoxContainer/PartInfoContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Weight"
+
+[node name="Label2" type="Label" parent="HBoxContainer/PartInfoContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "500"

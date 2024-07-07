@@ -51,12 +51,18 @@ var is_dead : bool = false
 var step_players = []
 var step_idx = 0
 
+var wish_jump = false
+
+#Leaning
+var wish_lean = 0.0
+
 @onready var self_rid: RID = self.get_rid()
 
 func _ready() ->void:
 	step_players = [step_left, step_right]
 	randomize() 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	energy_component.energy_drained.connect(on_energy_drained)
 	if build != null:
 		if build.head != null:
 			pass
@@ -121,6 +127,15 @@ func _input(event) ->void:
 			is_boosting = true
 		else:
 			is_boosting = false
+			
+	if is_on_floor() && event.is_action_pressed("jump"):
+		wish_jump = true
+	if !is_on_floor() && event.is_action_pressed("jump") and energy_component and energy_component.current_energy > 0:
+		is_jump_jetting = true
+		
+	if is_jump_jetting && event.is_action_released("jump"):
+		is_jump_jetting = false
+		
 	if event.is_action_pressed("pause"):
 		if !is_movement_paused and !is_dead:
 			_on_pause_movement()
@@ -140,19 +155,26 @@ func _physics_process(delta) ->void:
 		current_speed = lerp(current_speed, normal_speed, delta * acceleration)
 		is_boosting = false
 		
-	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
-
-	
-	# Handle jump.
-	if Input.is_action_pressed("jump") and energy_component and energy_component.current_energy > 0:
-		velocity.y = jump_power
-		is_jump_jetting = true
-	elif Input.is_action_just_released("jump") and is_on_floor():
-		velocity.y = jump_power
-		is_jump_jetting = false
+		#Lean on strafe
+	if is_boosting && input_dir.x >= 0.5:
+		wish_lean = deg_to_rad(-3.0)
+	elif is_boosting && input_dir.x <= -0.5:
+		wish_lean = deg_to_rad(3.0)
 	else:
-		is_jump_jetting = false
+		wish_lean = 0.0
+	
+	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+
+	# Handle jump.
+	
+	if wish_jump:
+		velocity.y = jump_power
+		wish_jump = false
+	if is_jump_jetting:
+		if !is_on_floor() and energy_component and energy_component.current_energy > 0:
+			velocity.y = jump_power
+		else:
+			is_jump_jetting = false
 		
 	
 	if is_on_floor():
@@ -182,7 +204,8 @@ func _physics_process(delta) ->void:
 			sfx_player.play()
 			step_timer.start(0.8)
 
-func _process(_delta)->void:
+func _process(delta)->void:
+	neck.rotation.z = lerp_angle(neck.rotation.z, wish_lean, delta * LERP_SPEED)
 	if Input.is_action_pressed("fire_left_arm") && left_arm_weapon.get_child(0) != null && left_arm_weapon.get_child(0) is WeaponController:
 		left_arm_weapon.get_child(0).on_hold()
 	if Input.is_action_pressed("fire_right_arm") && right_arm_weapon.get_child(0) != null && right_arm_weapon.get_child(0) is WeaponController:
@@ -216,3 +239,7 @@ func _on_resume_movement() ->void:
 # reload options user may have changed while paused.
 func _reload_options() ->void:
 	pass
+	
+func on_energy_drained():
+	is_boosting = false
+	is_jump_jetting = false

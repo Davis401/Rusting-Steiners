@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MechaChest" load_steps=2 format=3 uid="uid://bsq50kdfinl80"]
+
+[ext_resource type="Script" path="res://resources/mech_parts/mecha_chest.gd" id="1_x6sy6"]
+
+[resource]
+script = ExtResource("1_x6sy6")
+max_health = 1000.0
+max_energy = 1000.0
+id = "small_chest"
+display_name = "Small Chest"
+cost = 1000
+weight = 200

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyclv70ecyeu4"]
+[gd_scene load_steps=7 format=3 uid="uid://cyclv70ecyeu4"]
 
 [ext_resource type="Script" path="res://entities/enemies/enemy.gd" id="1_26seq"]
 [ext_resource type="PackedScene" uid="uid://c08n456hikpba" path="res://components/health_component.tscn" id="2_7elvg"]
 [ext_resource type="PackedScene" uid="uid://bgag1yfcgrjot" path="res://components/lock_on_target_component.tscn" id="3_dkqn1"]
+[ext_resource type="PackedScene" uid="uid://hmdtp3du4m8k" path="res://components/vision_component.tscn" id="4_7xhs6"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_2e4br"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
@@ -18,6 +19,8 @@ script = ExtResource("1_26seq")
 max_health = 1000.0
 
 [node name="LockOnTargetComponent" parent="." instance=ExtResource("3_dkqn1")]
+
+[node name="VisionComponent" parent="." instance=ExtResource("4_7xhs6")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConcavePolygonShape3D_2e4br")

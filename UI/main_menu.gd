@@ -14,11 +14,18 @@ var settings_open := false
 @onready var settings_menu = $SettingsMenu
 @onready var player_profile = $PlayerProfile
 
+@onready var store_menu = $StoreMenu
+
+@onready var build_menu = $BuildMenu
+
 
 func _ready() ->void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	settings_menu.back_pressed.connect(on_setting_closed.bind(settings_menu))
 	settings_menu.hide()
+	build_menu.hide()
+	store_menu.hide()
+	start_menu.show()
 	if Global.need_to_press_start:
 		game_menu.hide()
 		start_button.grab_focus()

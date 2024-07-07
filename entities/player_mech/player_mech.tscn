@@ -43,7 +43,7 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_jv7kh")
 [sub_resource type="BoxShape3D" id="BoxShape3D_bxa8a"]
 size = Vector3(0.7, 1.6, 0.7)
 
-[node name="PlayerMech" type="CharacterBody3D"]
+[node name="PlayerMech" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 script = ExtResource("1_8j82k")
 build = SubResource("Resource_7srlk")
@@ -195,17 +195,33 @@ fov = 80.0
 
 [node name="LeftArmWeapon" type="Node3D" parent="Neck/Head"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.2, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 
 [node name="RightArmWeapon" type="Node3D" parent="Neck/Head"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.2, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 
 [node name="LeftShoulderWeapon" type="Node3D" parent="Neck/Head"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.2, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 
 [node name="RightShoulderWeapon" type="Node3D" parent="Neck/Head"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+
+[node name="LeftArmWeaponEffectPosition" type="Node3D" parent="Neck/Head"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.2, -0.5)
+
+[node name="RightArmWeaponEffectPosition" type="Node3D" parent="Neck/Head"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.2, -0.5)
+
+[node name="LeftShoulderWeaponEffectPosition" type="Node3D" parent="Neck/Head"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.2, -0.5)
+
+[node name="RightShoulderWeaponEffectPosition" type="Node3D" parent="Neck/Head"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.2, -0.5)
 
@@ -223,7 +239,6 @@ autoplay = true
 [node name="Thruster" type="AudioStreamPlayer3D" parent="AudioPlayers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
 stream = ExtResource("16_clu5a")
-volume_db = -30.0
 autoplay = true
 
 [node name="StepLeft" type="AudioStreamPlayer3D" parent="AudioPlayers"]
