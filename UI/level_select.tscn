@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dy558xptangkv"]
+[gd_scene load_steps=8 format=3 uid="uid://dy558xptangkv"]
 
 [ext_resource type="FontFile" uid="uid://dpm4dokao617s" path="res://assets/fonts/FerriteCoreDX-Light.ttf" id="1_8nvp5"]
 [ext_resource type="Script" path="res://UI/level_select.gd" id="1_r6t8u"]
 [ext_resource type="Resource" uid="uid://bcfb61g34lkbl" path="res://levels/demo_level.tres" id="2_vag4d"]
+[ext_resource type="Resource" uid="uid://b83qndivqqn27" path="res://levels/desert_level.tres" id="4_1cu2h"]
 [ext_resource type="FontFile" uid="uid://dgm2v7yghigh" path="res://assets/fonts/FerriteCoreDX-Regular.ttf" id="4_wbrdq"]
+[ext_resource type="Resource" uid="uid://q6wmm4kd71b" path="res://levels/snow_level.tres" id="5_pbn13"]
 
 [sub_resource type="Theme" id="Theme_tb3cy"]
 Button/colors/font_color = Color(0.890196, 0.890196, 0.890196, 1)
@@ -21,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_tb3cy")
 script = ExtResource("1_r6t8u")
-levels = Array[Resource("res://resources/level_data.gd")]([ExtResource("2_vag4d")])
+levels = Array[Resource("res://resources/level_data.gd")]([ExtResource("2_vag4d"), ExtResource("4_1cu2h"), ExtResource("5_pbn13")])
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

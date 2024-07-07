@@ -12,7 +12,6 @@ script = ExtResource("1_yn353")
 [node name="AttackEmitter" parent="." instance=ExtResource("2_1d5po")]
 
 [node name="BurstEmitter" parent="AttackEmitter" instance=ExtResource("3_yhnfg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="SprayEmiiter" parent="AttackEmitter/BurstEmitter" instance=ExtResource("4_y0wkl")]
 

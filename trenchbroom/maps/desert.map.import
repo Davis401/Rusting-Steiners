@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://jlf4l3xt8ffv"
+path="res://.godot/imported/desert.map-a06777d39f4c3dc7f8888333cabbb083.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/desert.map"
+dest_files=["res://.godot/imported/desert.map-a06777d39f4c3dc7f8888333cabbb083.tres"]
+
+[params]
+

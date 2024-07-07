@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://srltrbqy6efg"
+path="res://.godot/imported/snowy_mountain.map-386ed2a3e4778f8b3fc2b28507c18ecc.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/snowy_mountain.map"
+dest_files=["res://.godot/imported/snowy_mountain.map-386ed2a3e4778f8b3fc2b28507c18ecc.tres"]
+
+[params]
+

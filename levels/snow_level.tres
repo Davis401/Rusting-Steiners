@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=3 format=3 uid="uid://q6wmm4kd71b"]
+
+[ext_resource type="PackedScene" uid="uid://coskgljssuyh6" path="res://levels/snow_level.tscn" id="1_nlgn7"]
+[ext_resource type="Script" path="res://resources/level_data.gd" id="2_imw6u"]
+
+[resource]
+script = ExtResource("2_imw6u")
+display_name = "Snowy Mountain"
+level_scene = ExtResource("1_nlgn7")
