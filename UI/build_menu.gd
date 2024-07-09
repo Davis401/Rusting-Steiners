@@ -124,6 +124,7 @@ func update_labels() -> void:
 
 func _on_back_button_pressed():
 	is_open = false
+	close.emit()
 	hide()
 
 

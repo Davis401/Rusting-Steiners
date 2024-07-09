@@ -18,7 +18,7 @@ layout_mode = 2
 
 [node name="MechDataContainer" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 40
@@ -65,7 +65,7 @@ text = "500"
 
 [node name="PartsListContainer" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 40
@@ -215,7 +215,7 @@ text = "Back"
 
 [node name="PartInfoContainer" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 10
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 40

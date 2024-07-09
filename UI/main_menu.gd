@@ -22,6 +22,7 @@ var settings_open := false
 func _ready() ->void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	settings_menu.back_pressed.connect(on_setting_closed.bind(settings_menu))
+	build_menu.close.connect(close_build_menu)
 	settings_menu.hide()
 	build_menu.hide()
 	store_menu.hide()
@@ -51,7 +52,10 @@ func _on_store_button_pressed() ->void:
 
 
 func _on_build_button_pressed() ->void:
-	pass # Replace with function body.
+	build_menu.open()
+	game_menu.hide()
+	start_menu.hide()
+	
 
 func _on_missions_button_pressed() ->void:
 	get_tree().change_scene_to_packed(LEVEL_SELECT)
@@ -81,3 +85,7 @@ func on_setting_closed(settings_node: Node) -> void:
 		game_menu.show()
 		start_button.hide()
 		store_button.grab_focus.call_deferred()
+		
+func close_build_menu() ->void:
+	game_menu.show()
+	start_menu.show()
