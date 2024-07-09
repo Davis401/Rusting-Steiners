@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dy558xptangkv"]
+[gd_scene load_steps=10 format=3 uid="uid://dy558xptangkv"]
 
 [ext_resource type="FontFile" uid="uid://dpm4dokao617s" path="res://assets/fonts/FerriteCoreDX-Light.ttf" id="1_8nvp5"]
 [ext_resource type="Script" path="res://UI/level_select.gd" id="1_r6t8u"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://b83qndivqqn27" path="res://levels/desert_level.tres" id="4_1cu2h"]
 [ext_resource type="FontFile" uid="uid://dgm2v7yghigh" path="res://assets/fonts/FerriteCoreDX-Regular.ttf" id="4_wbrdq"]
 [ext_resource type="Resource" uid="uid://q6wmm4kd71b" path="res://levels/snow_level.tres" id="5_pbn13"]
+[ext_resource type="Shader" path="res://assets/shaders/dots.gdshader" id="6_b8wlq"]
 
 [sub_resource type="Theme" id="Theme_tb3cy"]
 Button/colors/font_color = Color(0.890196, 0.890196, 0.890196, 1)
@@ -13,6 +14,17 @@ Button/fonts/font = ExtResource("1_8nvp5")
 Label/colors/font_color = Color(0.890196, 0.890196, 0.890196, 1)
 Label/font_sizes/font_size = 32
 Label/fonts/font = ExtResource("1_8nvp5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rpmge"]
+shader = ExtResource("6_b8wlq")
+shader_parameter/cell_size = 20.0
+shader_parameter/dot_size = 0.2
+shader_parameter/background_color = Color(0.1176, 0.1176, 0.1176, 1)
+shader_parameter/dot_color = Color(0.168627, 0.168627, 0.168627, 1)
+shader_parameter/resolution = Vector2(1920, 1080)
+shader_parameter/offset = null
+shader_parameter/anti_aliasing_factor = 0.01
+shader_parameter/stochastic_samples = 16
 
 [node name="LevelSelect" type="Control"]
 layout_mode = 3
@@ -24,6 +36,15 @@ grow_vertical = 2
 theme = SubResource("Theme_tb3cy")
 script = ExtResource("1_r6t8u")
 levels = Array[Resource("res://resources/level_data.gd")]([ExtResource("2_vag4d"), ExtResource("4_1cu2h"), ExtResource("5_pbn13")])
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_rpmge")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

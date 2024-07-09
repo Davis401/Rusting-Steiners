@@ -5,5 +5,5 @@
 
 [resource]
 script = ExtResource("2_8ry4t")
-display_name = "Desert"
+display_name = "Sandstorm"
 level_scene = ExtResource("1_oa5yj")

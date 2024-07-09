@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://levels/level.gd" id="1_w0lev"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="2_vryex"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="3_mc20r"]
-[ext_resource type="Material" uid="uid://ceusbnmdmcgsm" path="res://trenchbroom/textures/concete_256.tres" id="4_01awd"]
+[ext_resource type="Material" uid="uid://ceusbnmdmcgsm" path="res://trenchbroom/textures/Concete_256.tres" id="4_01awd"]
 [ext_resource type="Texture2D" uid="uid://c3rwf3m0jigq0" path="res://trenchbroom/textures/snow_256.png" id="5_0vtwo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vvl54"]
@@ -176,3 +176,5 @@ shape = SubResource("ConvexPolygonShape3D_omiiv")
 
 [node name="entity_0_brush_14_collision_shape" type="CollisionShape3D" parent="LevelTerrain/FuncGodotMap/entity_0_worldspawn"]
 shape = SubResource("ConvexPolygonShape3D_6su6i")
+
+[node name="EnvParticles" type="Node3D" parent="."]

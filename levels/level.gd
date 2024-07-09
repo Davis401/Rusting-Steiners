@@ -5,6 +5,7 @@ var player:PlayerMech
 
 @onready var entities = $Entities
 @onready var player_spawn = $PlayerSpawn
+@onready var env_particles = $EnvParticles
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,4 +16,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if env_particles != null && player != null:
+		env_particles.global_position = player.global_position

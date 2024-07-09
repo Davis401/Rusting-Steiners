@@ -14,7 +14,7 @@ var current_speed = initial_speed
 func _ready():
 	super()
 	current_speed = 1
-	acceleration = 50
+	acceleration = 100
 
 func _physics_process(delta)->void:
 	process_movement(delta)

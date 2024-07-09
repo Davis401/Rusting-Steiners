@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Global="*res://autoloads/global.tscn"
 AudioManager="*res://autoloads/audio_manager.tscn"
 SaveManager="*res://autoloads/save_manager.tscn"
+ScreenShader="*res://autoloads/screen_shader.tscn"
 
 [display]
 

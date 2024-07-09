@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://cuqp5236hm4c2"]
+[gd_scene load_steps=9 format=3 uid="uid://cuqp5236hm4c2"]
 
 [ext_resource type="Theme" uid="uid://bjwry7i4vasob" path="res://UI/pause_menu.tres" id="1_loxxs"]
 [ext_resource type="Script" path="res://UI/settings_menu.gd" id="2_000gg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cbowd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nfr1l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yxt3y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0uska"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lalk1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m32da"]
 
 [node name="SettingsMenu" type="CenterContainer"]
 anchors_preset = 15
@@ -24,9 +36,9 @@ layout_mode = 2
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 200
-theme_override_constants/margin_top = 40
+theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 200
-theme_override_constants/margin_bottom = 200
+theme_override_constants/margin_bottom = 50
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
@@ -43,6 +55,33 @@ horizontal_alignment = 1
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="HBoxContainer_Sensitivity" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 40)
+layout_mode = 2
+alignment = 1
+
+[node name="SensitivityLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Sensitivity"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 16
+text = "Sensitivity"
+
+[node name="SensitivitySlider" type="HSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Sensitivity"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_force_pass_scroll_events = false
+min_value = 0.25
+max_value = 2.0
+step = 0.05
+value = 1.25
+
+[node name="SensitivityCurrentValueLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Sensitivity"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "1"
+
 [node name="HBoxContainer_Resolution" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 40)
 layout_mode = 2
@@ -50,6 +89,7 @@ alignment = 1
 
 [node name="ResolutionLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Resolution"]
 layout_mode = 2
+size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 16
 text = "Resolution"
 
@@ -64,6 +104,7 @@ alignment = 1
 
 [node name="WindowModeLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_WindowMode"]
 layout_mode = 2
+size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 16
 text = "Window"
 
@@ -100,6 +141,40 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "1"
 
+[node name="HBoxContainer_CRT_Filter" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_CRT_Filter"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 16
+text = "CRT Filter"
+
+[node name="CrtFilterButton" type="CheckButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_CRT_Filter"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.890196, 0.890196, 0.890196, 1)
+theme_override_colors/font_pressed_color = Color(0.890196, 0.890196, 0.890196, 1)
+theme_override_colors/font_hover_color = Color(0.890196, 0.890196, 0.890196, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.890196, 0.890196, 0.890196, 1)
+theme_override_colors/font_focus_color = Color(0.890196, 0.890196, 0.890196, 1)
+theme_override_colors/font_disabled_color = Color(0.890196, 0.890196, 0.890196, 1)
+theme_override_colors/font_outline_color = Color(0.890196, 0.890196, 0.890196, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cbowd")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_nfr1l")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_yxt3y")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0uska")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_lalk1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m32da")
+text = "on"
+alignment = 1
+
+[node name="HBoxContainer_Volume" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="CloseButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
@@ -107,5 +182,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "Close"
 
+[connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Sensitivity/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_RenderScale/RenderScaleSlider" to="." method="_on_render_scale_slider_value_changed"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_CRT_Filter/CrtFilterButton" to="." method="_on_crt_filter_button_toggled"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]

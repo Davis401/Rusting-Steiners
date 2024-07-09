@@ -110,7 +110,7 @@ func _input(event) ->void:
 	if event is InputEventMouseMotion and !is_movement_paused:
 		rotate_y(deg_to_rad(-event.relative.x * MOUSE_SENS))
 		neck.rotate_x(deg_to_rad(-event.relative.y * MOUSE_SENS))
-		neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+		neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 		if !turn_player.playing:
 			turn_player.stream = turning_sounds.pick_random()
 			turn_player.pitch_scale = randf_range(0.9, 1.1)
@@ -218,7 +218,7 @@ func _physics_process(delta) ->void:
 			step_timer.start(0.8)
 
 func _process(delta)->void:
-	neck.rotation.z = lerp_angle(neck.rotation.z, wish_lean, delta * LERP_SPEED)
+	head.rotation.z = lerp_angle(head.rotation.z, wish_lean, delta * LERP_SPEED)
 	if Input.is_action_pressed("fire_left_arm") && left_arm_weapon.get_child(0) != null && left_arm_weapon.get_child(0) is WeaponController:
 		left_arm_weapon.get_child(0).on_hold()
 	if Input.is_action_pressed("fire_right_arm") && right_arm_weapon.get_child(0) != null && right_arm_weapon.get_child(0) is WeaponController:

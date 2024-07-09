@@ -134,7 +134,20 @@ func _on_close_button_pressed() -> void:
 	settings_updated.emit()
 
 
-func _on_render_scale_slider_value_changed(value):
+func _on_render_scale_slider_value_changed(value)-> void:
 	render_scale_val = value
 	render_scale_current_value_label.text = str(value)
 	refresh_render()
+
+
+func _on_crt_filter_button_toggled(toggled_on)-> void:
+	if toggled_on:
+		%CrtFilterButton.text = "on"
+		ScreenShader.turn_on_crt_filter()
+	else:
+		%CrtFilterButton.text = "off"
+		ScreenShader.turn_off_crt_filter()
+
+
+func _on_sensitivity_slider_value_changed(value)-> void:
+	pass # Replace with function body.

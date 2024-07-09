@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccm8foubky1qg"]
+
+[ext_resource type="Script" path="res://autoloads/screen_shader.gd" id="1_2t3f6"]
+[ext_resource type="Shader" path="res://assets/shaders/crt.gdshader" id="1_4qjwi"]
+[ext_resource type="Shader" path="res://assets/shaders/dither.gdshader" id="2_bm0gl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pfnx5"]
+shader = ExtResource("1_4qjwi")
+shader_parameter/resolution = Vector2(1280, 960)
+shader_parameter/scan_line_amount = 1.0
+shader_parameter/warp_amount = 0.1
+shader_parameter/noise_amount = 0.03
+shader_parameter/interference_amount = 0.2
+shader_parameter/grille_amount = 0.2
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.6
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/aberation_amount = 0.5
+shader_parameter/roll_line_amount = 0.0
+shader_parameter/roll_speed = 1.0
+shader_parameter/scan_line_strength = -4.0
+shader_parameter/pixel_strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gojih"]
+render_priority = 0
+shader = ExtResource("2_bm0gl")
+
+[node name="ScreenShader" type="CanvasLayer"]
+script = ExtResource("1_2t3f6")
+
+[node name="CRT" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_pfnx5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="DitherShader" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_gojih")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
