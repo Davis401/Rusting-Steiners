@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://354y0re3jbp8"]
+[gd_scene load_steps=11 format=3 uid="uid://354y0re3jbp8"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_k3xgx"]
 [ext_resource type="PackedScene" uid="uid://inm5w0cj7831" path="res://entities/level_objects/shipping_container.tscn" id="2_akmkk"]
+[ext_resource type="PackedScene" uid="uid://coskgljssuyh6" path="res://levels/snow_level.tscn" id="3_84d4w"]
 [ext_resource type="AudioStream" uid="uid://n27h6rj7xxdu" path="res://assets/music/track01.ogg" id="3_fftk4"]
 [ext_resource type="Texture2D" uid="uid://dequ1ob5rtdl3" path="res://assets/textures/Concete_256.png" id="4_bns5p"]
+[ext_resource type="AudioStream" uid="uid://d0ul3s3awwt6g" path="res://assets/sfx/MountainWind.ogg" id="6_hvs5r"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vvl54"]
 sun_angle_max = 15.0
@@ -43,6 +45,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5131, 0)
 [node name="ShippingContainer" parent="Entities" instance=ExtResource("2_akmkk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.485621, -3.02474)
 
+[node name="DemoLevel" parent="Entities/ShippingContainer" instance=ExtResource("3_84d4w")]
+
 [node name="ShippingContainer2" parent="Entities" instance=ExtResource("2_akmkk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65657, -0.485621, -3.02474)
 
@@ -63,8 +67,12 @@ use_collision = true
 size = Vector3(100, 0.04, 100)
 material = SubResource("StandardMaterial3D_jxgqt")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_fftk4")
+autoplay = true
+
+[node name="WindPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_hvs5r")
 autoplay = true
 
 [node name="EnvParticles" type="Node3D" parent="."]

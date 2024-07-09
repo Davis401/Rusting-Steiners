@@ -5,27 +5,27 @@
 [ext_resource type="PackedScene" uid="uid://snw1ev62d7aw" path="res://components/energy_component.tscn" id="2_g845v"]
 [ext_resource type="PackedScene" uid="uid://c08n456hikpba" path="res://components/health_component.tscn" id="2_pdrve"]
 [ext_resource type="Resource" uid="uid://bs0gh5h4r56gc" path="res://resources/mech_parts/head/standard_head.tres" id="3_2lo60"]
-[ext_resource type="Resource" uid="uid://cpg28wwrhivqi" path="res://resources/mech_parts/arms/shotgun_arm.tres" id="4_14iy4"]
-[ext_resource type="Resource" uid="uid://bsv3pdce0r3us" path="res://resources/mech_parts/arms/machine_gun_arm.tres" id="4_gp2ar"]
+[ext_resource type="Resource" uid="uid://vbsvkx0fjtom" path="res://resources/mech_parts/arms/rocket_launcher_arm.tres" id="4_kfxxu"]
 [ext_resource type="Script" path="res://UI/DebugUI.gd" id="4_xbcny"]
 [ext_resource type="Resource" uid="uid://cevq76gbnapvx" path="res://resources/mech_parts/shoulders/missile_launcher_shoulder.tres" id="5_s50q5"]
 [ext_resource type="Resource" uid="uid://hcvifldd2js1" path="res://resources/mech_parts/legs/standard_legs.tres" id="5_tv1yi"]
 [ext_resource type="Script" path="res://resources/mech_parts/mech_build.gd" id="6_fx21j"]
+[ext_resource type="Resource" uid="uid://5l02mj26gn4r" path="res://resources/mech_parts/arms/grenade_launcher_arm.tres" id="7_qjlgj"]
 [ext_resource type="PackedScene" uid="uid://ch0m8i08wkpak" path="res://UI/pause_menu.tscn" id="9_q3prr"]
 [ext_resource type="AudioStream" uid="uid://m7h6cvymxvwc" path="res://assets/sfx/Ovani/MechanicaLoop.ogg" id="10_y8sd2"]
 [ext_resource type="FontFile" uid="uid://dpm4dokao617s" path="res://assets/fonts/FerriteCoreDX-Light.ttf" id="11_42rwg"]
 [ext_resource type="Script" path="res://entities/player_mech/UI.gd" id="11_cmofo"]
 [ext_resource type="Texture2D" uid="uid://derq7j577m4jq" path="res://assets/reticles/crosshair007.png" id="11_kp0kp"]
-[ext_resource type="AudioStream" uid="uid://dpqnjb23ockyh" path="res://assets/sfx/thrusterFire_000.ogg" id="16_clu5a"]
 [ext_resource type="AudioStream" uid="uid://dn1tptaapfmg8" path="res://assets/sfx/Ovani/MechStep1.mp3" id="16_roaqu"]
+[ext_resource type="AudioStream" uid="uid://cj6hvdniaij6x" path="res://assets/sfx/JetLoop.ogg" id="17_0b104"]
 
 [sub_resource type="Resource" id="Resource_7srlk"]
 script = ExtResource("6_fx21j")
 head = ExtResource("3_2lo60")
 chest = ExtResource("2_56d0m")
-left_arm = ExtResource("4_14iy4")
+left_arm = ExtResource("4_kfxxu")
 left_shoulder = ExtResource("5_s50q5")
-right_arm = ExtResource("4_gp2ar")
+right_arm = ExtResource("7_qjlgj")
 right_shoulder = ExtResource("5_s50q5")
 legs = ExtResource("5_tv1yi")
 
@@ -238,7 +238,7 @@ autoplay = true
 
 [node name="Thruster" type="AudioStreamPlayer3D" parent="AudioPlayers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
-stream = ExtResource("16_clu5a")
+stream = ExtResource("17_0b104")
 autoplay = true
 
 [node name="StepLeft" type="AudioStreamPlayer3D" parent="AudioPlayers"]

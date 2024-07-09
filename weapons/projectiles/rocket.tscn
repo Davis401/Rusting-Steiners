@@ -66,6 +66,7 @@ emission_curve = SubResource("CurveTexture_hw564")
 
 [node name="Rocket" type="Node3D"]
 script = ExtResource("1_ihvef")
+delete_on_hit_after_time = 2.0
 
 [node name="Graphics" type="Node3D" parent="."]
 
@@ -77,6 +78,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_m0n0j")
 [node name="CollisionRaycast" type="RayCast3D" parent="."]
 
 [node name="AreaDamageEmitter" parent="." instance=ExtResource("2_ypyrg")]
+attack_radius = 20.0
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_g5mct")

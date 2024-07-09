@@ -227,9 +227,9 @@ func _process(delta)->void:
 		left_shoulder_weapon.get_child(0).on_hold()
 	if Input.is_action_pressed("fire_right_shoulder") && right_shoulder_weapon.get_child(0) != null && right_shoulder_weapon.get_child(0) is WeaponController:
 		right_shoulder_weapon.get_child(0).on_hold()
-	if is_boosting:
+	if is_boosting && !thruster.playing:
 		thruster.play()
-	else:
+	elif !is_boosting:
 		thruster.stop()
 
 # Signal from Pause Menu
