@@ -7,3 +7,4 @@ script = ExtResource("1_yl1dp")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 enabled = false
+collision_mask = 4

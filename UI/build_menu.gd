@@ -80,10 +80,12 @@ func _on_head_button_pressed():
 	if head_parts.size() > 0:
 		for head_part:MechaHead in head_parts:
 			var btn = PART_BUTTON.instantiate()
-			btn.text = head_part.display_name
-			btn.pressed.connect(equip_head.bind(head_part))
-			btn.custom_minimum_size = Vector2(500, 50)
 			part_list.add_child(btn)
+			btn.text = head_part.display_name
+			btn.pressed.connect(equip_head.bind(head_part, btn))
+			if head_part.id == working_build.head.id:
+				btn.selected = true
+			
 	else:
 		var label = Label.new()
 		label.text = "None"
@@ -98,10 +100,12 @@ func _on_chest_button_pressed():
 	if chest_parts.size() > 0:
 		for chest_part:MechaChest in chest_parts:
 			var btn = PART_BUTTON.instantiate()
-			btn.text = chest_part.display_name
-			btn.pressed.connect(equip_chest.bind(chest_part))
-			btn.custom_minimum_size = Vector2(500, 50)
 			part_list.add_child(btn)
+			btn.text = chest_part.display_name
+			btn.pressed.connect(equip_chest.bind(chest_part, btn))
+			if chest_part.id == working_build.chest.id:
+				btn.selected = true
+			
 	else:
 		var label = Label.new()
 		label.text = "None"
@@ -116,10 +120,12 @@ func _on_left_shoulder_button_pressed():
 	if left_shoulder_parts.size() > 0:
 		for left_shoulder_part:MechaShoulder in left_shoulder_parts:
 			var btn = PART_BUTTON.instantiate()
-			btn.text = left_shoulder_part.display_name
-			btn.pressed.connect(equip_left_shoulder.bind(left_shoulder_part))
-			btn.custom_minimum_size = Vector2(500, 50)
 			part_list.add_child(btn)
+			btn.text = left_shoulder_part.display_name
+			btn.pressed.connect(equip_left_shoulder.bind(left_shoulder_part, btn))
+			if left_shoulder_part.id == working_build.left_shoulder.id:
+				btn.selected = true
+			
 	else:
 		var label = Label.new()
 		label.text = "None"
@@ -134,10 +140,11 @@ func _on_right_shoulder_button_pressed():
 	if right_shoulder_parts.size() > 0:
 		for right_shoulder_part:MechaShoulder in right_shoulder_parts:
 			var btn = PART_BUTTON.instantiate()
-			btn.text = right_shoulder_part.display_name
-			btn.pressed.connect(equip_right_shoulder.bind(right_shoulder_part))
-			btn.custom_minimum_size = Vector2(500, 50)
 			part_list.add_child(btn)
+			btn.text = right_shoulder_part.display_name
+			btn.pressed.connect(equip_right_shoulder.bind(right_shoulder_part, btn))
+			if right_shoulder_part.id == working_build.right_shoulder.id:
+				btn.selected = true
 	else:
 		var label = Label.new()
 		label.text = "None"
@@ -152,10 +159,12 @@ func _on_left_arm_button_pressed():
 	if left_arm_parts.size() > 0:
 		for left_arm_part:MechaArm in left_arm_parts:
 			var btn = PART_BUTTON.instantiate()
-			btn.text = left_arm_part.display_name
-			btn.pressed.connect(equip_left_arm.bind(left_arm_part))
-			btn.custom_minimum_size = Vector2(500, 50)
 			part_list.add_child(btn)
+			btn.text = left_arm_part.display_name
+			btn.pressed.connect(equip_left_arm.bind(left_arm_part, btn))
+			if left_arm_part.id == working_build.left_arm.id:
+				btn.selected = true
+			
 	else:
 		var label = Label.new()
 		label.text = "None"
@@ -170,10 +179,12 @@ func _on_right_arm_button_pressed():
 	if right_arm_parts.size() > 0:
 		for right_arm_part:MechaArm in right_arm_parts:
 			var btn = PART_BUTTON.instantiate()
-			btn.text = right_arm_part.display_name
-			btn.pressed.connect(equip_right_arm.bind(right_arm_part))
-			btn.custom_minimum_size = Vector2(500, 50)
 			part_list.add_child(btn)
+			btn.text = right_arm_part.display_name
+			btn.pressed.connect(equip_right_arm.bind(right_arm_part, btn))
+			if right_arm_part.id == working_build.right_arm.id:
+				btn.selected = true
+			
 	else:
 		var label = Label.new()
 		label.text = "None"
@@ -188,10 +199,12 @@ func _on_legs_button_pressed():
 	if legs_parts.size() > 0:
 		for legs_part:MechaLegs in legs_parts:
 			var btn = PART_BUTTON.instantiate()
-			btn.text = legs_part.display_name
-			btn.pressed.connect(equip_legs.bind(legs_part))
-			btn.custom_minimum_size = Vector2(500, 50)
 			part_list.add_child(btn)
+			btn.text = legs_part.display_name
+			btn.pressed.connect(equip_legs.bind(legs_part, btn))
+			if legs_part.id == working_build.legs.id:
+				btn.selected = true
+
 	else:
 		var label = Label.new()
 		label.text = "None"
@@ -201,31 +214,52 @@ func _on_legs_button_pressed():
 		
 
 
-func equip_head(head_part:MechaHead)->void:
+func equip_head(head_part:MechaHead, btn:Button)->void:
+	for child in part_list.get_children():
+		child.selected = false
+	btn.selected = true
 	working_build.head = head_part
 	update_stats_labels()
 
-func equip_chest(chest_part:MechaChest)->void:
+func equip_chest(chest_part:MechaChest, btn:Button)->void:
+	for child in part_list.get_children():
+		child.selected = false
+	btn.selected = true
 	working_build.chest = chest_part
 	update_stats_labels()
 
-func equip_left_shoulder(left_shoulder_part:MechaShoulder)->void:
+func equip_left_shoulder(left_shoulder_part:MechaShoulder, btn:Button)->void:
+	for child in part_list.get_children():
+		child.selected = false
+	btn.selected = true
 	working_build.left_shoulder = left_shoulder_part
 	update_stats_labels()
 
-func equip_right_shoulder(right_shoulder_part:MechaShoulder)->void:
+func equip_right_shoulder(right_shoulder_part:MechaShoulder, btn:Button)->void:
+	for child in part_list.get_children():
+		child.selected = false
+	btn.selected = true
 	working_build.right_shoulder = right_shoulder_part
 	update_stats_labels()
 
-func equip_left_arm(left_arm_part:MechaArm)->void:
+func equip_left_arm(left_arm_part:MechaArm, btn:Button)->void:
+	for child in part_list.get_children():
+		child.selected = false
+	btn.selected = true
 	working_build.left_arm = left_arm_part
 	update_stats_labels()
 
-func equip_right_arm(right_arm_part:MechaArm)->void:
+func equip_right_arm(right_arm_part:MechaArm, btn:Button)->void:
+	for child in part_list.get_children():
+		child.selected = false
+	btn.selected = true
 	working_build.right_arm = right_arm_part
 	update_stats_labels()
 
-func equip_legs(legs_part:MechaLegs)->void:
+func equip_legs(legs_part:MechaLegs, btn:Button)->void:
+	for child in part_list.get_children():
+		child.selected = false
+	btn.selected = true
 	working_build.legs = legs_part
 	update_stats_labels()
 

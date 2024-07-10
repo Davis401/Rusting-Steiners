@@ -96,6 +96,7 @@ mesh = SubResource("CylinderMesh_rveca")
 surface_material_override/0 = SubResource("StandardMaterial3D_my5gc")
 
 [node name="CollisionRaycast" type="RayCast3D" parent="."]
+collision_mask = 12
 
 [node name="AreaDamageEmitter" parent="." instance=ExtResource("2_o1dpk")]
 attack_radius = 10.0

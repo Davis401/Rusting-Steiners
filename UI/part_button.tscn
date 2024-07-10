@@ -1,11 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnx4w8obpamxl"]
+[gd_scene load_steps=5 format=3 uid="uid://dnx4w8obpamxl"]
 
-[ext_resource type="Theme" uid="uid://bcym26vxhg41f" path="res://UI/main_menu.tres" id="1_mftrx"]
+[ext_resource type="Theme" uid="uid://dgtifvgd4dmm0" path="res://UI/part_button.tres" id="1_cwuvl"]
+[ext_resource type="Script" path="res://UI/part_button.gd" id="2_3j4cs"]
+[ext_resource type="FontFile" uid="uid://dgm2v7yghigh" path="res://assets/fonts/FerriteCoreDX-Regular.ttf" id="2_yg8wo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f50xa"]
+bg_color = Color(0.168627, 0.168627, 0.168627, 1)
 
 [node name="PartButton" type="Button"]
 custom_minimum_size = Vector2(500, 50)
 offset_right = 8.0
 offset_bottom = 8.0
-theme = ExtResource("1_mftrx")
+theme = ExtResource("1_cwuvl")
+theme_override_fonts/font = ExtResource("2_yg8wo")
 theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_f50xa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f50xa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_f50xa")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f50xa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_f50xa")
 text = "Part Name"
+script = ExtResource("2_3j4cs")

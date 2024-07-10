@@ -64,6 +64,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21774, -0.485621, -3.02474
 [node name="CSGBox3D" type="CSGBox3D" parent="LevelTerrain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.191699, -0.539013, 0.259293)
 use_collision = true
+collision_layer = 9
 size = Vector3(100, 0.04, 100)
 material = SubResource("StandardMaterial3D_jxgqt")
 

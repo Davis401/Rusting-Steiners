@@ -5,26 +5,25 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pfnx5"]
 shader = ExtResource("1_4qjwi")
-shader_parameter/resolution = Vector2(1280, 960)
-shader_parameter/scan_line_amount = 1.0
-shader_parameter/warp_amount = 0.1
+shader_parameter/resolution = Vector2(1280, 720)
+shader_parameter/scan_line_amount = 0.1
+shader_parameter/warp_amount = 0.3
 shader_parameter/noise_amount = 0.03
 shader_parameter/interference_amount = 0.2
-shader_parameter/grille_amount = 0.2
+shader_parameter/grille_amount = 0.1
 shader_parameter/grille_size = 1.0
 shader_parameter/vignette_amount = 0.6
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/aberation_amount = 0.5
 shader_parameter/roll_line_amount = 0.0
-shader_parameter/roll_speed = 1.0
-shader_parameter/scan_line_strength = -4.0
-shader_parameter/pixel_strength = 0.0
+shader_parameter/roll_speed = -8.0
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -2.0
 
 [node name="ScreenShader" type="CanvasLayer"]
 script = ExtResource("1_2t3f6")
 
 [node name="CRT" type="ColorRect" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_pfnx5")
 anchors_preset = 15
 anchor_right = 1.0

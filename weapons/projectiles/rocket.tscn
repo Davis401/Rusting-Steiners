@@ -76,6 +76,7 @@ mesh = SubResource("CapsuleMesh_ynn3t")
 surface_material_override/0 = SubResource("StandardMaterial3D_m0n0j")
 
 [node name="CollisionRaycast" type="RayCast3D" parent="."]
+collision_mask = 12
 
 [node name="AreaDamageEmitter" parent="." instance=ExtResource("2_ypyrg")]
 attack_radius = 20.0

@@ -6,8 +6,8 @@ var drag = 10
 func process_movement(delta)->void:
 	last_pos = global_position
 	global_position += -global_transform.basis.z * initial_speed * delta
-	global_position += Vector3.DOWN * 4 * delta
-	initial_speed -= drag * delta
+	global_position += Vector3.DOWN * 8 * delta
+	initial_speed = max(initial_speed - (drag * delta), 0)
 
 const sounds = [ 
 	preload("res://assets/sfx/Ovani/Bazooka Blast Close 001.wav"),

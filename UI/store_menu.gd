@@ -22,7 +22,7 @@ var focused_part_button:Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	is_open = visible
+	visible = is_open
 
 
 func open():
@@ -55,11 +55,11 @@ func _on_head_button_pressed():
 		child.queue_free()
 	if head_parts.size() > 0:
 		for head_part:MechaHead in head_parts:
-			var btn = Button.new()
+			var btn = PART_BUTTON.instantiate()
+			part_list.add_child(btn)
 			btn.text = head_part.display_name
 			btn.pressed.connect(show_part_data.bind(head_part, btn))
-			btn.custom_minimum_size = Vector2(500, 50)
-			part_list.add_child(btn)
+			
 	else:
 		var label = Label.new()
 		label.text = "None"
@@ -73,11 +73,11 @@ func _on_chest_button_pressed():
 		child.queue_free()
 	if chest_parts.size() > 0:
 		for chest_part:MechaChest in chest_parts:
-			var btn = Button.new()
+			var btn = PART_BUTTON.instantiate()
+			part_list.add_child(btn)
 			btn.text = chest_part.display_name
 			btn.pressed.connect(show_part_data.bind(chest_part, btn))
-			btn.custom_minimum_size = Vector2(500, 50)
-			part_list.add_child(btn)
+			
 	else:
 		var label = Label.new()
 		label.text = "None"
@@ -90,11 +90,10 @@ func _on_shoulder_button_pressed():
 		child.queue_free()
 	if shoulder_parts.size() > 0:
 		for shoulder_part:MechaShoulder in shoulder_parts:
-			var btn = Button.new()
+			var btn = PART_BUTTON.instantiate()
+			part_list.add_child(btn)
 			btn.text = shoulder_part.display_name
 			btn.pressed.connect(show_part_data.bind(shoulder_part, btn))
-			btn.custom_minimum_size = Vector2(500, 50)
-			part_list.add_child(btn)
 	else:
 		var label = Label.new()
 		label.text = "None"
@@ -108,11 +107,10 @@ func _on_arm_button_pressed():
 		child.queue_free()
 	if arm_parts.size() > 0:
 		for arm_part:MechaArm in arm_parts:
-			var btn = Button.new()
+			var btn = PART_BUTTON.instantiate()
+			part_list.add_child(btn)
 			btn.text = arm_part.display_name
 			btn.pressed.connect(show_part_data.bind(arm_part, btn))
-			btn.custom_minimum_size = Vector2(500, 50)
-			part_list.add_child(btn)
 	else:
 		var label = Label.new()
 		label.text = "None"
@@ -143,7 +141,9 @@ func _on_legs_button_pressed():
 
 
 func show_part_data(part:MechaPart, button:Button):
-	print("show_part_data")
+	for child in part_list.get_children():
+		child.selected = false
+	button.selected = true
 	focused_part = part
 	focused_part_button = button
 	buy_button.text = str(focused_part.cost)

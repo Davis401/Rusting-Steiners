@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://4nptlc4a00nr"]
 
-[ext_resource type="Theme" uid="uid://bcym26vxhg41f" path="res://UI/main_menu.tres" id="1_cr2wu"]
+[ext_resource type="Theme" uid="uid://f4uaqilnvl40" path="res://UI/pause_button.tres" id="1_lr7wi"]
 [ext_resource type="Script" path="res://UI/build_menu.gd" id="2_vflq2"]
 
 [node name="BuildMenu" type="MarginContainer"]
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_cr2wu")
+theme = ExtResource("1_lr7wi")
 script = ExtResource("2_vflq2")
 is_open = true
 

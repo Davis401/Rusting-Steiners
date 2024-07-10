@@ -1,5 +1,7 @@
 extends Control
+
 const LEVEL_BUTTON = preload("res://UI/level_button.tscn")
+#const MAIN_MENU = preload("res://UI/main_menu.tscn")
 
 @export var levels :Array[LevelData]
 @onready var mission_list = %MissionList
@@ -17,3 +19,7 @@ func _ready() ->void:
 
 func on_level_selected(level:LevelData) ->void:
 	get_tree().change_scene_to_packed(level.level_scene)
+
+
+func _on_button_pressed():
+	get_tree().change_scene_to_file("res://UI/main_menu.tscn")

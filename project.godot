@@ -24,10 +24,10 @@ ScreenShader="*res://autoloads/screen_shader.tscn"
 
 [display]
 
-window/size/viewport_width=960
+window/size/viewport_width=1280
 window/size/viewport_height=720
-window/size/window_width_override=960
-window/size/window_height_override=720
+window/size/window_width_override=1920
+window/size/window_height_override=1080
 
 [editor_plugins]
 
@@ -128,6 +128,7 @@ fire_right_shoulder={
 3d_physics/layer_1="World"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Hurtbox"
+3d_physics/layer_4="WorldSansPlayer"
 
 [physics]
 

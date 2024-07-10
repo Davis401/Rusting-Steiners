@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dmqihira2abkg"]
 
 [ext_resource type="Script" path="res://UI/main_menu.gd" id="1_2qkdf"]
-[ext_resource type="Theme" uid="uid://bcym26vxhg41f" path="res://UI/main_menu.tres" id="1_e8t4f"]
+[ext_resource type="Theme" uid="uid://f4uaqilnvl40" path="res://UI/pause_button.tres" id="1_rha82"]
 [ext_resource type="Shader" path="res://assets/shaders/dots.gdshader" id="3_jwyhm"]
 [ext_resource type="AudioStream" uid="uid://df4iv0bfw2244" path="res://assets/sfx/ui/click_002.ogg" id="3_kj8q6"]
 [ext_resource type="PackedScene" uid="uid://cuqp5236hm4c2" path="res://UI/settings_menu.tscn" id="3_l2xha"]
@@ -27,7 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_e8t4f")
+theme = ExtResource("1_rha82")
 script = ExtResource("1_2qkdf")
 sound_hover = ExtResource("3_kj8q6")
 sound_click = ExtResource("4_tiol6")
@@ -122,6 +122,7 @@ layout_mode = 2
 text = "10000"
 
 [node name="StoreMenu" parent="." instance=ExtResource("3_x2x3x")]
+visible = false
 layout_mode = 1
 
 [node name="BuildMenu" parent="." instance=ExtResource("4_tmt4e")]
