@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MechaHead" load_steps=2 format=3 uid="uid://cl0ml3u5xngx4"]
+
+[ext_resource type="Script" path="res://resources/mech_parts/mecha_head.gd" id="1_yigy6"]
+
+[resource]
+script = ExtResource("1_yigy6")
+accuracy = 3
+missile_lock_on_time = 0.1
+id = "fast_missile_head"
+display_name = "Beeptech Fastlock"
+cost = 3000
+weight = 100

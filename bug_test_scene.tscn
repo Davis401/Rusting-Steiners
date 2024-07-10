@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxrp1ivdlpr62"]
+
+[ext_resource type="Script" path="res://bug_test_scene.gd" id="1_045i2"]
+
+[node name="BugTestScene" type="Node3D"]
+script = ExtResource("1_045i2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 100
+
+[node name="Button" type="Button" parent="CanvasLayer/MarginContainer"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Test"
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/Button" to="." method="_on_button_pressed"]

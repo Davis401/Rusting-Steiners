@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MechaShoulder" load_steps=2 format=3 uid="uid://bhi84ouhofkp4"]
+
+[ext_resource type="Script" path="res://resources/mech_parts/mecha_shoulder.gd" id="1_gna7f"]
+
+[resource]
+script = ExtResource("1_gna7f")
+id = "railgun_shoulder"
+display_name = "Railgun"
+cost = 5000
+weight = 200

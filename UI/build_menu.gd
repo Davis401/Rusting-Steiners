@@ -2,27 +2,21 @@ extends MarginContainer
 
 signal close
 
+enum PART_TYPE {
+	HEAD,
+	CHEST,
+	L_SHLDR,
+	R_SHLDR,
+	L_ARM,
+	R_ARM,
+	LEGS
+}
 
-@onready var head_part_label = %HeadPartLabel
-@onready var chest_part_label = %ChestPartLabel
-@onready var left_shoulder_part_label = %LeftShoulderPartLabel
-@onready var right_shoulder_part_label = %RightShoulderPartLabel
-@onready var left_arm_weapon_label = %LeftArmWeaponLabel
-@onready var right_arm_weapon_label = %RightArmWeaponLabel
-@onready var legs_label = %LegsLabel
+const PART_BUTTON = preload("res://UI/part_button.tscn")
 
 @export var is_open = false
 
 var working_build = MechaBuild.new()
-
-var part_idx = 0
-var head_idx = 0
-var chest_idx = 0
-var left_arm_idx = 0
-var right_arm_idx = 0
-var left_shoulder_idx = 0
-var right_shoulder_idx = 0
-var legs_idx = 0
 
 var head_parts: Array[MechaHead] = []
 var chest_parts: Array[MechaChest] = []
@@ -32,18 +26,38 @@ var left_shoulder_parts: Array[MechaShoulder] = []
 var right_shoulder_parts: Array[MechaShoulder] = []
 var legs_parts: Array[MechaLegs] = []
 
-var highlighted_node:Control
-@onready var part_slots :Array[Control]= [%HeadContainer, %ChestContainer, %LeftShoulder, %RightShoulder, %LeftArmContainer, %RightArmContainer, %LegsContainer]
+@onready var part_list = $HBoxContainer/PartListContianer/PartList
+
+@onready var weight_value = %WeightValue
+@onready var max_weight_value = %MaxWeightValue
+@onready var walk_speed_value = %WalkSpeedValue
+@onready var boost_speed_value = %BoostSpeedValue
+@onready var health_value = %HealthValue
+@onready var energy_value = %EnergyValue
+@onready var accuracy_value = %AccuracyValue
+@onready var missile_lock_on_time_value = %MissileLockOnTimeValue
+@onready var jump_power_value = %JumpPowerValue
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	visible = is_open
+
+func open():
+	is_open = true
+	head_parts = []
+	chest_parts = []
+	left_arm_parts = []
+	right_arm_parts = []
+	left_shoulder_parts = []
+	right_shoulder_parts = []
+	legs_parts = []
+	
 	if Global.current_build != null:
 		working_build = Global.current_build
-		update_labels()
 	for part:MechaPart in Global.PARTS:
-		if !SaveManager.save_data.owned_parts.has(part.id):return
-		if part is MechaHead:
+		if !SaveManager.save_data.owned_parts.has(part.id):
+			pass
+		elif part is MechaHead:
 			head_parts.append(part)
 		elif part is MechaChest:
 			chest_parts.append(part)
@@ -55,82 +69,181 @@ func _ready() -> void:
 			right_shoulder_parts.append(part)
 		elif part is MechaLegs:
 			legs_parts.append(part)
-
-func open():
-	is_open = true
-	show()
-	part_idx = 0
-	change_highlights(part_slots[part_idx],part_slots[part_idx])
-
-func _unhandled_input(event):
-	if event.is_action_pressed("move_back"):
-		var old_idx = part_idx
-		part_idx = min(part_idx + 1, 6)
-		change_highlights(part_slots[old_idx],part_slots[part_idx])
-	elif event.is_action_pressed("move_forward"):
-		var old_idx = part_idx
-		part_idx = max(part_idx - 1, 0)
-		change_highlights(part_slots[old_idx],part_slots[part_idx])
-	elif event.is_action_pressed("move_right"):
-		next_part()
-	elif event.is_action_pressed("move_back"):
-		prev_part()
-
-func next_part() -> void:
-	match part_idx:
-		0:
-			head_idx = min(head_idx + 1, head_parts.size() - 1)
-			working_build.head = head_parts[head_idx]
-		1:
-			chest_idx = min(chest_idx + 1, chest_parts.size() - 1)
-			working_build.chest = chest_parts[chest_idx]
-		2:
-			left_shoulder_idx = min(left_shoulder_idx + 1, left_shoulder_parts.size() - 1)
-			working_build.left_shoulder = left_shoulder_parts[left_shoulder_idx]
-		3:
-			right_shoulder_idx = min(right_shoulder_idx + 1,right_shoulder_parts.size() - 1)
-			working_build.right_shoulder = right_shoulder_parts[right_shoulder_idx]
-		4:
-			left_arm_idx = min(left_arm_idx + 1, left_arm_parts.size() - 1)
-			working_build.chest = left_arm_parts[left_arm_idx]
-		5:
-			right_arm_idx = min(right_arm_idx + 1, right_arm_parts.size() - 1)
-			working_build.chest = right_arm_parts[right_arm_idx]
-		6:
-			legs_idx = min(legs_idx + 1, legs_parts.size() - 1)
-			working_build.legs = legs_parts[legs_idx]
-	update_labels()
 	
-func prev_part():
-	pass
-
-func update_labels() -> void:
-	print("update_labels")
-	if working_build.head != null:
-		head_part_label = working_build.head.display_name
-	if working_build.chest != null:
-		head_part_label = working_build.chest.display_name
-	if working_build.left_arm != null:
-		head_part_label = working_build.left_arm.display_name
-	if working_build.right_arm != null:
-		head_part_label = working_build.right_arm.display_name
-	if working_build.left_shoulder != null:
-		head_part_label = working_build.left_shoulder.display_name
-	if working_build.right_shoulder != null:
-		head_part_label = working_build.right_shoulder.display_name
-	if working_build.legs != null:
-		head_part_label = working_build.legs.display_name
+	update_stats_labels()
+	show()
 
 
-func _on_back_button_pressed():
-	is_open = false
+func _on_head_button_pressed():
+	for child in part_list.get_children():
+		child.queue_free()
+	if head_parts.size() > 0:
+		for head_part:MechaHead in head_parts:
+			var btn = PART_BUTTON.instantiate()
+			btn.text = head_part.display_name
+			btn.pressed.connect(equip_head.bind(head_part))
+			btn.custom_minimum_size = Vector2(500, 50)
+			part_list.add_child(btn)
+	else:
+		var label = Label.new()
+		label.text = "None"
+		label.custom_minimum_size = Vector2(500, 50)
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		part_list.add_child(label)
+
+
+func _on_chest_button_pressed():
+	for child in part_list.get_children():
+		child.queue_free()
+	if chest_parts.size() > 0:
+		for chest_part:MechaChest in chest_parts:
+			var btn = PART_BUTTON.instantiate()
+			btn.text = chest_part.display_name
+			btn.pressed.connect(equip_chest.bind(chest_part))
+			btn.custom_minimum_size = Vector2(500, 50)
+			part_list.add_child(btn)
+	else:
+		var label = Label.new()
+		label.text = "None"
+		label.custom_minimum_size = Vector2(500, 50)
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		part_list.add_child(label)
+
+
+func _on_left_shoulder_button_pressed():
+	for child in part_list.get_children():
+		child.queue_free()
+	if left_shoulder_parts.size() > 0:
+		for left_shoulder_part:MechaShoulder in left_shoulder_parts:
+			var btn = PART_BUTTON.instantiate()
+			btn.text = left_shoulder_part.display_name
+			btn.pressed.connect(equip_left_shoulder.bind(left_shoulder_part))
+			btn.custom_minimum_size = Vector2(500, 50)
+			part_list.add_child(btn)
+	else:
+		var label = Label.new()
+		label.text = "None"
+		label.custom_minimum_size = Vector2(500, 50)
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		part_list.add_child(label)
+
+
+func _on_right_shoulder_button_pressed():
+	for child in part_list.get_children():
+		child.queue_free()
+	if right_shoulder_parts.size() > 0:
+		for right_shoulder_part:MechaShoulder in right_shoulder_parts:
+			var btn = PART_BUTTON.instantiate()
+			btn.text = right_shoulder_part.display_name
+			btn.pressed.connect(equip_right_shoulder.bind(right_shoulder_part))
+			btn.custom_minimum_size = Vector2(500, 50)
+			part_list.add_child(btn)
+	else:
+		var label = Label.new()
+		label.text = "None"
+		label.custom_minimum_size = Vector2(500, 50)
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		part_list.add_child(label)
+
+
+func _on_left_arm_button_pressed():
+	for child in part_list.get_children():
+		child.queue_free()
+	if left_arm_parts.size() > 0:
+		for left_arm_part:MechaArm in left_arm_parts:
+			var btn = PART_BUTTON.instantiate()
+			btn.text = left_arm_part.display_name
+			btn.pressed.connect(equip_left_arm.bind(left_arm_part))
+			btn.custom_minimum_size = Vector2(500, 50)
+			part_list.add_child(btn)
+	else:
+		var label = Label.new()
+		label.text = "None"
+		label.custom_minimum_size = Vector2(500, 50)
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		part_list.add_child(label)
+
+
+func _on_right_arm_button_pressed():
+	for child in part_list.get_children():
+		child.queue_free()
+	if right_arm_parts.size() > 0:
+		for right_arm_part:MechaArm in right_arm_parts:
+			var btn = PART_BUTTON.instantiate()
+			btn.text = right_arm_part.display_name
+			btn.pressed.connect(equip_right_arm.bind(right_arm_part))
+			btn.custom_minimum_size = Vector2(500, 50)
+			part_list.add_child(btn)
+	else:
+		var label = Label.new()
+		label.text = "None"
+		label.custom_minimum_size = Vector2(500, 50)
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		part_list.add_child(label)
+
+
+func _on_legs_button_pressed():
+	for child in part_list.get_children():
+		child.queue_free()
+	if legs_parts.size() > 0:
+		for legs_part:MechaLegs in legs_parts:
+			var btn = PART_BUTTON.instantiate()
+			btn.text = legs_part.display_name
+			btn.pressed.connect(equip_legs.bind(legs_part))
+			btn.custom_minimum_size = Vector2(500, 50)
+			part_list.add_child(btn)
+	else:
+		var label = Label.new()
+		label.text = "None"
+		label.custom_minimum_size = Vector2(500, 50)
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		part_list.add_child(label)
+		
+
+
+func equip_head(head_part:MechaHead)->void:
+	working_build.head = head_part
+	update_stats_labels()
+
+func equip_chest(chest_part:MechaChest)->void:
+	working_build.chest = chest_part
+	update_stats_labels()
+
+func equip_left_shoulder(left_shoulder_part:MechaShoulder)->void:
+	working_build.left_shoulder = left_shoulder_part
+	update_stats_labels()
+
+func equip_right_shoulder(right_shoulder_part:MechaShoulder)->void:
+	working_build.right_shoulder = right_shoulder_part
+	update_stats_labels()
+
+func equip_left_arm(left_arm_part:MechaArm)->void:
+	working_build.left_arm = left_arm_part
+	update_stats_labels()
+
+func equip_right_arm(right_arm_part:MechaArm)->void:
+	working_build.right_arm = right_arm_part
+	update_stats_labels()
+
+func equip_legs(legs_part:MechaLegs)->void:
+	working_build.legs = legs_part
+	update_stats_labels()
+
+func _on_quit_button_pressed()->void:
+	if working_build.total_weight <= working_build.legs.weight_capacity:
+		Global.current_build = working_build
 	close.emit()
 	hide()
 
 
-func change_highlights(old_container:Control, new_container:Control):
-	for child:Label in old_container.get_children():
-		child.set("theme_override_colors/font_color","#e3e3e3")
-	for child:Label in new_container.get_children():
-		child.set("theme_override_colors/font_color", "#2b2b2b")
-		
+func update_stats_labels() ->void:
+	working_build.total_weight = working_build.head.weight + working_build.chest.weight + working_build.left_shoulder.weight  + working_build.right_shoulder.weight  + working_build.left_arm.weight + working_build.right_arm.weight  + working_build.legs.weight
+	weight_value.text = str(working_build.total_weight)
+	max_weight_value.text = str(working_build.legs.weight_capacity)
+	walk_speed_value.text = str(working_build.legs.base_movement_speed)
+	boost_speed_value.text = str(working_build.legs.boosting_movement_speed)
+	health_value.text = str(working_build.chest.max_health)
+	energy_value.text = str(working_build.chest.max_energy)
+	accuracy_value.text = str(working_build.head.accuracy)
+	missile_lock_on_time_value.text = str(working_build.head.missile_lock_on_time)
+	jump_power_value.text = str(working_build.legs.jump_power)

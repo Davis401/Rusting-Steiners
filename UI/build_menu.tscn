@@ -13,268 +13,236 @@ theme = ExtResource("1_cr2wu")
 script = ExtResource("2_vflq2")
 is_open = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="MechDataContainer" type="MarginContainer" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 40
-
-[node name="MechData" type="VBoxContainer" parent="HBoxContainer/MechDataContainer"]
-layout_mode = 2
-theme_override_constants/separation = 30
-
-[node name="Label" type="Label" parent="HBoxContainer/MechDataContainer/MechData"]
-layout_mode = 2
-text = "Mech Data"
-horizontal_alignment = 1
-
-[node name="WeightContainer" type="HBoxContainer" parent="HBoxContainer/MechDataContainer/MechData"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/MechDataContainer/MechData/WeightContainer"]
-layout_mode = 2
-text = "Weight"
-
-[node name="CurrentWeightLabel" type="Label" parent="HBoxContainer/MechDataContainer/MechData/WeightContainer"]
-layout_mode = 2
-text = "1000"
-
-[node name="Slash" type="Label" parent="HBoxContainer/MechDataContainer/MechData/WeightContainer"]
-layout_mode = 2
-text = "/"
-
-[node name="Label4" type="Label" parent="HBoxContainer/MechDataContainer/MechData/WeightContainer"]
-layout_mode = 2
-text = "3000"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/MechDataContainer/MechData"]
-layout_mode = 2
-theme_override_constants/separation = 100
-
-[node name="Label" type="Label" parent="HBoxContainer/MechDataContainer/MechData/HBoxContainer2"]
-layout_mode = 2
-text = "Move Speed"
-
-[node name="Label2" type="Label" parent="HBoxContainer/MechDataContainer/MechData/HBoxContainer2"]
-layout_mode = 2
-text = "500"
-
-[node name="PartsListContainer" type="MarginContainer" parent="HBoxContainer"]
+[node name="Build" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Build"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="PartCategoryContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
 theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PartsListContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PartCategoryContainer"]
 layout_mode = 2
 theme_override_constants/separation = 40
-
-[node name="HeadContainer" type="HBoxContainer" parent="HBoxContainer/PartsListContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/HeadContainer"]
-custom_minimum_size = Vector2(400, 50)
+[node name="HeadButton" type="Button" parent="HBoxContainer/PartCategoryContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
-size_flags_horizontal = 2
 text = "Head"
 
-[node name="HeadPartLabel" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/HeadContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 50)
+[node name="ChestButton" type="Button" parent="HBoxContainer/PartCategoryContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Head Part"
-horizontal_alignment = 1
-
-[node name="ChestContainer" type="HBoxContainer" parent="HBoxContainer/PartsListContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/ChestContainer"]
-custom_minimum_size = Vector2(400, 50)
-layout_mode = 2
-size_flags_horizontal = 2
 text = "Chest"
 
-[node name="ChestPartLabel" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/ChestContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 50)
+[node name="LeftShoulderButton" type="Button" parent="HBoxContainer/PartCategoryContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Chest Part"
-horizontal_alignment = 1
-
-[node name="LeftShoulder" type="HBoxContainer" parent="HBoxContainer/PartsListContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/LeftShoulder"]
-custom_minimum_size = Vector2(400, 50)
-layout_mode = 2
-size_flags_horizontal = 2
 text = "Left Shoulder"
 
-[node name="LeftShoulderPartLabel" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/LeftShoulder"]
-unique_name_in_owner = true
+[node name="RightShoulderButton" type="Button" parent="HBoxContainer/PartCategoryContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Shoulder Part"
-horizontal_alignment = 1
-
-[node name="RightShoulder" type="HBoxContainer" parent="HBoxContainer/PartsListContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/RightShoulder"]
-custom_minimum_size = Vector2(400, 50)
-layout_mode = 2
-size_flags_horizontal = 2
 text = "Right Shoulder"
 
-[node name="RightShoulderPartLabel" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/RightShoulder"]
-unique_name_in_owner = true
+[node name="LeftArmButton" type="Button" parent="HBoxContainer/PartCategoryContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Shoulder Part"
-
-[node name="LeftArmContainer" type="HBoxContainer" parent="HBoxContainer/PartsListContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/LeftArmContainer"]
-custom_minimum_size = Vector2(400, 50)
-layout_mode = 2
-size_flags_horizontal = 2
 text = "Left Arm"
 
-[node name="LeftArmWeaponLabel" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/LeftArmContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 50)
+[node name="RightArmButton" type="Button" parent="HBoxContainer/PartCategoryContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 24
-text = "Arm Part"
-horizontal_alignment = 1
-
-[node name="RightArmContainer" type="HBoxContainer" parent="HBoxContainer/PartsListContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/RightArmContainer"]
-custom_minimum_size = Vector2(400, 50)
-layout_mode = 2
-size_flags_horizontal = 2
 text = "Right Arm"
 
-[node name="RightArmWeaponLabel" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/RightArmContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 50)
+[node name="LegsButton" type="Button" parent="HBoxContainer/PartCategoryContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 24
-text = "Arm Part"
+text = "Legs"
+
+[node name="QuitButton" type="Button" parent="HBoxContainer/PartCategoryContainer"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Back"
+
+[node name="PartListContianer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
+
+[node name="PartList" type="VBoxContainer" parent="HBoxContainer/PartListContianer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/PartListContianer/PartList"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+text = "Select A Part"
 horizontal_alignment = 1
 
-[node name="LegsContainer" type="HBoxContainer" parent="HBoxContainer/PartsListContainer/VBoxContainer"]
-unique_name_in_owner = true
+[node name="MechStatsContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_right = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MechStatsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MechStatsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/LegsContainer"]
-custom_minimum_size = Vector2(400, 50)
+[node name="WeightLabel" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
-text = "Legs"
+text = "Weight"
 
-[node name="LegsLabel" type="Label" parent="HBoxContainer/PartsListContainer/VBoxContainer/LegsContainer"]
+[node name="WeightValue" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 24
-text = "Leg Part"
-horizontal_alignment = 1
+text = "0"
 
-[node name="BackButton" type="Button" parent="HBoxContainer/PartsListContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/MechStatsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-size_flags_vertical = 10
-text = "Back"
+alignment = 1
 
-[node name="PartInfoContainer" type="MarginContainer" parent="HBoxContainer"]
+[node name="MaxWeightLabel" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-size_flags_horizontal = 10
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 40
+size_flags_horizontal = 2
+text = "Max Weight"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PartInfoContainer"]
+[node name="MaxWeightValue" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 30
+text = "0"
 
-[node name="Label" type="Label" parent="HBoxContainer/PartInfoContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/MechStatsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-text = "Part Info"
-horizontal_alignment = 1
+alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PartInfoContainer/VBoxContainer"]
+[node name="WalkSpeedLabel" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
-theme_override_constants/separation = 140
+size_flags_horizontal = 2
+text = "Walk Speed"
 
-[node name="Label" type="Label" parent="HBoxContainer/PartInfoContainer/VBoxContainer/HBoxContainer"]
+[node name="WalkSpeedValue" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Weight"
+text = "0"
 
-[node name="Label2" type="Label" parent="HBoxContainer/PartInfoContainer/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer/MechStatsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-text = "500"
+alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/PartInfoContainer/VBoxContainer"]
+[node name="BoostSpeedLabel" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
-theme_override_constants/separation = 140
+size_flags_horizontal = 2
+text = "Boost Speed"
 
-[node name="Label" type="Label" parent="HBoxContainer/PartInfoContainer/VBoxContainer/HBoxContainer2"]
+[node name="BoostSpeedValue" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Weight"
+text = "0"
 
-[node name="Label2" type="Label" parent="HBoxContainer/PartInfoContainer/VBoxContainer/HBoxContainer2"]
+[node name="HBoxContainer5" type="HBoxContainer" parent="HBoxContainer/MechStatsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-text = "500"
+alignment = 1
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/PartInfoContainer/VBoxContainer"]
+[node name="HealthLabel" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
-theme_override_constants/separation = 140
+size_flags_horizontal = 2
+text = "Health"
 
-[node name="Label" type="Label" parent="HBoxContainer/PartInfoContainer/VBoxContainer/HBoxContainer3"]
+[node name="HealthValue" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer5"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Weight"
+text = "0"
 
-[node name="Label2" type="Label" parent="HBoxContainer/PartInfoContainer/VBoxContainer/HBoxContainer3"]
+[node name="HBoxContainer6" type="HBoxContainer" parent="HBoxContainer/MechStatsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-text = "500"
+alignment = 1
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer/PartInfoContainer/VBoxContainer"]
+[node name="EnergyLabel" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer6"]
 layout_mode = 2
-theme_override_constants/separation = 140
+size_flags_horizontal = 2
+text = "Energy"
 
-[node name="Label" type="Label" parent="HBoxContainer/PartInfoContainer/VBoxContainer/HBoxContainer4"]
+[node name="EnergyValue" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer6"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Weight"
+text = "0"
 
-[node name="Label2" type="Label" parent="HBoxContainer/PartInfoContainer/VBoxContainer/HBoxContainer4"]
+[node name="HBoxContainer7" type="HBoxContainer" parent="HBoxContainer/MechStatsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-text = "500"
+alignment = 1
 
-[connection signal="pressed" from="HBoxContainer/PartsListContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[node name="AccuracyLabel" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Accuracy"
+
+[node name="AccuracyValue" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer7"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="HBoxContainer/MechStatsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="MissileLockOnTimeLabel" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Missile Lock On"
+
+[node name="MissileLockOnTimeValue" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer8"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="HBoxContainer/MechStatsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="JumpPowerLabel" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer9"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Jump Power"
+
+[node name="JumpPowerValue" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer9"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[connection signal="pressed" from="HBoxContainer/PartCategoryContainer/VBoxContainer/HeadButton" to="." method="_on_head_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/PartCategoryContainer/VBoxContainer/ChestButton" to="." method="_on_chest_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/PartCategoryContainer/VBoxContainer/LeftShoulderButton" to="." method="_on_left_shoulder_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/PartCategoryContainer/VBoxContainer/RightShoulderButton" to="." method="_on_right_shoulder_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/PartCategoryContainer/VBoxContainer/LeftArmButton" to="." method="_on_left_arm_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/PartCategoryContainer/VBoxContainer/RightArmButton" to="." method="_on_right_arm_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/PartCategoryContainer/VBoxContainer/LegsButton" to="." method="_on_legs_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/PartCategoryContainer/QuitButton" to="." method="_on_quit_button_pressed"]

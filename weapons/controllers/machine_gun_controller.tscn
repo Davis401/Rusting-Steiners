@@ -11,6 +11,8 @@ script = ExtResource("1_gcoa7")
 [node name="AttackEmitter" parent="." instance=ExtResource("2_d0bcx")]
 
 [node name="SprayEmiiter" parent="AttackEmitter" instance=ExtResource("3_ok4oe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26, 0)
+spray_arc = 0.0
 
 [node name="HitscanAttackEmitter" parent="AttackEmitter/SprayEmiiter" instance=ExtResource("3_e8re5")]
 

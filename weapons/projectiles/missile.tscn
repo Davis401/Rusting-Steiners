@@ -83,7 +83,7 @@ initial_speed = 1
 delete_on_hit_after_time = 1.0
 
 [node name="Graphics" type="Node3D" parent="."]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Graphics"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -9.43333e-09, -0.21581)

@@ -68,21 +68,27 @@ func _ready() ->void:
 	randomize() 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	energy_component.energy_drained.connect(on_energy_drained)
+	
+	build = Global.current_build
 	if build != null:
 		if build.head != null:
 			pass
 		if build.chest != null:
 			health_component.set_health_attribute(build.chest.max_health, build.chest.max_health)
 			energy_component.set_energy_attribute(build.chest.max_energy, build.chest.max_energy)
+			
 		if build.left_arm != null:
 			var left_arm_controller:WeaponController = build.left_arm.arm_controller.instantiate()
 			left_arm_controller.spawn_point_node = left_arm_weapon_effect_position
 			left_arm_weapon.add_child(left_arm_controller)
-			
+			if right_arm_weapon.has_method("set_spray_arc"):
+				right_arm_weapon.set_spray_arc(10 - (build.head.accuracy / 10))
 		if build.right_arm != null:
 			var right_arm_controller:WeaponController = build.right_arm.arm_controller.instantiate()
 			right_arm_controller.spawn_point_node = right_arm_weapon_effect_position
 			right_arm_weapon.add_child(right_arm_controller)
+			if right_arm_weapon.has_method("set_spray_arc"):
+				right_arm_weapon.set_spray_arc(10 - (build.head.accuracy / 10))
 			
 		if build.left_shoulder != null:
 			var left_shoulder_controller:WeaponController = build.left_shoulder.shoulder_controller.instantiate()

@@ -4,13 +4,14 @@ extends Resource
 var player_save_file : String = "user://player_save.res"
 
 
-@export var money:int = 0
+@export var money:int = 10000
 @export var owned_parts:Dictionary = {
-	"basic_head":true,
-	"basic_chest":true,
+	"standard_head":true,
+	"standard_chest":true,
 	"machine_gun_arm":true,
+	"grenade_launcher_arm":true,
 	"missile_shoulder":true,
-	"basic_legs":true
+	"standard_legs":true
 }
 #Levels beaten
 #Equipment purchased state

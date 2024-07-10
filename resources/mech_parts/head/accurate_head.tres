@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MechaHead" load_steps=2 format=3 uid="uid://bcmv48qo7hi5v"]
+
+[ext_resource type="Script" path="res://resources/mech_parts/mecha_head.gd" id="1_i2xda"]
+
+[resource]
+script = ExtResource("1_i2xda")
+accuracy = 9
+missile_lock_on_time = 1.0
+id = "accurate_head"
+display_name = "Securikill Marksman"
+cost = 0
+weight = 50

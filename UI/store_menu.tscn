@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dogkwlr7gdyv6"]
+[gd_scene load_steps=3 format=3 uid="uid://dogkwlr7gdyv6"]
 
 [ext_resource type="Theme" uid="uid://bcym26vxhg41f" path="res://UI/main_menu.tres" id="1_pgp0b"]
+[ext_resource type="Script" path="res://UI/store_menu.gd" id="2_ybsko"]
 
 [node name="StoreMenu" type="MarginContainer"]
 anchors_preset = 15
@@ -9,9 +10,175 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_pgp0b")
+script = ExtResource("2_ybsko")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
 size_flags_vertical = 0
 text = "Store"
 horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="PartCategoryContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PartCategoryContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="HeadButton" type="Button" parent="HBoxContainer/PartCategoryContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+text = "Heads"
+
+[node name="ChestButton" type="Button" parent="HBoxContainer/PartCategoryContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+text = "Chests"
+
+[node name="ShoulderButton" type="Button" parent="HBoxContainer/PartCategoryContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+text = "Shoulder Weapons"
+
+[node name="ArmButton" type="Button" parent="HBoxContainer/PartCategoryContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+text = "Arm Weapons"
+
+[node name="LegsButton" type="Button" parent="HBoxContainer/PartCategoryContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+text = "Legs"
+
+[node name="QuitButton" type="Button" parent="HBoxContainer/PartCategoryContainer"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Back"
+
+[node name="PartListContianer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
+
+[node name="PartList" type="VBoxContainer" parent="HBoxContainer/PartListContianer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/PartListContianer/PartList"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+text = "Select a Part"
+horizontal_alignment = 1
+
+[node name="MechStatsContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MechStatsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MechStatsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="WeightLabel" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Weight"
+
+[node name="WeightValue" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/MechStatsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="MaxWeightLabel" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Max Weight"
+
+[node name="MaxWeightValue" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/MechStatsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="WalkSpeedLabel" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Walk Speed"
+
+[node name="WalkSpeedValue" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer/MechStatsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="BoostSpeedLabel" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Boost Speed"
+
+[node name="BoostSpeedValue" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="HBoxContainer/MechStatsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="JumpPowerLabel" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer9"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Jump Power"
+
+[node name="JumpPowerValue" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer9"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="BuyButton" type="Button" parent="HBoxContainer/MechStatsContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_vertical = 8
+text = "Buy"
+
+[connection signal="pressed" from="HBoxContainer/PartCategoryContainer/VBoxContainer/HeadButton" to="." method="_on_head_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/PartCategoryContainer/VBoxContainer/ChestButton" to="." method="_on_chest_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/PartCategoryContainer/VBoxContainer/ShoulderButton" to="." method="_on_shoulder_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/PartCategoryContainer/VBoxContainer/ArmButton" to="." method="_on_arm_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/PartCategoryContainer/VBoxContainer/LegsButton" to="." method="_on_legs_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/PartCategoryContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/MechStatsContainer/VBoxContainer/BuyButton" to="." method="_on_buy_button_pressed"]

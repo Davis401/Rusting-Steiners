@@ -8,3 +8,5 @@ extends Resource
 @export var right_arm:MechaArm
 @export var right_shoulder:MechaShoulder
 @export var legs:MechaLegs
+
+var total_weight:int

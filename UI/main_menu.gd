@@ -15,14 +15,15 @@ var settings_open := false
 @onready var player_profile = $PlayerProfile
 
 @onready var store_menu = $StoreMenu
-
 @onready var build_menu = $BuildMenu
 
+@onready var current_money = %CurrentMoney
 
 func _ready() ->void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	settings_menu.back_pressed.connect(on_setting_closed.bind(settings_menu))
-	build_menu.close.connect(close_build_menu)
+	build_menu.close.connect(restore_main)
+	store_menu.close.connect(restore_main)
 	settings_menu.hide()
 	build_menu.hide()
 	store_menu.hide()
@@ -34,6 +35,8 @@ func _ready() ->void:
 		start_button.hide()
 		game_menu.show()
 		store_button.grab_focus()
+	Global.money_changed.connect(update_money)
+	
 
 #func open_settings_menu():
 	#options_tab_menu.show()
@@ -48,7 +51,9 @@ func _on_start_button_pressed() ->void:
 	
 
 func _on_store_button_pressed() ->void:
-	pass # Replace with function body.
+	store_menu.open()
+	game_menu.hide()
+	start_menu.hide()
 
 
 func _on_build_button_pressed() ->void:
@@ -60,7 +65,6 @@ func _on_build_button_pressed() ->void:
 func _on_missions_button_pressed() ->void:
 	get_tree().change_scene_to_packed(LEVEL_SELECT)
 	
-
 
 func _on_quit_button_pressed() ->void:
 	get_tree().quit()
@@ -86,6 +90,11 @@ func on_setting_closed(settings_node: Node) -> void:
 		start_button.hide()
 		store_button.grab_focus.call_deferred()
 		
-func close_build_menu() ->void:
+func restore_main() ->void:
 	game_menu.show()
 	start_menu.show()
+	
+
+
+func update_money(money_in:int):
+	current_money.text = str(money_in)

@@ -9,6 +9,7 @@ var firing:bool = false
 func _ready():
 	super()
 	$AttackEmitter/SprayEmiiter/HitscanAttackEmitter.tracer_start_position = spawn_point_node
+	
 
 func on_hold()->void:
 	if fire_timer.is_stopped():
@@ -16,3 +17,6 @@ func on_hold()->void:
 		attack_emitter.attack()
 		var sfx_player = AudioManager.play_sound3D(SFX.pick_random(), true)
 		sfx_player.global_position = global_position
+
+func set_spray_arc(spray_arc)->void:
+	$AttackEmitter/SprayEmiiter.arc = spray_arc
