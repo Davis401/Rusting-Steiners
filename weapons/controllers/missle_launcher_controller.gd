@@ -3,7 +3,7 @@ extends WeaponController
 
 const MAX_TARGETS_NOISE = preload("res://assets/sfx/EchoesAudioPack/analog_computer_beep_1.mp3")
 const TARGET_LOCK_NOISE = preload("res://assets/sfx/EchoesAudioPack/analog_computer_beep_2.mp3")
-
+const OUT_OF_AMMO_NOISE = preload("res://assets/sfx/EchoesAudioPack/analog_computer_beep_3.mp3")
 const LAUNCH_SOUNDS = [preload("res://assets/sfx/Ovani/Missile Start 001.wav"), preload("res://assets/sfx/Ovani/Missile Start 002.wav"), preload("res://assets/sfx/Ovani/Missile Start 003.wav")]
 
 @export var max_targets:int
@@ -33,6 +33,12 @@ func _ready():
 func on_hold()->void:
 	if locking_on || targets.size() >= max_targets || firing:
 		return
+		
+	if targets.size() == current_ammo:
+		audio_stream_player.stream = OUT_OF_AMMO_NOISE
+		audio_stream_player.play()
+		return
+	
 	var lock_on_nodes = get_tree().get_nodes_in_group("lock_on_target")
 	for node in lock_on_nodes:
 		if camera.is_position_in_frustum(node.global_position) and !node.locked_on:
@@ -58,6 +64,7 @@ func on_release()->void:
 			await get_tree().create_timer(fire_delay).timeout
 			var t = targets.pop_front()
 			attack_emitter.attack(t)
+			current_ammo -= 1
 			t.locked_on = false
 			var sfx_player = AudioManager.play_sound3D(LAUNCH_SOUNDS.pick_random(), true)
 			sfx_player.volume_db = -20.0

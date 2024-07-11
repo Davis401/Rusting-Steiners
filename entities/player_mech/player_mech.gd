@@ -27,6 +27,8 @@ var last_velocity : Vector3= Vector3.ZERO
 var is_movement_paused : bool = false
 var is_dead : bool = false
 
+@onready var ui = %UI
+
 #Components
 @onready var energy_component:EnergyComponent = $EnergyComponent
 @onready var health_component:HealthComponent = $HealthComponent
@@ -81,12 +83,16 @@ func _ready() ->void:
 			var left_arm_controller:WeaponController = build.left_arm.arm_controller.instantiate()
 			left_arm_controller.spawn_point_node = left_arm_weapon_effect_position
 			left_arm_weapon.add_child(left_arm_controller)
+			left_arm_controller.ammo_changed.connect(ui.update_left_arm_ammo)
+			left_arm_controller.starting_ammo = build.left_arm.ammo
 			if right_arm_weapon.has_method("set_spray_arc"):
 				right_arm_weapon.set_spray_arc(10 - (build.head.accuracy / 10))
 		if build.right_arm != null:
 			var right_arm_controller:WeaponController = build.right_arm.arm_controller.instantiate()
 			right_arm_controller.spawn_point_node = right_arm_weapon_effect_position
 			right_arm_weapon.add_child(right_arm_controller)
+			right_arm_controller.ammo_changed.connect(ui.update_right_arm_ammo)
+			right_arm_controller.starting_ammo = build.right_arm.ammo
 			if right_arm_weapon.has_method("set_spray_arc"):
 				right_arm_weapon.set_spray_arc(10 - (build.head.accuracy / 10))
 			
@@ -94,11 +100,16 @@ func _ready() ->void:
 			var left_shoulder_controller:WeaponController = build.left_shoulder.shoulder_controller.instantiate()
 			left_shoulder_controller.spawn_point_node = left_shoulder_weapon_effect_position
 			left_shoulder_weapon.add_child(left_shoulder_controller)
+			left_shoulder_controller.ammo_changed.connect(ui.update_left_shoulder_ammo)
+			left_shoulder_controller.starting_ammo = build.left_shoulder.ammo
 			
 		if build.right_shoulder != null:
 			var right_shoulder_controller:WeaponController = build.right_shoulder.shoulder_controller.instantiate()
 			right_shoulder_controller.spawn_point_node = right_shoulder_weapon_effect_position
 			right_shoulder_weapon.add_child(right_shoulder_controller)
+			right_shoulder_controller.ammo_changed.connect(ui.update_right_shoulder_ammo)
+			right_shoulder_controller.starting_ammo = build.right_shoulder.ammo
+			
 			
 		if build.legs != null:
 			normal_speed =  build.legs.base_movement_speed

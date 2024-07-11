@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_itqs4")
 arm_controller = ExtResource("1_q4t75")
+ammo = 1000
 id = "machine_gun_arm"
 display_name = "Machine Gun"
 cost = 0

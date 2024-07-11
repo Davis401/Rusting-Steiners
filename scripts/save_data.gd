@@ -5,6 +5,8 @@ var player_save_file : String = "user://player_save.res"
 
 
 @export var money:int = 10000
+
+
 @export var owned_parts:Dictionary = {
 	"standard_head":true,
 	"standard_chest":true,

@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("2_58ou3")
 arm_controller = ExtResource("1_7srfg")
+ammo = 50
 id = "rocker_launcher_arm"
 display_name = "Rocket Launcher"
 cost = 2000

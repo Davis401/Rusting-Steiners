@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("2_tidcl")
 arm_controller = ExtResource("1_gj43v")
+ammo = 100
 id = "shotgun_arm"
 display_name = "Lead Launcher"
 cost = 1000

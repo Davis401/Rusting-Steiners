@@ -13,9 +13,13 @@ var state:State = State.IDLE
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var knockback = Vector3.ZERO
+@onready var player = get_tree().get_first_node_in_group("player") 
 
 @onready var health_component:HealthComponent = $HealthComponent
 @onready var vision_component:VisionComponent = $VisionComponent
+@onready var movement_component = $MovementComponent
+
+@onready var alert_area:Area3D = $AlertArea
 
 @onready var label_3d = $Label3D
 
@@ -24,8 +28,11 @@ func _ready()->void:
 	health_component.health_changed.connect(update_label)
 	health_component.death.connect(die)
 	
+	
 
 func _physics_process(delta)->void:
+	if player == null:
+		player = get_tree().get_first_node_in_group("player")
 	match state:
 		State.IDLE:
 			process_idle_state(delta)
@@ -34,10 +41,12 @@ func _physics_process(delta)->void:
 		State.ATTACK:
 			process_attack_state(delta)
 		State.DEAD:
-			return
+			pass
 	
 
 func set_state(_state:State)->void:
+	if state == State.DEAD:
+		return
 	state = _state
 	match state:
 		State.IDLE:
@@ -52,19 +61,33 @@ func set_state(_state:State)->void:
 	
 
 func process_chase_state(delta)->void:
+	movement_component.set_facing_dir(player.global_position - global_position)
 	move_and_slide()
 	
 
 func process_idle_state(delta)->void:
-	#print(vision_component.can_see_player())
-	pass
+	if vision_component.can_see_player():
+		alert()
 
 func process_attack_state(delta)->void:
-	pass
+	movement_component.set_facing_dir(player.global_position - global_position)
 	
+
+func alert():
+	if state == State.IDLE:
+		set_state(State.CHASE)
+
+
+func alert_nearby():
+	for b in alert_area.get_overlapping_bodies():
+		if b is Enemy:
+			b.alert()
+			
 
 func hurt(damage_data:DamageData)->void:
 	health_component.subtract(damage_data.amount)
+	alert()
+	alert_nearby()
 	
 
 func update_label(current,max,damaged)->void:

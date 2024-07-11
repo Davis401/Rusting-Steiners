@@ -88,88 +88,13 @@ size_flags_horizontal = 8
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 100
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MechStatsContainer"]
+[node name="MechStats" type="VBoxContainer" parent="HBoxContainer/MechStatsContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MechStatsContainer/VBoxContainer"]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-alignment = 1
-
-[node name="WeightLabel" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 2
-text = "Weight"
-
-[node name="WeightValue" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "0"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/MechStatsContainer/VBoxContainer"]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-alignment = 1
-
-[node name="MaxWeightLabel" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 2
-text = "Max Weight"
-
-[node name="MaxWeightValue" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "0"
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/MechStatsContainer/VBoxContainer"]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-alignment = 1
-
-[node name="WalkSpeedLabel" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 2
-text = "Walk Speed"
-
-[node name="WalkSpeedValue" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer3"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "0"
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer/MechStatsContainer/VBoxContainer"]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-alignment = 1
-
-[node name="BoostSpeedLabel" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer4"]
-layout_mode = 2
-size_flags_horizontal = 2
-text = "Boost Speed"
-
-[node name="BoostSpeedValue" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer4"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "0"
-
-[node name="HBoxContainer9" type="HBoxContainer" parent="HBoxContainer/MechStatsContainer/VBoxContainer"]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-alignment = 1
-
-[node name="JumpPowerLabel" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer9"]
-layout_mode = 2
-size_flags_horizontal = 2
-text = "Jump Power"
-
-[node name="JumpPowerValue" type="Label" parent="HBoxContainer/MechStatsContainer/VBoxContainer/HBoxContainer9"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "0"
-
-[node name="BuyButton" type="Button" parent="HBoxContainer/MechStatsContainer/VBoxContainer"]
-unique_name_in_owner = true
+[node name="BuyButton" type="Button" parent="HBoxContainer/MechStatsContainer/MechStats"]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_vertical = 8
@@ -181,4 +106,3 @@ text = "Buy"
 [connection signal="pressed" from="HBoxContainer/PartCategoryContainer/VBoxContainer/ArmButton" to="." method="_on_arm_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/PartCategoryContainer/VBoxContainer/LegsButton" to="." method="_on_legs_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/PartCategoryContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/MechStatsContainer/VBoxContainer/BuyButton" to="." method="_on_buy_button_pressed"]

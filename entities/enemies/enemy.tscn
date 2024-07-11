@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyclv70ecyeu4"]
+[gd_scene load_steps=11 format=3 uid="uid://cyclv70ecyeu4"]
 
 [ext_resource type="Script" path="res://entities/enemies/enemy.gd" id="1_26seq"]
 [ext_resource type="PackedScene" uid="uid://c08n456hikpba" path="res://components/health_component.tscn" id="2_7elvg"]
+[ext_resource type="PackedScene" uid="uid://dx3t2kc24ucvw" path="res://components/movement_component.tscn" id="3_5ovj4"]
 [ext_resource type="PackedScene" uid="uid://bgag1yfcgrjot" path="res://components/lock_on_target_component.tscn" id="3_dkqn1"]
 [ext_resource type="PackedScene" uid="uid://hmdtp3du4m8k" path="res://components/vision_component.tscn" id="4_7xhs6"]
 
@@ -10,17 +11,33 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_gjnih"]
 
+[sub_resource type="SphereMesh" id="SphereMesh_547vm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iigwx"]
+albedo_color = Color(1, 0, 0, 1)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_apyp2"]
+radius = 15.0
+
 [node name="Enemy" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 13
 script = ExtResource("1_26seq")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_7elvg")]
-max_health = 1000.0
+max_health = 100.0
+
+[node name="MovementComponent" parent="." instance=ExtResource("3_5ovj4")]
 
 [node name="LockOnTargetComponent" parent="." instance=ExtResource("3_dkqn1")]
 
 [node name="VisionComponent" parent="." instance=ExtResource("4_7xhs6")]
+max_sight_range = 1000.0
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConcavePolygonShape3D_2e4br")
@@ -30,8 +47,19 @@ shape = SubResource("ConcavePolygonShape3D_2e4br")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Graphics"]
 mesh = SubResource("BoxMesh_gjnih")
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Graphics"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0612892)
+mesh = SubResource("SphereMesh_547vm")
+surface_material_override/0 = SubResource("StandardMaterial3D_iigwx")
+
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.735149, 0)
 billboard = 2
 text = "1000"
 font_size = 100
+
+[node name="AlertArea" type="Area3D" parent="."]
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AlertArea"]
+shape = SubResource("SphereShape3D_apyp2")

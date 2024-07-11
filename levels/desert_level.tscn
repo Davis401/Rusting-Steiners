@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://uru6ri3fx0kk"]
+[gd_scene load_steps=54 format=3 uid="uid://uru6ri3fx0kk"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_55tw3"]
 [ext_resource type="PackedScene" uid="uid://cyclv70ecyeu4" path="res://entities/enemies/enemy.tscn" id="2_1xivk"]
@@ -70,6 +70,9 @@ turbulence_enabled = true
 [sub_resource type="SphereMesh" id="SphereMesh_bomd0"]
 radial_segments = 8
 rings = 4
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_hrjkn"]
+geometry_source_geometry_mode = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxgqt"]
 albedo_texture = ExtResource("4_cqgpk")
@@ -230,7 +233,7 @@ light_energy = 0.5
 shadow_enabled = true
 
 [node name="PlayerSpawn" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.773, 15.1539, -53.9949)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.773, 8.75513, -53.9949)
 
 [node name="EnvParticles" type="Node3D" parent="."]
 
@@ -284,7 +287,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.1711, 3.07685, 59.7614)
 [node name="Enemy13" parent="Entities/Enemies" instance=ExtResource("2_1xivk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.0739, 3.07685, 57.6679)
 
-[node name="LevelTerrain" type="Node3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_hrjkn")
+
+[node name="LevelTerrain" type="Node3D" parent="." groups=["navigation_mesh_source_group"]]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="LevelTerrain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.191699, -0.539013, 0.259293)

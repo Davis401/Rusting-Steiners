@@ -125,6 +125,8 @@ local_map_file = "res://trenchbroom/maps/snowy_mountain.map"
 map_settings = ExtResource("3_mc20r")
 
 [node name="entity_0_worldspawn" type="StaticBody3D" parent="LevelTerrain/FuncGodotMap"]
+collision_layer = 9
+collision_mask = 9
 
 [node name="entity_0_mesh_instance" type="MeshInstance3D" parent="LevelTerrain/FuncGodotMap/entity_0_worldspawn"]
 mesh = SubResource("ArrayMesh_1w18m")

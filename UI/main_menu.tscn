@@ -109,17 +109,15 @@ grow_vertical = 0
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PlayerProfile"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerProfile"]
 layout_mode = 2
+alignment = 1
 
-[node name="Label" type="Label" parent="PlayerProfile/HBoxContainer"]
-layout_mode = 2
-text = "$"
-
-[node name="CurrentMoney" type="Label" parent="PlayerProfile/HBoxContainer"]
+[node name="CurrentMoney" type="Label" parent="PlayerProfile/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "10000"
+text = "000"
+horizontal_alignment = 2
 
 [node name="StoreMenu" parent="." instance=ExtResource("3_x2x3x")]
 visible = false

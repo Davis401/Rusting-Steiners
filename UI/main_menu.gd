@@ -63,6 +63,7 @@ func _ready() ->void:
 		start_button.hide()
 		game_menu.show()
 	Global.money_changed.connect(update_money)
+	update_money(SaveManager.save_data.money)
 
 func _on_start_button_pressed() ->void:
 	Global.need_to_press_start = false
@@ -116,4 +117,4 @@ func restore_main() ->void:
 
 
 func update_money(money_in:int)->void:
-	current_money.text = str(money_in)
+	current_money.text = "¤ "+ str(money_in)

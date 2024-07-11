@@ -17,7 +17,7 @@ var focused_part:MechaPart
 var focused_part_button:Button
 
 @onready var part_list = $HBoxContainer/PartListContianer/PartList
-@onready var buy_button = %BuyButton
+@onready var mech_stats = %MechStats
 
 
 # Called when the node enters the scene tree for the first time.
@@ -49,8 +49,7 @@ func open():
 	
 	
 
-func _on_head_button_pressed():
-	print("SHow Head")
+func _on_head_button_pressed() -> void:
 	for child in part_list.get_children():
 		child.queue_free()
 	if head_parts.size() > 0:
@@ -66,9 +65,9 @@ func _on_head_button_pressed():
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		label.custom_minimum_size = Vector2(500, 50)
 		part_list.add_child(label)
+	
 
-
-func _on_chest_button_pressed():
+func _on_chest_button_pressed() -> void:
 	for child in part_list.get_children():
 		child.queue_free()
 	if chest_parts.size() > 0:
@@ -84,8 +83,9 @@ func _on_chest_button_pressed():
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		label.custom_minimum_size = Vector2(500, 50)
 		part_list.add_child(label)
+	
 
-func _on_shoulder_button_pressed():
+func _on_shoulder_button_pressed() -> void:
 	for child in part_list.get_children():
 		child.queue_free()
 	if shoulder_parts.size() > 0:
@@ -100,9 +100,9 @@ func _on_shoulder_button_pressed():
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		label.custom_minimum_size = Vector2(500, 50)
 		part_list.add_child(label)
+	
 
-
-func _on_arm_button_pressed():
+func _on_arm_button_pressed() -> void:
 	for child in part_list.get_children():
 		child.queue_free()
 	if arm_parts.size() > 0:
@@ -121,7 +121,7 @@ func _on_arm_button_pressed():
 	
 
 
-func _on_legs_button_pressed():
+func _on_legs_button_pressed() -> void:
 	for child in part_list.get_children():
 		child.queue_free()
 	if legs_parts.size() > 0:
@@ -140,26 +140,50 @@ func _on_legs_button_pressed():
 		
 
 
-func show_part_data(part:MechaPart, button:Button):
+func show_part_data(part:MechaPart, button:Button) -> void:
 	for child in part_list.get_children():
 		child.selected = false
 	button.selected = true
 	focused_part = part
 	focused_part_button = button
-	buy_button.text = str(focused_part.cost)
+	
+	for child in mech_stats.get_children():
+		child.queue_free()
+	var part_info:Dictionary = part.get_part_info()
+	for key:String in part_info.keys():
+		var h_box_container:HBoxContainer = HBoxContainer.new()
+		h_box_container.custom_minimum_size = Vector2(500,50)
+		h_box_container.alignment = BoxContainer.ALIGNMENT_CENTER
+		
+		var label:Label = Label.new()
+		label.text = str(key)
+		label.custom_minimum_size = Vector2(0,50)
+		label.size_flags_horizontal = Control.SIZE_EXPAND
+		h_box_container.add_child(label)
+		
+		var value_label:Label = Label.new()
+		value_label.text = str(part_info[key])
+		value_label.custom_minimum_size = Vector2(0,50)
+		value_label.size_flags_horizontal = Control.SIZE_SHRINK_END
+		h_box_container.add_child(value_label)
+		
+		mech_stats.add_child(h_box_container)
+		
+	var buy_button = Button.new()
+	buy_button.text = "¤ " + str(focused_part.cost)
+	buy_button.custom_minimum_size = Vector2(500,50)
+	buy_button.size_flags_vertical = Control.SIZE_SHRINK_END
+	mech_stats.add_child(buy_button)
+	buy_button.pressed.connect(_on_buy_button_pressed)
+	
 
-
-func _on_quit_button_pressed():
+func _on_quit_button_pressed() -> void:
 	is_open = false
 	hide()
 	close.emit()
+	
 
-
-
-
-
-func _on_buy_button_pressed():
-	print("Buy")
+func _on_buy_button_pressed() -> void:
 	if SaveManager.save_data.money >= focused_part.cost && !SaveManager.save_data.owned_parts.has(focused_part.id):
 		SaveManager.save_data.money -= focused_part.cost
 		SaveManager.save_data.owned_parts[focused_part.id] = true

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_k3xgx"]
 [ext_resource type="PackedScene" uid="uid://inm5w0cj7831" path="res://entities/level_objects/shipping_container.tscn" id="2_akmkk"]
-[ext_resource type="PackedScene" uid="uid://coskgljssuyh6" path="res://levels/snow_level.tscn" id="3_84d4w"]
 [ext_resource type="AudioStream" uid="uid://n27h6rj7xxdu" path="res://assets/music/track01.ogg" id="3_fftk4"]
+[ext_resource type="PackedScene" uid="uid://cie0qj7fbya4q" path="res://entities/building.tscn" id="3_fnh2x"]
 [ext_resource type="Texture2D" uid="uid://dequ1ob5rtdl3" path="res://assets/textures/Concete_256.png" id="4_bns5p"]
 [ext_resource type="AudioStream" uid="uid://d0ul3s3awwt6g" path="res://assets/sfx/MountainWind.ogg" id="6_hvs5r"]
 
@@ -18,7 +18,6 @@ background_mode = 2
 sky = SubResource("Sky_g1upr")
 fog_enabled = true
 fog_light_color = Color(0.713726, 0.741176, 0.784314, 1)
-fog_density = 0.05
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxgqt"]
 albedo_texture = ExtResource("4_bns5p")
@@ -38,26 +37,253 @@ light_energy = 0.5
 shadow_enabled = true
 
 [node name="PlayerSpawn" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5131, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.78479, 1.18307, 0)
 
 [node name="Entities" type="Node3D" parent="." groups=["entities_layer"]]
 
-[node name="ShippingContainer" parent="Entities" instance=ExtResource("2_akmkk")]
+[node name="ShippingContainers" type="Node3D" parent="Entities"]
+
+[node name="ShippingContainer" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.485621, -3.02474)
 
-[node name="DemoLevel" parent="Entities/ShippingContainer" instance=ExtResource("3_84d4w")]
-
-[node name="ShippingContainer2" parent="Entities" instance=ExtResource("2_akmkk")]
+[node name="ShippingContainer2" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65657, -0.485621, -3.02474)
 
-[node name="ShippingContainer3" parent="Entities" instance=ExtResource("2_akmkk")]
+[node name="ShippingContainer3" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.18097, -0.485621, -3.02474)
 
-[node name="ShippingContainer4" parent="Entities" instance=ExtResource("2_akmkk")]
+[node name="ShippingContainer4" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21774, -0.485621, -3.02474)
 
-[node name="ShippingContainer5" parent="Entities" instance=ExtResource("2_akmkk")]
+[node name="ShippingContainer5" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21774, -0.485621, -3.02474)
+
+[node name="ShippingContainer6" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.44219, -0.485621, -5.23388)
+
+[node name="ShippingContainer7" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.09876, -0.485621, -5.23388)
+
+[node name="ShippingContainer8" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.62316, -0.485621, -5.23388)
+
+[node name="ShippingContainer9" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.65993, -0.485621, -5.23388)
+
+[node name="ShippingContainer10" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.65993, -0.485621, -5.23388)
+
+[node name="ShippingContainer11" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.370623, -0.485621, -5.23388)
+
+[node name="ShippingContainer12" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.28595, -0.485621, -5.23388)
+
+[node name="ShippingContainer13" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.81035, -0.485621, -5.23388)
+
+[node name="ShippingContainer14" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.847117, -0.485621, -5.23388)
+
+[node name="ShippingContainer15" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.847117, -0.485621, -5.23388)
+
+[node name="ShippingContainer16" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.24567, -0.485621, -5.23388)
+
+[node name="ShippingContainer17" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5891, -0.485621, -5.23388)
+
+[node name="ShippingContainer18" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0647, -0.485621, -5.23388)
+
+[node name="ShippingContainer19" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.02793, -0.485621, -5.23388)
+
+[node name="ShippingContainer20" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.02793, -0.485621, -5.23388)
+
+[node name="ShippingContainer21" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.24567, -0.485621, -5.23388)
+
+[node name="ShippingContainer22" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5891, -0.485621, -5.23388)
+
+[node name="ShippingContainer23" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0647, -0.485621, -5.23388)
+
+[node name="ShippingContainer24" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.02793, -0.485621, -5.23388)
+
+[node name="ShippingContainer25" parent="Entities/ShippingContainers" instance=ExtResource("2_akmkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.02793, -0.485621, -5.23388)
+
+[node name="Buildings" type="Node3D" parent="Entities"]
+
+[node name="Building" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Building2" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="Building3" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="Building4" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+
+[node name="Building5" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
+
+[node name="Building6" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
+
+[node name="Building7" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0)
+
+[node name="Building8" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 0)
+
+[node name="Building9" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 0)
+
+[node name="Building10" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="Building11" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="Building12" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="Building13" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
+
+[node name="Building14" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+
+[node name="Building15" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4)
+
+[node name="Building16" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 4)
+
+[node name="Building17" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 4)
+
+[node name="Building18" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 4)
+
+[node name="Building19" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 4)
+
+[node name="Building20" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 4)
+
+[node name="Building21" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
+
+[node name="Building22" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="Building23" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="Building24" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 8)
+
+[node name="Building25" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 8)
+
+[node name="Building26" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 8)
+
+[node name="Building27" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 8)
+
+[node name="Building28" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 8)
+
+[node name="Building29" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 8)
+
+[node name="Building30" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 8)
+
+[node name="Building31" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 8)
+
+[node name="Building32" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 8)
+
+[node name="Building33" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8)
+
+[node name="Building34" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+
+[node name="Building35" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 12)
+
+[node name="Building36" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 12)
+
+[node name="Building37" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 12)
+
+[node name="Building38" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 12)
+
+[node name="Building39" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 12)
+
+[node name="Building40" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 12)
+
+[node name="Building41" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 12)
+
+[node name="Building42" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 12)
+
+[node name="Building43" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 12)
+
+[node name="Building44" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 12)
+
+[node name="Building45" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
+
+[node name="Building46" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 16)
+
+[node name="Building47" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 16)
+
+[node name="Building48" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 16)
+
+[node name="Building49" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 16)
+
+[node name="Building50" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 16)
+
+[node name="Building51" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 16)
+
+[node name="Building52" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 16)
+
+[node name="Building53" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 16)
+
+[node name="Building54" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 16)
+
+[node name="Building55" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 16)
 
 [node name="LevelTerrain" type="Node3D" parent="."]
 

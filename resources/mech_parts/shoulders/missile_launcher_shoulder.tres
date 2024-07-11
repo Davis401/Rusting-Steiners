@@ -6,6 +6,8 @@
 [resource]
 script = ExtResource("1_vntph")
 shoulder_controller = ExtResource("2_g04bt")
+max_lock_on = 6
+ammo = 60
 id = "missile_shoulder"
 display_name = "Shoulder Missiles"
 cost = 0

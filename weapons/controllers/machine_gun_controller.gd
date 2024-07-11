@@ -1,6 +1,7 @@
 extends WeaponController
 
 const SFX = [ preload("res://assets/sfx/EchoesAudioPack/machinegun_heavy_1.mp3"),preload("res://assets/sfx/EchoesAudioPack/machinegun_heavy_2.mp3"),preload("res://assets/sfx/EchoesAudioPack/machinegun_heavy_3.mp3")]
+
 var firing:bool = false
 
 @onready var attack_emitter:AttackEmitter = $AttackEmitter
@@ -12,8 +13,9 @@ func _ready():
 	
 
 func on_hold()->void:
-	if fire_timer.is_stopped():
+	if fire_timer.is_stopped() && current_ammo > 0:
 		fire_timer.start(.05)
+		current_ammo -= 1
 		attack_emitter.attack()
 		var sfx_player = AudioManager.play_sound3D(SFX.pick_random(), true)
 		sfx_player.global_position = global_position

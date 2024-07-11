@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://baqteb50tcn2m"
+path="res://.godot/imported/analog_computer_danger_alart_1 (loop).mp3-9f3790e3dcfe14c5566211d75e15ea93.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/EchoesAudioPack/analog_computer_danger_alart_1 (loop).mp3"
+dest_files=["res://.godot/imported/analog_computer_danger_alart_1 (loop).mp3-9f3790e3dcfe14c5566211d75e15ea93.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

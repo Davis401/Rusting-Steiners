@@ -1,12 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://v2b55h11rppm"]
+[gd_scene load_steps=20 format=3 uid="uid://v2b55h11rppm"]
 
 [ext_resource type="Script" path="res://entities/player_mech/player_mech.gd" id="1_8j82k"]
 [ext_resource type="PackedScene" uid="uid://snw1ev62d7aw" path="res://components/energy_component.tscn" id="2_g845v"]
 [ext_resource type="PackedScene" uid="uid://c08n456hikpba" path="res://components/health_component.tscn" id="2_pdrve"]
+[ext_resource type="FontFile" uid="uid://dgm2v7yghigh" path="res://assets/fonts/FerriteCoreDX-Regular.ttf" id="3_7cmxb"]
 [ext_resource type="Script" path="res://UI/DebugUI.gd" id="4_xbcny"]
+[ext_resource type="FontFile" uid="uid://buo8uv6d7ogo4" path="res://assets/fonts/FerriteCoreDX-Display.ttf" id="6_ty3ui"]
 [ext_resource type="PackedScene" uid="uid://ch0m8i08wkpak" path="res://UI/pause_menu.tscn" id="9_q3prr"]
 [ext_resource type="AudioStream" uid="uid://m7h6cvymxvwc" path="res://assets/sfx/Ovani/MechanicaLoop.ogg" id="10_y8sd2"]
-[ext_resource type="FontFile" uid="uid://dpm4dokao617s" path="res://assets/fonts/FerriteCoreDX-Light.ttf" id="11_42rwg"]
 [ext_resource type="Script" path="res://entities/player_mech/UI.gd" id="11_cmofo"]
 [ext_resource type="Texture2D" uid="uid://derq7j577m4jq" path="res://assets/reticles/crosshair007.png" id="11_kp0kp"]
 [ext_resource type="AudioStream" uid="uid://dn1tptaapfmg8" path="res://assets/sfx/Ovani/MechStep1.mp3" id="16_roaqu"]
@@ -19,9 +20,45 @@ bg_color = Color(0.141176, 0.141176, 0.141176, 0.501961)
 
 [sub_resource type="Theme" id="Theme_4pfjt"]
 Label/font_sizes/font_size = 32
-Label/fonts/font = ExtResource("11_42rwg")
+Label/fonts/font = ExtResource("3_7cmxb")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_0cfry")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_jv7kh")
+
+[sub_resource type="Animation" id="Animation_s8pc2"]
+resource_name = "energy_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnergyOut:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_l5egq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnergyOut:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7dyx1"]
+_data = {
+"RESET": SubResource("Animation_l5egq"),
+"energy_out": SubResource("Animation_s8pc2")
+}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bxa8a"]
 size = Vector3(0.7, 1.6, 0.7)
@@ -52,6 +89,7 @@ layout_mode = 2
 theme_override_constants/separation = 8
 
 [node name="UI" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("health_component", "energy_component")]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,6 +100,90 @@ theme = SubResource("Theme_4pfjt")
 script = ExtResource("11_cmofo")
 health_component = NodePath("../../HealthComponent")
 energy_component = NodePath("../../EnergyComponent")
+
+[node name="LeftAmmoContainer" type="MarginContainer" parent="CanvasLayer/UI"]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/LeftAmmoContainer"]
+layout_mode = 2
+
+[node name="LShoulder" type="HBoxContainer" parent="CanvasLayer/UI/LeftAmmoContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/LeftAmmoContainer/VBoxContainer/LShoulder"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "L Shoudler"
+
+[node name="L_S_Ammo" type="Label" parent="CanvasLayer/UI/LeftAmmoContainer/VBoxContainer/LShoulder"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "000"
+horizontal_alignment = 2
+
+[node name="L_Arm" type="HBoxContainer" parent="CanvasLayer/UI/LeftAmmoContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/LeftAmmoContainer/VBoxContainer/L_Arm"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "L Arm"
+
+[node name="L_A_Ammo" type="Label" parent="CanvasLayer/UI/LeftAmmoContainer/VBoxContainer/L_Arm"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "000"
+horizontal_alignment = 2
+
+[node name="RightAmmoContainer" type="MarginContainer" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/RightAmmoContainer"]
+layout_mode = 2
+
+[node name="R_Shoulder" type="HBoxContainer" parent="CanvasLayer/UI/RightAmmoContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/RightAmmoContainer/VBoxContainer/R_Shoulder"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "L Shoulder"
+
+[node name="R_S_Ammo" type="Label" parent="CanvasLayer/UI/RightAmmoContainer/VBoxContainer/R_Shoulder"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+text = "000"
+horizontal_alignment = 2
+
+[node name="R_Arm" type="HBoxContainer" parent="CanvasLayer/UI/RightAmmoContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/RightAmmoContainer/VBoxContainer/R_Arm"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "R Arm"
+
+[node name="R_A_Ammo" type="Label" parent="CanvasLayer/UI/RightAmmoContainer/VBoxContainer/R_Arm"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+text = "000"
+horizontal_alignment = 2
 
 [node name="EnergyUI" type="MarginContainer" parent="CanvasLayer/UI"]
 layout_mode = 1
@@ -86,7 +208,7 @@ alignment = 1
 [node name="Label" type="Label" parent="CanvasLayer/UI/EnergyUI/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "ENERGY"
+text = "Energy"
 
 [node name="EnergyNumber" type="Label" parent="CanvasLayer/UI/EnergyUI/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -126,7 +248,7 @@ alignment = 1
 [node name="Label" type="Label" parent="CanvasLayer/UI/HealthUI/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "HEALTH"
+text = "Health"
 
 [node name="HealthNumber" type="Label" parent="CanvasLayer/UI/HealthUI/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -150,8 +272,38 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/Crosshair"]
+self_modulate = Color(0.890196, 0.890196, 0.890196, 1)
 layout_mode = 2
 texture = ExtResource("11_kp0kp")
+
+[node name="Control" type="Control" parent="CanvasLayer/UI/Crosshair"]
+layout_mode = 2
+
+[node name="EnergyOut" type="Label" parent="CanvasLayer/UI/Crosshair/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.5
+offset_top = -140.0
+offset_right = 153.5
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 20)
+theme_override_colors/font_color = Color(1, 0.282353, 0.411765, 1)
+theme_override_fonts/font = ExtResource("6_ty3ui")
+theme_override_font_sizes/font_size = 64
+text = "ENERGY OUT"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/Crosshair/Control"]
+libraries = {
+"": SubResource("AnimationLibrary_7dyx1")
+}
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("9_q3prr")]
 visible = false
