@@ -3,6 +3,7 @@ extends MechaPart
 
 @export var accuracy:int #Scale 1-100 (100 - acc/10) = arc
 @export var missile_lock_on_time:float
+@export var max_lock_range:float
 
 func get_part_info() -> Dictionary:
 	var part_info = {}

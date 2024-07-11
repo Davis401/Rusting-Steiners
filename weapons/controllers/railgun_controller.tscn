@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm738jrjli8id"]
+
+[ext_resource type="Script" path="res://weapons/controllers/railgun_controller.gd" id="1_e07a7"]
+[ext_resource type="Script" path="res://weapons/emitters/attack_emitter.gd" id="2_pyhdf"]
+
+[node name="RailgunController" type="Node3D"]
+script = ExtResource("1_e07a7")
+
+[node name="AttackEmitter" type="Node3D" parent="."]
+script = ExtResource("2_pyhdf")
+
+[node name="ChargeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ChargeTimer" to="." method="_on_charge_timer_timeout"]

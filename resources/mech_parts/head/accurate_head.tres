@@ -6,6 +6,7 @@
 script = ExtResource("1_i2xda")
 accuracy = 9
 missile_lock_on_time = 1.0
+max_lock_range = 200.0
 id = "accurate_head"
 display_name = "Securikill Marksman"
 cost = 0

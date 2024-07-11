@@ -6,6 +6,7 @@
 script = ExtResource("1_yigy6")
 accuracy = 3
 missile_lock_on_time = 0.1
+max_lock_range = 80.0
 id = "fast_missile_head"
 display_name = "Beeptech Fastlock"
 cost = 3000

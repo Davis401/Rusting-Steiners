@@ -41,7 +41,7 @@ func on_hold()->void:
 	
 	var lock_on_nodes = get_tree().get_nodes_in_group("lock_on_target")
 	for node in lock_on_nodes:
-		if camera.is_position_in_frustum(node.global_position) and !node.locked_on:
+		if camera.is_position_in_frustum(node.global_position) and !node.locked_on && global_position.distance_to(node.global_position) < Global.current_build.head.max_lock_range:
 			if lock_on_target == null:
 				lock_on_target = node
 			elif node.global_position.distance_to(camera.global_position) < lock_on_target.global_position.distance_to(camera.global_position):
@@ -50,12 +50,12 @@ func on_hold()->void:
 	if lock_on_target != null:
 		locking_on = true
 		lock_on_timer.start(lock_on_time)
+	
 
 #Called when released
 func on_release()->void:
 	if firing:
 		return
-	print("Released")
 	if !lock_on_timer.paused:
 		lock_on_timer.stop()
 	if targets.size() > 0:
