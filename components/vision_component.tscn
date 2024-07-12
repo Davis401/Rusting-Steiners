@@ -6,3 +6,5 @@
 script = ExtResource("1_ifxxq")
 
 [node name="LOSRayCast3D" type="RayCast3D" parent="."]
+enabled = false
+collision_mask = 8

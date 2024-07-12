@@ -29,4 +29,4 @@ collide_with_areas = true
 [node name="ExplosionFireBall" parent="." instance=ExtResource("2_03npr")]
 
 [node name="AreaDamageEmitter" parent="." instance=ExtResource("1_rtler")]
-attack_radius = 5.0
+attack_radius = 2.0

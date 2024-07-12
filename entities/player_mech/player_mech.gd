@@ -248,6 +248,7 @@ func _process(delta)->void:
 		thruster.play()
 	elif !is_boosting:
 		thruster.stop()
+	ui.set_speed((abs(velocity.x) + abs(velocity.z)) * 1000)
 
 # Signal from Pause Menu
 func _on_pause_menu_resume() ->void:
