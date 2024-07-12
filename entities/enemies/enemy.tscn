@@ -31,13 +31,15 @@ script = ExtResource("1_26seq")
 max_health = 100.0
 
 [node name="MovementComponent" parent="." instance=ExtResource("3_5ovj4")]
+max_speed = 2.0
+move_accel = 1.0
+turn_speed = 120.0
 
 [node name="LockOnTargetComponent" parent="." instance=ExtResource("3_dkqn1")]
 
 [node name="VisionComponent" parent="." instance=ExtResource("4_7xhs6")]
-max_sight_range = 1000.0
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+sight_arc = 45.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConcavePolygonShape3D_2e4br")
@@ -55,7 +57,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_iigwx")
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.735149, 0)
 billboard = 2
-text = "1000"
+text = "100"
 font_size = 100
 
 [node name="AlertArea" type="Area3D" parent="."]

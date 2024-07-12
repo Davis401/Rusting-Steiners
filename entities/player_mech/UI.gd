@@ -31,18 +31,28 @@ func update_energy(current_energy:float, max_energy:float, has_increased:bool) -
 	energy_number.text = "%05d" % current_energy
 	energy_bar.value = int(current_energy)
 	energy_bar.max_value = int(max_energy)
+	
+
+func set_speed(value:float) ->void:
+	$MarginContainer/SpeedLabel.text = "%05d" % value
+	
 
 func update_left_shoulder_ammo(value:int) ->void:
 	l_s_ammo.text = str(value)
+	
 
 func update_left_arm_ammo(value:int) ->void:
 	l_a_ammo.text = str(value)
 	
+
 func update_right_shoulder_ammo(value:int) ->void:
 	r_s_ammo.text = str(value)
+	
 
 func update_right_arm_ammo(value:int) ->void:
 	r_a_ammo.text = str(value)
 	
+
 func on_energy_depleted(_1,_2) ->void:
 	animation_player.play("energy_out")
+	

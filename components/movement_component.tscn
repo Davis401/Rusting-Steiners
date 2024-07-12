@@ -4,3 +4,5 @@
 
 [node name="MovementComponent" type="Node3D"]
 script = ExtResource("1_12bqv")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

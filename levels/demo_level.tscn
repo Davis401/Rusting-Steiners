@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://354y0re3jbp8"]
+[gd_scene load_steps=13 format=3 uid="uid://354y0re3jbp8"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_k3xgx"]
 [ext_resource type="PackedScene" uid="uid://inm5w0cj7831" path="res://entities/level_objects/shipping_container.tscn" id="2_akmkk"]
 [ext_resource type="AudioStream" uid="uid://n27h6rj7xxdu" path="res://assets/music/track01.ogg" id="3_fftk4"]
 [ext_resource type="PackedScene" uid="uid://cie0qj7fbya4q" path="res://entities/building.tscn" id="3_fnh2x"]
 [ext_resource type="Texture2D" uid="uid://dequ1ob5rtdl3" path="res://assets/textures/Concete_256.png" id="4_bns5p"]
+[ext_resource type="PackedScene" uid="uid://cyclv70ecyeu4" path="res://entities/enemies/enemy.tscn" id="4_hmyfr"]
 [ext_resource type="AudioStream" uid="uid://d0ul3s3awwt6g" path="res://assets/sfx/MountainWind.ogg" id="6_hvs5r"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vvl54"]
@@ -18,6 +19,11 @@ background_mode = 2
 sky = SubResource("Sky_g1upr")
 fog_enabled = true
 fog_light_color = Color(0.713726, 0.741176, 0.784314, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ew33s"]
+vertices = PackedVector3Array(-49.6917, -0.059013, -49.2407, -49.6917, -0.059013, 49.7593, 49.3083, -0.059013, 49.7593, 49.3083, -0.059013, -49.2407)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+geometry_source_geometry_mode = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxgqt"]
 albedo_texture = ExtResource("4_bns5p")
@@ -285,7 +291,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 16)
 [node name="Building55" parent="Entities/Buildings" instance=ExtResource("3_fnh2x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 16)
 
-[node name="LevelTerrain" type="Node3D" parent="."]
+[node name="Enemies" type="Node3D" parent="Entities"]
+
+[node name="Enemy" parent="Entities/Enemies" instance=ExtResource("4_hmyfr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.5, 9)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_ew33s")
+
+[node name="LevelTerrain" type="Node3D" parent="." groups=["navigation_mesh_source_group"]]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="LevelTerrain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.191699, -0.539013, 0.259293)

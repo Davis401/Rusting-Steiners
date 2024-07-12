@@ -5,8 +5,8 @@ transparency = 1
 vertex_color_use_as_albedo = true
 
 [sub_resource type="Gradient" id="Gradient_hrnpj"]
-offsets = PackedFloat32Array(0, 0.124, 0.268, 0.396, 0.732, 1)
-colors = PackedColorArray(0.890196, 0.890196, 0.890196, 1, 1, 0.886476, 0.36024, 1, 0.831993, 0.109937, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0.933884, 0, 0, 0, 0)
+offsets = PackedFloat32Array(0, 0.211765, 0.4, 0.7, 1)
+colors = PackedColorArray(1, 0.975658, 0.524834, 1, 0.955999, 0.51272, 0.0487029, 1, 0.744371, 0.0936438, 3.85046e-07, 1, 0, 0, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ajxqp"]
 gradient = SubResource("Gradient_hrnpj")
@@ -19,6 +19,8 @@ point_count = 4
 curve = SubResource("Curve_0ly6j")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ett83"]
+emission_shape = 1
+emission_sphere_radius = 1.0
 angle_min = -360.0
 angle_max = 360.0
 direction = Vector3(0, 0, 0)
@@ -26,8 +28,7 @@ spread = 0.0
 angular_velocity_min = -360.0
 angular_velocity_max = 360.0
 gravity = Vector3(0, 0, 0)
-scale_min = 5.0
-scale_max = 5.0
+scale_max = 3.0
 scale_curve = SubResource("CurveTexture_fhiuu")
 color = Color(0.890196, 0.890196, 0.890196, 1)
 color_ramp = SubResource("GradientTexture1D_ajxqp")
@@ -39,8 +40,9 @@ rings = 4
 [node name="ExplosionFireBall" type="GPUParticles3D"]
 material_override = SubResource("StandardMaterial3D_jwlpn")
 emitting = false
-amount = 1
 lifetime = 0.4
 one_shot = true
+explosiveness = 0.8
+trail_lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_ett83")
 draw_pass_1 = SubResource("SphereMesh_a5tnh")

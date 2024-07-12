@@ -3,6 +3,10 @@ extends Projectile
 
 var drag = 10
 
+func _ready():
+	super()
+	area_damage_emitter.damage = 40
+
 func process_movement(delta)->void:
 	last_pos = global_position
 	global_position += -global_transform.basis.z * initial_speed * delta
@@ -21,7 +25,6 @@ const sounds = [
 
 func on_hit(hit_collider: Node3D, hit_pos:Vector3, hit_normal: Vector3)->void:
 	super(hit_collider, hit_pos, hit_normal)
-	area_damage_emitter.damage = damage
 	area_damage_emitter.attack()
 	var sfx_player = AudioManager.play_sound3D(sounds.pick_random(), true)
 	sfx_player.global_position = global_position

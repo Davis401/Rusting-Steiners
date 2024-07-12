@@ -17,7 +17,7 @@ var knockback = Vector3.ZERO
 
 @onready var health_component:HealthComponent = $HealthComponent
 @onready var vision_component:VisionComponent = $VisionComponent
-@onready var movement_component = $MovementComponent
+@onready var movement_component:MovementComponent = $MovementComponent
 
 @onready var alert_area:Area3D = $AlertArea
 
@@ -62,6 +62,7 @@ func set_state(_state:State)->void:
 
 func process_chase_state(delta)->void:
 	movement_component.set_facing_dir(player.global_position - global_position)
+	movement_component.move_to_point(player.global_position)
 	move_and_slide()
 	
 
@@ -71,7 +72,8 @@ func process_idle_state(delta)->void:
 
 func process_attack_state(delta)->void:
 	movement_component.set_facing_dir(player.global_position - global_position)
-	
+	movement_component.move_to_point(player.global_position)
+	move_and_slide()
 
 func alert():
 	if state == State.IDLE:
