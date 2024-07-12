@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7yp3u8n7oicw"]
+
+[ext_resource type="Script" path="res://weapons/controllers/rapid_fire_gun_controller.gd" id="1_ib0p2"]
+[ext_resource type="PackedScene" uid="uid://dn3ibgxlrn2d7" path="res://weapons/emitters/attack_emitter.tscn" id="2_iktsm"]
+[ext_resource type="PackedScene" uid="uid://dpqmcfp3vlojh" path="res://weapons/emitters/spray_emiiter.tscn" id="3_l3jdh"]
+[ext_resource type="PackedScene" uid="uid://chl5r0kyfbyaj" path="res://weapons/emitters/hitscan_attack_emitter.tscn" id="4_7nofc"]
+
+[node name="RapidFireGunController" type="Node3D"]
+script = ExtResource("1_ib0p2")
+
+[node name="AttackEmitter" parent="." instance=ExtResource("2_iktsm")]
+
+[node name="SprayEmiiter" parent="AttackEmitter" instance=ExtResource("3_l3jdh")]
+
+[node name="HitscanAttackEmitter" parent="AttackEmitter/SprayEmiiter" instance=ExtResource("4_7nofc")]
+
+[node name="FireTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true

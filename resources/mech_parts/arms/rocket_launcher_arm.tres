@@ -9,5 +9,5 @@ arm_controller = ExtResource("1_7srfg")
 ammo = 50
 id = "rocker_launcher_arm"
 display_name = "Rocket Launcher"
-cost = 2000
+cost = 5000
 weight = 150

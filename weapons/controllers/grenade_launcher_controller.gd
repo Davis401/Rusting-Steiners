@@ -6,7 +6,7 @@ extends WeaponController
 
 func on_press()->void:
 	if fire_timer.is_stopped() && current_ammo > 0:
-		fire_timer.start(1)
+		fire_timer.start(time_between_attacks)
 		current_ammo -= 1
 		audio_stream_player_3d.play()
 		attack_emitter.attack()

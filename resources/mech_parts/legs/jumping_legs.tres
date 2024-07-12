@@ -11,5 +11,5 @@ boosting_movement_speed = 20.0
 jump_power = 10.0
 id = "jumping_legs"
 display_name = "Feathercarbon Leapers"
-cost = 1500
+cost = 5000
 weight = 100

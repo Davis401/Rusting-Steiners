@@ -3,6 +3,8 @@ extends Node3D
 
 signal ammo_changed(value:int)
 
+@export var time_between_attacks:float = 1.0
+
 @export var starting_ammo = 100 :
 	set(value):
 		starting_ammo = value

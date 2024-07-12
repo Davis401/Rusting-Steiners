@@ -7,6 +7,7 @@
 
 [node name="MachineGunController" type="Node3D"]
 script = ExtResource("1_gcoa7")
+time_between_attacks = 0.1
 
 [node name="AttackEmitter" parent="." instance=ExtResource("2_d0bcx")]
 

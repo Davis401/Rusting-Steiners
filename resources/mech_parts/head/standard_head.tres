@@ -6,7 +6,7 @@
 script = ExtResource("1_sqj6v")
 accuracy = 5
 missile_lock_on_time = 0.5
-max_lock_range = 100.0
+max_lock_range = 50.0
 id = "standard_head"
 display_name = "Standard Issue Head"
 cost = 0

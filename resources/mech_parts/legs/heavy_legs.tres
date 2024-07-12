@@ -11,5 +11,5 @@ boosting_movement_speed = 6.0
 jump_power = 2.0
 id = "heavy_legs"
 display_name = "Industritech Movers"
-cost = 5000
+cost = 2000
 weight = 500

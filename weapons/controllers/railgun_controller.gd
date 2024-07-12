@@ -1,5 +1,7 @@
 extends WeaponController
 
+const PROTON_HEAVY_GUN_A = preload("res://assets/sfx/Ovani/Proton Heavy Gun A.wav")
+
 @export var ammo_count:int
 @export var charge_time:float
 
@@ -48,9 +50,11 @@ func on_release()->void:
 		attack_emitter.attack()
 		fully_locked = false
 		lock_on_target.locked_on = false
+		AudioManager.play_sound3D(PROTON_HEAVY_GUN_A)
+		
 	charging = false
 	charge_timer.stop()
-	cooldown_timer.start(1)
+	cooldown_timer.start(time_between_attacks)
 
 func _on_charge_timer_timeout():
 	if charging:

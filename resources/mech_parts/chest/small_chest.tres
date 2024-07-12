@@ -8,5 +8,5 @@ max_health = 1000.0
 max_energy = 1000.0
 id = "small_chest"
 display_name = "Feathercarbon Chest"
-cost = 1000
-weight = 200
+cost = 5000
+weight = 100
