@@ -5,11 +5,11 @@
 [resource]
 script = ExtResource("1_utss2")
 weight_capacity = 1200.0
-base_movement_speed = 3.0
-acceleration = 12.0
-boosting_movement_speed = 20.0
-jump_power = 10.0
+base_movement_speed = 4.0
+acceleration = 1.0
+boosting_movement_speed = 8.0
+jump_power = 12.0
 id = "jumping_legs"
-display_name = "Feathercarbon Leapers"
+display_name = "Ryubotto Leapers"
 cost = 5000
 weight = 100

@@ -7,3 +7,4 @@
 script = ExtResource("2_imw6u")
 display_name = "Alpine"
 level_scene = ExtResource("1_nlgn7")
+mission_description = "Destory radio towers in a blizzard"

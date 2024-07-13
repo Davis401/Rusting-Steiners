@@ -36,7 +36,7 @@ func attack(params = null) ->void:
 		else:
 			hit_effect_inst.look_at(look_at_pos)
 				
-		if ray_cast_3d.get_collider().has_method("hurt"):
+		if ray_cast_3d.get_collider() != null && ray_cast_3d.get_collider().has_method("hurt"):
 			var damage_data = DamageData.new()
 			damage_data.amount = damage
 			damage_data.hit_pos = hit_pos

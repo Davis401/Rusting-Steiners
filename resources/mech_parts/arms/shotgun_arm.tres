@@ -8,6 +8,6 @@ script = ExtResource("2_tidcl")
 arm_controller = ExtResource("1_gj43v")
 ammo = 100
 id = "shotgun_arm"
-display_name = "Lead Launcher"
+display_name = "Idustritech Scatterer"
 cost = 1000
 weight = 50

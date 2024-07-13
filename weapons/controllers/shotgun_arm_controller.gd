@@ -2,11 +2,11 @@ extends WeaponController
 
 const SFX = [preload("res://assets/sfx/EchoesAudioPack/shotgun_1.mp3"), preload("res://assets/sfx/EchoesAudioPack/shotgun_2.mp3")]
 
-@onready var attack_emitter = $AttackEmitter
-@onready var fire_timer = $FireTimer
+@onready var attack_emitter:AttackEmitter = $AttackEmitter
+@onready var fire_timer:Timer = $FireTimer
 
 
-func _ready():
+func _ready()->void:
 	super()
 	attack_emitter.set_damage(10)
 	$AttackEmitter/BurstEmitter/SprayEmiiter/HitscanAttackEmitter.tracer_start_position = spawn_point_node

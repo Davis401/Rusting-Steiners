@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=3 format=3 uid="uid://oxh5sde7k0dq"]
+
+[ext_resource type="Script" path="res://resources/level_data.gd" id="1_aeky3"]
+[ext_resource type="PackedScene" uid="uid://d1cat7d8nm0wb" path="res://levels/city_level.tscn" id="1_l1j7u"]
+
+[resource]
+script = ExtResource("1_aeky3")
+display_name = "Diplomat"
+level_scene = ExtResource("1_l1j7u")
+mission_description = "A hit for a diplomat from Neo Calgary just hit the carbon market this morning, doesn't have a name it, he'll be held up in his penthouse. We'll drop you off a few miles south, should be a simple hit and run."

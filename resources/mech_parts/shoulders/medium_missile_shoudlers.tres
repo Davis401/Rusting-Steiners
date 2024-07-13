@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MechaShoulder" load_steps=3 format=3 uid="uid://cbmwbd7tvn8p0"]
+
+[ext_resource type="Script" path="res://resources/mech_parts/mecha_shoulder.gd" id="1_4lvpo"]
+[ext_resource type="PackedScene" uid="uid://b2pdyqn1g8alf" path="res://weapons/controllers/missile_launcher_controller.tscn" id="2_o3724"]
+
+[resource]
+script = ExtResource("1_4lvpo")
+shoulder_controller = ExtResource("2_o3724")
+max_lock_on = 2
+ammo = 200
+id = "missile_shoulder"
+display_name = "Ryubotto Mini Missiles"
+cost = 6000
+weight = 80

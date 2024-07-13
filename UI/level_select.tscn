@@ -1,12 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://dy558xptangkv"]
+[gd_scene load_steps=13 format=3 uid="uid://dy558xptangkv"]
 
 [ext_resource type="FontFile" uid="uid://dpm4dokao617s" path="res://assets/fonts/FerriteCoreDX-Light.ttf" id="1_8nvp5"]
 [ext_resource type="Script" path="res://UI/level_select.gd" id="1_r6t8u"]
-[ext_resource type="Resource" uid="uid://bcfb61g34lkbl" path="res://levels/demo_level.tres" id="2_vag4d"]
 [ext_resource type="Resource" uid="uid://b83qndivqqn27" path="res://levels/desert_level.tres" id="4_1cu2h"]
+[ext_resource type="Resource" uid="uid://dhu0ja1kb8h6" path="res://levels/training.tres" id="4_jp4vj"]
 [ext_resource type="FontFile" uid="uid://dgm2v7yghigh" path="res://assets/fonts/FerriteCoreDX-Regular.ttf" id="4_wbrdq"]
 [ext_resource type="Resource" uid="uid://q6wmm4kd71b" path="res://levels/snow_level.tres" id="5_pbn13"]
 [ext_resource type="Shader" path="res://assets/shaders/dots.gdshader" id="6_b8wlq"]
+[ext_resource type="Resource" uid="uid://b8unlktmq5rb" path="res://levels/farms.tres" id="6_xeblb"]
+[ext_resource type="Resource" uid="uid://oxh5sde7k0dq" path="res://levels/city.tres" id="7_x1m5k"]
+[ext_resource type="Resource" uid="uid://dnn8dpgby7unx" path="res://levels/space.tres" id="9_0rlp3"]
 
 [sub_resource type="Theme" id="Theme_tb3cy"]
 Button/colors/font_color = Color(0.890196, 0.890196, 0.890196, 1)
@@ -35,7 +38,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_tb3cy")
 script = ExtResource("1_r6t8u")
-levels = Array[Resource("res://resources/level_data.gd")]([ExtResource("2_vag4d"), ExtResource("4_1cu2h"), ExtResource("5_pbn13")])
+levels = Array[Resource("res://resources/level_data.gd")]([ExtResource("4_jp4vj"), ExtResource("4_1cu2h"), ExtResource("6_xeblb"), ExtResource("7_x1m5k"), ExtResource("5_pbn13"), ExtResource("9_0rlp3")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_rpmge")
@@ -58,17 +61,19 @@ horizontal_alignment = 1
 
 [node name="MissionListContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-offset_right = 80.0
-offset_bottom = 80.0
+offset_right = 100.0
+offset_bottom = 100.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 100
 
-[node name="MissionList" type="VBoxContainer" parent="MissionListContainer"]
+[node name="MissionList" type="GridContainer" parent="MissionListContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/h_separation = 100
+theme_override_constants/v_separation = 100
+columns = 2
 
 [node name="MissionInfoContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -120,9 +125,30 @@ grow_vertical = 0
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_bottom = 50
 
-[node name="Button" type="Button" parent="MarginContainer"]
+[node name="BackButton" type="Button" parent="MarginContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Back"
 
-[connection signal="pressed" from="MarginContainer/Button" to="." method="_on_button_pressed"]
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -236.0
+offset_top = -97.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
+
+[node name="StartButton" type="Button" parent="MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Start
+"
+
+[connection signal="pressed" from="MarginContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/StartButton" to="." method="_on_start_button_pressed"]

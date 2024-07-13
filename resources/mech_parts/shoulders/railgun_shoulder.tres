@@ -9,6 +9,6 @@ shoulder_controller = ExtResource("2_pfk5d")
 max_lock_on = 1
 ammo = 100
 id = "railgun_shoulder"
-display_name = "Railgun"
+display_name = "FamilyAV LKS"
 cost = 5000
 weight = 200

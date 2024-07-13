@@ -55,6 +55,33 @@ horizontal_alignment = 1
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="HBoxContainer_Volume2" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 40)
+layout_mode = 2
+alignment = 1
+
+[node name="VolumeLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Volume2"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 16
+text = "Volume"
+
+[node name="VolumeSlider" type="HSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Volume2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_force_pass_scroll_events = false
+min_value = 0.25
+max_value = 2.0
+step = 0.05
+value = 1.25
+
+[node name="VolumeCurrentValueLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Volume2"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "100"
+
 [node name="HBoxContainer_Sensitivity" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 40)
 layout_mode = 2
@@ -182,6 +209,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "Close"
 
+[connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Volume2/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Sensitivity/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_RenderScale/RenderScaleSlider" to="." method="_on_render_scale_slider_value_changed"]
 [connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_CRT_Filter/CrtFilterButton" to="." method="_on_crt_filter_button_toggled"]

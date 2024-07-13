@@ -7,6 +7,6 @@ script = ExtResource("1_x6sy6")
 max_health = 1000.0
 max_energy = 1000.0
 id = "small_chest"
-display_name = "Feathercarbon Chest"
+display_name = "Ryubotto Chasis"
 cost = 5000
 weight = 100

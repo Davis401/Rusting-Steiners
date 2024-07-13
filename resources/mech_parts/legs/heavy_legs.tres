@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_4un6x")
 weight_capacity = 5000.0
-base_movement_speed = 1.0
+base_movement_speed = 2.0
 acceleration = 1.0
 boosting_movement_speed = 6.0
 jump_power = 2.0

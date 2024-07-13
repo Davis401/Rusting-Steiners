@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://bo6wqmrdmdoti"
+path="res://.godot/imported/city.map-f0a9993a4d824ed7eb378dbc4e445df0.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/city.map"
+dest_files=["res://.godot/imported/city.map-f0a9993a4d824ed7eb378dbc4e445df0.tres"]
+
+[params]
+

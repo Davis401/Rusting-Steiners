@@ -8,6 +8,6 @@ accuracy = 3
 missile_lock_on_time = 0.1
 max_lock_range = 30.0
 id = "fast_missile_head"
-display_name = "Beeptech Fastlock"
+display_name = "Ryubotto Fastlock"
 cost = 5000
 weight = 100

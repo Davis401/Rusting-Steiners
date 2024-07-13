@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=3 format=3 uid="uid://dhu0ja1kb8h6"]
+
+[ext_resource type="PackedScene" uid="uid://d4mcxbu01sbix" path="res://levels/training_level.tscn" id="1_5a3uv"]
+[ext_resource type="Script" path="res://resources/level_data.gd" id="1_y5j52"]
+
+[resource]
+script = ExtResource("1_y5j52")
+display_name = "VR Training"
+level_scene = ExtResource("1_5a3uv")
+mission_description = "Get familar with the "

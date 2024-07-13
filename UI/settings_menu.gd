@@ -151,3 +151,7 @@ func _on_crt_filter_button_toggled(toggled_on)-> void:
 
 func _on_sensitivity_slider_value_changed(value)-> void:
 	pass # Replace with function body.
+
+
+func _on_volume_slider_value_changed(value):
+	pass # Replace with function body.

@@ -7,7 +7,7 @@ var firing:bool = false
 @onready var attack_emitter:AttackEmitter = $AttackEmitter
 @onready var fire_timer:Timer = $FireTimer
 
-func _ready():
+func _ready()->void:
 	super()
 	$AttackEmitter/SprayEmiiter/HitscanAttackEmitter.tracer_start_position = spawn_point_node
 	$AttackEmitter/SprayEmiiter/HitscanAttackEmitter.set_damage(2)

@@ -12,7 +12,7 @@ var state:State = State.IDLE
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-var knockback = Vector3.ZERO
+var knockback:Vector3 = Vector3.ZERO
 @onready var player = get_tree().get_first_node_in_group("player") 
 
 @onready var health_component:HealthComponent = $HealthComponent
@@ -21,7 +21,7 @@ var knockback = Vector3.ZERO
 
 @onready var alert_area:Area3D = $AlertArea
 
-@onready var label_3d = $Label3D
+@onready var label_3d:Label3D = $Label3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready()->void:
@@ -75,12 +75,12 @@ func process_attack_state(delta)->void:
 	movement_component.move_to_point(player.global_position)
 	move_and_slide()
 
-func alert():
+func alert()->void:
 	if state == State.IDLE:
 		set_state(State.CHASE)
 
 
-func alert_nearby():
+func alert_nearby()->void:
 	for b in alert_area.get_overlapping_bodies():
 		if b is Enemy:
 			b.alert()

@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://cs8vqweg1s68"
+path="res://.godot/imported/vr_training.map-6ea158550ffed4ea5d26402198ffb74e.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/vr_training.map"
+dest_files=["res://.godot/imported/vr_training.map-6ea158550ffed4ea5d26402198ffb74e.tres"]
+
+[params]
+

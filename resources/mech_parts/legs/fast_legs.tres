@@ -5,11 +5,11 @@
 [resource]
 script = ExtResource("1_llpf8")
 weight_capacity = 600.0
-base_movement_speed = 6.0
+base_movement_speed = 5.0
 acceleration = 20.0
-boosting_movement_speed = 20.0
+boosting_movement_speed = 12.0
 jump_power = 6.0
 id = "fast_legs"
-display_name = "Feathercarbon Sprinters"
+display_name = "Ryubotto Sprinters"
 cost = 2000
 weight = 80

@@ -19,11 +19,15 @@ const PARTS = [
 	#Chests
 	preload("res://resources/mech_parts/chest/heavy_chest.tres"),
 	preload("res://resources/mech_parts/chest/small_chest.tres"),
+ 	preload("res://resources/mech_parts/chest/energy_chest.tres"),
 	#Shoudlers
 	preload("res://resources/mech_parts/shoulders/railgun_shoulder.tres"),
+	preload("res://resources/mech_parts/shoulders/large_missile_launcher_shoulder.tres"),
+	preload("res://resources/mech_parts/shoulders/medium_missile_shoudlers.tres"),
 	#Arms
 	preload("res://resources/mech_parts/arms/shotgun_arm.tres"),
 	preload("res://resources/mech_parts/arms/rocket_launcher_arm.tres"),
+	preload("res://resources/mech_parts/arms/minigun.tres"),
 	#Legs
 	preload("res://resources/mech_parts/legs/fast_legs.tres"),
 	preload("res://resources/mech_parts/legs/heavy_legs.tres"),

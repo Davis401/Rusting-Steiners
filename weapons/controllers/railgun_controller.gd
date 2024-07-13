@@ -14,10 +14,10 @@ var fire_delay:float = 0.2
 @onready var charge_timer:Timer = $ChargeTimer
 @onready var cooldown_timer:Timer  = $CooldownTimer
 
-@onready var attack_emitter = $AttackEmitter
+@onready var attack_emitter:AttackEmitter = $AttackEmitter
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready()->void:
 	super()
 	if spawn_point_node != null:
 		attack_emitter.global_position = spawn_point_node.global_position
@@ -56,7 +56,7 @@ func on_release()->void:
 	charge_timer.stop()
 	cooldown_timer.start(time_between_attacks)
 
-func _on_charge_timer_timeout():
+func _on_charge_timer_timeout()->void:
 	if charging:
 		fully_locked = true
 		lock_on_target.locked_on = true

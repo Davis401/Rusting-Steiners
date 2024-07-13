@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=3 format=3 uid="uid://dnn8dpgby7unx"]
+
+[ext_resource type="PackedScene" uid="uid://bqj6ebwpdq1gg" path="res://levels/space_level.tscn" id="1_l08wg"]
+[ext_resource type="Script" path="res://resources/level_data.gd" id="1_lfpi5"]
+
+[resource]
+script = ExtResource("1_lfpi5")
+display_name = "Cosmonaut"
+level_scene = ExtResource("1_l08wg")
+mission_description = "Defense the Space Base"

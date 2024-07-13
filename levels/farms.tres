@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=3 format=3 uid="uid://b8unlktmq5rb"]
+
+[ext_resource type="Script" path="res://resources/level_data.gd" id="1_hqip2"]
+[ext_resource type="PackedScene" uid="uid://4h3rkge8tyy7" path="res://levels/farm_level.tscn" id="1_ic5nv"]
+
+[resource]
+script = ExtResource("1_hqip2")
+display_name = "Farmers Only"
+level_scene = ExtResource("1_ic5nv")
+mission_description = "Some farmers out in the sticks thought they'd get the better of Industritech and disbale the DRM on their equipment, triggering the failsafes that auto generated bounties on the carbonmarket for each one. Head out and collect as many as you can, the contracts they signed also permitted the farmers own voidance "
