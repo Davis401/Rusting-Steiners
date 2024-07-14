@@ -1,7 +1,8 @@
-[gd_scene load_steps=42 format=3 uid="uid://d4mcxbu01sbix"]
+[gd_scene load_steps=43 format=3 uid="uid://d4mcxbu01sbix"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_1ineo"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="2_jvq3n"]
+[ext_resource type="PackedScene" uid="uid://cyclv70ecyeu4" path="res://entities/enemies/enemy.tscn" id="2_r2ai2"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="3_xpip2"]
 [ext_resource type="Texture2D" uid="uid://c8iwa8q14osji" path="res://trenchbroom/textures/Prototype_checkers_01_32x32px.png" id="4_852rd"]
 [ext_resource type="Texture2D" uid="uid://xvpqosb84py7" path="res://trenchbroom/textures/Prototype_grey_dark_32x32px.png" id="5_slg84"]
@@ -172,7 +173,12 @@ script = ExtResource("1_1ineo")
 
 [node name="PlayerSpawn" type="Marker3D" parent="."]
 
-[node name="Entities" type="Node3D" parent="."]
+[node name="Entities" type="Node3D" parent="." groups=["entities_layer"]]
+
+[node name="Enemies" type="Node3D" parent="Entities"]
+
+[node name="Enemy" parent="Entities/Enemies" instance=ExtResource("2_r2ai2")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 35.6672, 6.99246, -49.3813)
 
 [node name="LevelTerrain" type="Node3D" parent="."]
 

@@ -1,6 +1,7 @@
 extends Node
 
 signal money_changed(money:int)
+signal check_objectives
 
 @export var current_build:MechaBuild
 @export var need_to_press_start:=true
@@ -49,3 +50,6 @@ func _ready():
 
 func update_money(money:int):
 	money_changed.emit(money)
+
+func emit_check_objectives():
+	check_objectives.emit()

@@ -10,6 +10,7 @@ func hurt(damage_data:DamageData):
 	health_component.subtract(damage_data.amount)
 	
 func on_die():
+	
 	use_collision = false
 	explosion_fire_ball.restart()
 

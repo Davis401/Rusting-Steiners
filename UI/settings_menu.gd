@@ -36,12 +36,18 @@ var render_scale_val : float
 @onready var resolution_option_button:OptionButton = %ResolutionOptionButton
 @onready var window_mode_option_button:OptionButton = %WindowModeOptionButton
 
+@onready var render_scale_current_value_label:Label = %RenderScaleCurrentValueLabel
+@onready var render_scale_slider:Slider = %RenderScaleSlider
 
-@onready var render_scale_current_value_label = %RenderScaleCurrentValueLabel
-@onready var render_scale_slider = %RenderScaleSlider
+@onready var music_volume_slider:Slider = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Music_Volume/MusicVolumeSlider
+@onready var sfx_volume_slider:Slider = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Sfx_Volume/SfxVolumeSlider
+@onready var sensitivity_slider:Slider = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Sensitivity/SensitivitySlider
 
+@onready var sensitivity_current_value_label:Label = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Sensitivity/SensitivityCurrentValueLabel
+@onready var music_volume_current_value_label:Label = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Music_Volume/MusicVolumeCurrentValueLabel
+@onready var sfx_volume_current_value_label:Label = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Sfx_Volume/SfxVolumeCurrentValueLabel
 
-@onready var close_button = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/CloseButton
+@onready var close_button:Button = $MarginContainer/PanelContainer/MarginContainer/VBoxContainer/CloseButton
 
 
 # Called when the node enters the scene tree for the first time.
@@ -102,6 +108,10 @@ func save_options()->void:
 	config.set_value("Settings", "window_mode", window_mode_option_button.selected)
 	config.set_value("Settings", "resolution_index", resolution_option_button.selected)
 	config.set_value("Settings", "render_scale", render_scale_slider.value);
+	config.set_value("Settings", "mouse_sens", mouse_sens)
+	config.set_value("Settings", "sfx_volume", sfx_volume_slider.value)
+	config.set_value("Settings", "music_volume", music_volume_slider.value)
+	
 	config.save("user://settings.cfg")
 
 
@@ -114,6 +124,19 @@ func load_options()->void:
 	var window_mode = config.get_value("Settings", "window_mode", 1)
 	var resolution_index = config.get_value("Settings", "resolution_index", 5)
 	var render_scale = config.get_value("Settings", "render_scale", 1)
+	mouse_sens = config.get_value("Settings", "mouse_sens", 0.25)
+	
+	var sfx_volume = config.get_value("Settings", "sfx_volume", 1)
+	var music_volume = config.get_value("Settings", "music_volume", 1)
+
+	
+	sensitivity_slider.value = mouse_sens
+	sensitivity_current_value_label.text = str(mouse_sens)
+
+
+	# LOADING AUDIO CFG
+	sfx_volume_slider.value = sfx_volume
+	music_volume_slider.value = music_volume
 	# LOADING GRAPHICS CFG
 	render_scale_slider.value = render_scale
 	render_scale_val = render_scale
@@ -149,9 +172,17 @@ func _on_crt_filter_button_toggled(toggled_on)-> void:
 		ScreenShader.turn_off_crt_filter()
 
 
-func _on_sensitivity_slider_value_changed(value)-> void:
-	pass # Replace with function body.
+func _on_sensitivity_slider_value_changed(value:float)-> void:
+	mouse_sens = value
+	sensitivity_current_value_label.text = str(value)
+
+func _on_music_volume_slider_value_changed(value:float)-> void:
+	var bus_index = AudioServer.get_bus_index("music")
+	var volume_db = linear_to_db(value)
+	AudioServer.set_bus_volume_db(bus_index, volume_db)
 
 
-func _on_volume_slider_value_changed(value):
-	pass # Replace with function body.
+func _on_sfx_volume_slider_value_changed(value:float)-> void:
+	var bus_index = AudioServer.get_bus_index("sfx")
+	var volume_db = linear_to_db(value)
+	AudioServer.set_bus_volume_db(bus_index, volume_db)

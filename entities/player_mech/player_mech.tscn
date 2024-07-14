@@ -337,7 +337,7 @@ max_health = 1000.0
 shape = SubResource("BoxShape3D_bxa8a")
 
 [node name="Neck" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 
 [node name="Head" type="Node3D" parent="Neck"]
 
@@ -388,19 +388,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
 stream = ExtResource("10_y8sd2")
 volume_db = -30.0
 autoplay = true
+bus = &"sfx"
 
 [node name="Thruster" type="AudioStreamPlayer3D" parent="AudioPlayers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
 stream = ExtResource("17_0b104")
 autoplay = true
+bus = &"sfx"
 
 [node name="StepLeft" type="AudioStreamPlayer3D" parent="AudioPlayers"]
 stream = ExtResource("16_roaqu")
 volume_db = -10.0
+bus = &"sfx"
 
 [node name="StepRight" type="AudioStreamPlayer3D" parent="AudioPlayers"]
 stream = ExtResource("16_roaqu")
 volume_db = -10.0
+bus = &"sfx"
 
 [node name="TurnPlayer" type="AudioStreamPlayer3D" parent="AudioPlayers"]
 volume_db = -10.0
+bus = &"sfx"

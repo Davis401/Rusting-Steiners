@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cyclv70ecyeu4"]
+[gd_scene load_steps=12 format=3 uid="uid://cyclv70ecyeu4"]
 
 [ext_resource type="Script" path="res://entities/enemies/enemy.gd" id="1_26seq"]
 [ext_resource type="PackedScene" uid="uid://c08n456hikpba" path="res://components/health_component.tscn" id="2_7elvg"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bgag1yfcgrjot" path="res://components/lock_on_target_component.tscn" id="3_dkqn1"]
 [ext_resource type="PackedScene" uid="uid://hmdtp3du4m8k" path="res://components/vision_component.tscn" id="4_7xhs6"]
 [ext_resource type="PackedScene" uid="uid://dn3ibgxlrn2d7" path="res://weapons/emitters/attack_emitter.tscn" id="6_br3r6"]
-[ext_resource type="PackedScene" uid="uid://5dsokgcjwj2d" path="res://weapons/emitters/projectile_emitter.tscn" id="7_fai34"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_2e4br"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
@@ -22,7 +21,7 @@ metallic_specular = 1.0
 roughness = 0.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_apyp2"]
-radius = 15.0
+radius = 5.0
 
 [node name="Enemy" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -33,10 +32,10 @@ script = ExtResource("1_26seq")
 [node name="HealthComponent" parent="." instance=ExtResource("2_7elvg")]
 max_health = 100.0
 
+[node name="AttackEmitter" parent="." instance=ExtResource("6_br3r6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.58275)
+
 [node name="MovementComponent" parent="." instance=ExtResource("3_5ovj4")]
-max_speed = 2.0
-move_accel = 1.0
-turn_speed = 120.0
 
 [node name="LockOnTargetComponent" parent="." instance=ExtResource("3_dkqn1")]
 
@@ -68,8 +67,3 @@ monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AlertArea"]
 shape = SubResource("SphereShape3D_apyp2")
-
-[node name="AttackEmitter" parent="." instance=ExtResource("6_br3r6")]
-
-[node name="ProjectileEmitter" parent="AttackEmitter" instance=ExtResource("7_fai34")]
-projectile_type = 3

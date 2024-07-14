@@ -41,6 +41,7 @@ theme_override_constants/margin_right = 200
 theme_override_constants/margin_bottom = 50
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -52,21 +53,18 @@ layout_mode = 2
 text = "Settings"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer_Volume2" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer_Music_Volume" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 40)
 layout_mode = 2
 alignment = 1
 
-[node name="VolumeLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Volume2"]
+[node name="MusicVolumeLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Music_Volume"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 16
-text = "Volume"
+text = "Music"
 
-[node name="VolumeSlider" type="HSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Volume2"]
+[node name="MusicVolumeSlider" type="HSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Music_Volume"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -76,11 +74,42 @@ max_value = 2.0
 step = 0.05
 value = 1.25
 
-[node name="VolumeCurrentValueLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Volume2"]
+[node name="MusicVolumeCurrentValueLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Music_Volume"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 16
 text = "100"
+horizontal_alignment = 2
+
+[node name="HBoxContainer_Sfx_Volume" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 40)
+layout_mode = 2
+alignment = 1
+
+[node name="SfxVolumeLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Sfx_Volume"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 16
+text = "Sfx"
+
+[node name="SfxVolumeSlider" type="HSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Sfx_Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_force_pass_scroll_events = false
+min_value = 0.25
+max_value = 2.0
+step = 0.05
+value = 1.25
+
+[node name="SfxVolumeCurrentValueLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Sfx_Volume"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 16
+text = "100"
+horizontal_alignment = 2
 
 [node name="HBoxContainer_Sensitivity" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 40)
@@ -89,7 +118,7 @@ alignment = 1
 
 [node name="SensitivityLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Sensitivity"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 16
 text = "Sensitivity"
 
@@ -106,8 +135,10 @@ value = 1.25
 [node name="SensitivityCurrentValueLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Sensitivity"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 16
 text = "1"
+horizontal_alignment = 2
 
 [node name="HBoxContainer_Resolution" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 40)
@@ -146,7 +177,7 @@ alignment = 1
 
 [node name="RenderScaleLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_RenderScale"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 16
 text = "Render Scale"
 
@@ -165,8 +196,10 @@ value = 1.25
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 16
 text = "1"
+horizontal_alignment = 2
 
 [node name="HBoxContainer_CRT_Filter" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 40)
@@ -199,9 +232,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_m32da")
 text = "on"
 alignment = 1
 
-[node name="HBoxContainer_Volume" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
 [node name="CloseButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
@@ -209,7 +239,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "Close"
 
-[connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Volume2/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Music_Volume/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Sfx_Volume/SfxVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_Sensitivity/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_RenderScale/RenderScaleSlider" to="." method="_on_render_scale_slider_value_changed"]
 [connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer_CRT_Filter/CrtFilterButton" to="." method="_on_crt_filter_button_toggled"]

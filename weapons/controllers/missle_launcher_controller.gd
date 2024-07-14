@@ -63,11 +63,12 @@ func on_release()->void:
 		while targets.size() > 0:
 			await get_tree().create_timer(fire_delay).timeout
 			var t = targets.pop_front()
-			attack_emitter.attack(t)
-			current_ammo -= 1
-			t.locked_on = false
-			var sfx_player = AudioManager.play_sound3D(LAUNCH_SOUNDS.pick_random(), true)
-			sfx_player.volume_db = -20.0
+			if t != null || is_instance_valid(t):
+				attack_emitter.attack(t)
+				current_ammo -= 1
+				t.locked_on = false
+				var sfx_player = AudioManager.play_sound3D(LAUNCH_SOUNDS.pick_random(), true)
+				sfx_player.volume_db = -20.0
 		firing = false
 		
 	targets = []

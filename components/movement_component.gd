@@ -17,29 +17,34 @@ var moving = false
 @onready var navigation_agent_3d = $NavigationAgent3D
 
 
-func _ready():
+func _ready()->void:
 	body = get_parent()
 	move_drag = move_accel / max_speed
 	facing_dir = -body.global_transform.basis.z
 	
-func set_facing_dir(new_face_dir:Vector3):
+
+func set_facing_dir(new_face_dir:Vector3)->void:
 	facing_dir = new_face_dir
 	facing_dir.y = 0.0
+	
 
-func set_move_dir(new_move_dir:Vector3):
+func set_move_dir(new_move_dir:Vector3)->void:
 	move_dir = new_move_dir
 	move_dir.y = 0.0
 	move_dir = move_dir.normalized()
 	
-func move_to_point(point:Vector3):
+
+func move_to_point(point:Vector3)->void:
 	moving = true
 	navigation_agent_3d.target_position = point
+	
 
-func stop_moving():
+func stop_moving()->void:
 	moving = false
 	set_move_dir(Vector3.ZERO)
+	
 
-func _physics_process(delta):
+func _physics_process(delta)->void:
 	var drag = move_drag
 	if move_dir.is_zero_approx():
 		drag = stop_drag

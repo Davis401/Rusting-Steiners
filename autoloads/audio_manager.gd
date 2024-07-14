@@ -6,6 +6,7 @@ func play_sound3D(sound: AudioStream,randomize_pitch:=false,min_pitch := 0.9,max
 	var player = AudioStreamPlayer3D.new()
 	player.stream = sound
 	player.autoplay = autoplay
+	player.bus = "sfx"
 	if randomize_pitch:
 		player.pitch_scale = randf_range(min_pitch, max_pitch)
 	player.finished.connect(func(): player.queue_free())

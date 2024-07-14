@@ -42,7 +42,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="GameMenu" type="MarginContainer" parent="."]
-visible = false
 layout_mode = 1
 offset_right = 432.0
 offset_bottom = 301.0
@@ -67,7 +66,6 @@ layout_mode = 2
 text = "Missions"
 
 [node name="StartMenu" type="MarginContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -90,6 +88,10 @@ text = "Start"
 [node name="SettingsButton" type="Button" parent="StartMenu/VBoxContainer"]
 layout_mode = 2
 text = "Settings"
+
+[node name="CreditsButton" type="Button" parent="StartMenu/VBoxContainer"]
+layout_mode = 2
+text = "Credits"
 
 [node name="QuitButton" type="Button" parent="StartMenu/VBoxContainer"]
 layout_mode = 2
@@ -136,4 +138,5 @@ layout_mode = 1
 [connection signal="pressed" from="GameMenu/VBoxContainer/MissionsButton" to="." method="_on_missions_button_pressed"]
 [connection signal="pressed" from="StartMenu/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="StartMenu/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="StartMenu/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="StartMenu/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

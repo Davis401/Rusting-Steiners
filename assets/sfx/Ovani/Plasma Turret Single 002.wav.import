@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://eyq7kumdb2bv"
+path="res://.godot/imported/Plasma Turret Single 002.wav-12e34917f9fe0d3f79e06f177ff5f4ea.sample"
+
+[deps]
+
+source_file="res://assets/sfx/Ovani/Plasma Turret Single 002.wav"
+dest_files=["res://.godot/imported/Plasma Turret Single 002.wav-12e34917f9fe0d3f79e06f177ff5f4ea.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

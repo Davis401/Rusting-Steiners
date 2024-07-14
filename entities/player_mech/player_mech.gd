@@ -27,6 +27,8 @@ var last_velocity : Vector3= Vector3.ZERO
 var is_movement_paused : bool = false
 var is_dead : bool = false
 
+var config = ConfigFile.new()
+
 @onready var ui = %UI
 
 #Components
@@ -47,11 +49,9 @@ var is_dead : bool = false
 @onready var left_shoulder_weapon_effect_position: Node3D  = %LeftShoulderWeaponEffectPosition
 @onready var right_shoulder_weapon_effect_position: Node3D  = %RightShoulderWeaponEffectPosition
 
-
 @onready var step_timer: Timer = $StepTimer
 
 @onready var pause_menu = $CanvasLayer/PauseMenu
-
 
 @onready var step_left = $AudioPlayers/StepLeft
 @onready var step_right = $AudioPlayers/StepRight
@@ -249,28 +249,35 @@ func _process(delta)->void:
 	elif !is_boosting:
 		thruster.stop()
 	ui.set_speed((abs(velocity.x) + abs(velocity.z)) * 1000)
+	
 
-# Signal from Pause Menu
 func _on_pause_menu_resume() ->void:
 	_reload_options()
 	_on_resume_movement()
 	
+
 func _on_pause_movement() ->void:
 	if !is_movement_paused:
 		is_movement_paused = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
+	
 
 func _on_resume_movement() ->void:
 	if is_movement_paused:
 		is_movement_paused = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		
-		
-# reload options user may have changed while paused.
-func _reload_options() ->void:
-	pass
+
+func _reload_options()->void:
+	var err = config.load("user://settings.cfg")
+	if err == 0:
+		MOUSE_SENS = config.get_value("Settings", "mouse_sens", 0.25)
 	
-func on_energy_drained(ce,me):
+
+func on_energy_drained(ce,me)->void:
 	is_boosting = false
 	is_jump_jetting = false
+	
+
+func hurt(damage_data:DamageData)->void:
+	health_component.subtract(damage_data.amount)
