@@ -133,3 +133,26 @@ fire_right_shoulder={
 [physics]
 
 3d/physics_engine="JoltPhysics3D"
+
+[shader_globals]
+
+affine_texture_mapping={
+"type": "bool",
+"value": false
+}
+texture_filtering={
+"type": "bool",
+"value": false
+}
+cull_distance={
+"type": "float",
+"value": 0.0
+}
+vertex_snap_intensity={
+"type": "int",
+"value": 0
+}
+vertex_snap_resolution={
+"type": "ivec2",
+"value": Vector2i(1920, 1080)
+}
