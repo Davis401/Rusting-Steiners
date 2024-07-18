@@ -155,13 +155,13 @@ func _on_close_button_pressed() -> void:
 	window_mode_option_button.item_selected.emit(window_mode_option_button.selected)
 	save_options()
 	settings_updated.emit()
-
+	
 
 func _on_render_scale_slider_value_changed(value)-> void:
 	render_scale_val = value
 	render_scale_current_value_label.text = str(value)
 	refresh_render()
-
+	
 
 func _on_crt_filter_button_toggled(toggled_on)-> void:
 	if toggled_on:
@@ -170,19 +170,22 @@ func _on_crt_filter_button_toggled(toggled_on)-> void:
 	else:
 		%CrtFilterButton.text = "off"
 		ScreenShader.turn_off_crt_filter()
-
+	
 
 func _on_sensitivity_slider_value_changed(value:float)-> void:
 	mouse_sens = value
 	sensitivity_current_value_label.text = str(value)
+	
 
 func _on_music_volume_slider_value_changed(value:float)-> void:
 	var bus_index = AudioServer.get_bus_index("music")
 	var volume_db = linear_to_db(value)
 	AudioServer.set_bus_volume_db(bus_index, volume_db)
-
+	music_volume_current_value_label.text = "%d %%" % (value * 100)
+	
 
 func _on_sfx_volume_slider_value_changed(value:float)-> void:
 	var bus_index = AudioServer.get_bus_index("sfx")
 	var volume_db = linear_to_db(value)
 	AudioServer.set_bus_volume_db(bus_index, volume_db)
+	sfx_volume_current_value_label.text = "%d %%" % (value * 100)

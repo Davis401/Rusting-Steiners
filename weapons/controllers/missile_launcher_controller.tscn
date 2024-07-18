@@ -18,5 +18,6 @@ projectile_type = 2
 [node name="LockOnTimer" type="Timer" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"sfx"
 
 [connection signal="timeout" from="LockOnTimer" to="." method="_on_lock_on_timer_timeout"]

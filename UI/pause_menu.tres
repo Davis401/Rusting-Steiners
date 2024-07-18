@@ -1,12 +1,24 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bjwry7i4vasob"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bjwry7i4vasob"]
 
 [ext_resource type="FontFile" uid="uid://dgm2v7yghigh" path="res://assets/fonts/FerriteCoreDX-Regular.ttf" id="1_1n4pa"]
 [ext_resource type="FontFile" uid="uid://dpm4dokao617s" path="res://assets/fonts/FerriteCoreDX-Light.ttf" id="1_eb8ok"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_10p04"]
+bg_color = Color(0.890196, 0.890196, 0.890196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_52qcp"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_6gw22"]
+color = Color(0.890196, 0.890196, 0.890196, 1)
 
 [resource]
 Button/colors/font_color = Color(0.890196, 0.890196, 0.890196, 1)
 Button/font_sizes/font_size = 24
 Button/fonts/font = ExtResource("1_1n4pa")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_10p04")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_52qcp")
+HSlider/styles/slider = SubResource("StyleBoxLine_6gw22")
 Label/colors/font_color = Color(0.890196, 0.890196, 0.890196, 1)
 Label/font_sizes/font_size = 32
 Label/fonts/font = ExtResource("1_eb8ok")

@@ -13,12 +13,20 @@ extends Control
 @onready var r_s_ammo = %R_S_Ammo
 @onready var r_a_ammo = %R_A_Ammo
 @onready var animation_player = $Crosshair/Control/AnimationPlayer
+@onready var speed_label = %SpeedLabel
+@onready var targets_destroyed = %TargetsDestroyed
+@onready var targets_total = %TargetsTotal
+@onready var contract_fufilled = %ContractFufilled
 
 
 func _ready() ->void:
 	health_component.health_changed.connect(update_hp)
 	energy_component.energy_changed.connect(update_energy)
 	energy_component.energy_drained.connect(on_energy_depleted)
+	Global.update_targets_defeated.connect(update_targets_defeated)
+	Global.update_targets_max.connect(update_targets_max)
+	Global.level_complete.connect(update_contract_fufilled)
+	contract_fufilled.hide()
 
 
 func update_hp(current_health:float, max_health:float, has_increased:bool) ->void:
@@ -34,7 +42,7 @@ func update_energy(current_energy:float, max_energy:float, has_increased:bool) -
 	
 
 func set_speed(value:float) ->void:
-	$MarginContainer/SpeedLabel.text = "%05d" % value
+	speed_label.text = "%05d" % value
 	
 
 func update_left_shoulder_ammo(value:int) ->void:
@@ -56,3 +64,12 @@ func update_right_arm_ammo(value:int) ->void:
 func on_energy_depleted(_1,_2) ->void:
 	animation_player.play("energy_out")
 	
+
+func update_targets_defeated(str:String):
+	targets_destroyed.text = str
+	
+func update_targets_max(str:String):
+	targets_total.text = str
+	
+func update_contract_fufilled():
+	contract_fufilled.show()

@@ -5,8 +5,8 @@
 
 [resource]
 script = ExtResource("2_8ry4t")
+index = 2
 display_name = "Shifting Sands"
 level_scene = ExtResource("1_oa5yj")
-mission_description = "Ryubotto Motors
-
-Deep in the deserts therea a facilty kill them all"
+reward = 2000
+mission_description = null

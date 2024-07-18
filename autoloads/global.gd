@@ -2,9 +2,14 @@ extends Node
 
 signal money_changed(money:int)
 signal check_objectives
+signal update_targets_defeated(str:String)
+signal update_targets_max(str:String)
+signal level_complete
 
 @export var current_build:MechaBuild
 @export var need_to_press_start:=true
+
+var current_level:LevelData
 
 const PARTS = [
 	#Starting Parts
@@ -12,7 +17,6 @@ const PARTS = [
 	preload("res://resources/mech_parts/chest/standard_chest.tres"),
 	preload("res://resources/mech_parts/shoulders/missile_launcher_shoulder.tres"),
 	preload("res://resources/mech_parts/arms/machine_gun_arm.tres"),
-	preload("res://resources/mech_parts/arms/grenade_launcher_arm.tres"),
 	preload("res://resources/mech_parts/legs/standard_legs.tres"),
 	#Heads
 	preload("res://resources/mech_parts/head/fast_missile_head.tres"),
@@ -29,6 +33,7 @@ const PARTS = [
 	preload("res://resources/mech_parts/arms/shotgun_arm.tres"),
 	preload("res://resources/mech_parts/arms/rocket_launcher_arm.tres"),
 	preload("res://resources/mech_parts/arms/minigun.tres"),
+	preload("res://resources/mech_parts/arms/grenade_launcher_arm.tres"),
 	#Legs
 	preload("res://resources/mech_parts/legs/fast_legs.tres"),
 	preload("res://resources/mech_parts/legs/heavy_legs.tres"),
@@ -43,13 +48,33 @@ func _ready():
 		current_build.left_shoulder = PARTS[2]
 		current_build.right_shoulder = PARTS[2]
 		current_build.left_arm = PARTS[3]
-		current_build.right_arm = PARTS[4]
-		current_build.legs = PARTS[5]
+		current_build.right_arm = PARTS[3]
+		current_build.legs = PARTS[4]
 
 
 
 func update_money(money:int):
 	money_changed.emit(money)
+	
 
 func emit_check_objectives():
 	check_objectives.emit()
+	
+	
+func emit_update_targets_defeated(str:String):
+	update_targets_defeated.emit(str)
+	
+
+func emit_update_targets_max(str:String):
+	update_targets_max.emit(str)
+	
+
+func emit_level_complete():
+	if current_level != null:
+		SaveManager.save_data.money += current_level.reward
+		if !SaveManager.save_data.beaten_levels.has(current_level.index):
+			SaveManager.save_data.beaten_levels.push_back(current_level.index)
+		SaveManager.save()
+		current_level = null
+	level_complete.emit()
+

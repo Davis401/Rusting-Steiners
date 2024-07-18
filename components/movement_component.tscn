@@ -6,3 +6,4 @@
 script = ExtResource("1_12bqv")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true

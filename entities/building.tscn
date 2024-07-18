@@ -18,10 +18,12 @@ material = SubResource("StandardMaterial3D_oy36v")
 script = ExtResource("2_32prx")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_t1wyk")]
-max_health = 10.0
+max_health = 1000.0
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 
 [node name="ExplosionFireBall" parent="." instance=ExtResource("4_x5pj4")]
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
 
 [connection signal="finished" from="ExplosionFireBall" to="." method="_on_explosion_fire_ball_finished"]

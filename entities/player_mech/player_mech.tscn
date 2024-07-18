@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://v2b55h11rppm"]
+[gd_scene load_steps=24 format=3 uid="uid://v2b55h11rppm"]
 
 [ext_resource type="Script" path="res://entities/player_mech/player_mech.gd" id="1_8j82k"]
 [ext_resource type="PackedScene" uid="uid://snw1ev62d7aw" path="res://components/energy_component.tscn" id="2_g845v"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://UI/DebugUI.gd" id="4_xbcny"]
 [ext_resource type="FontFile" uid="uid://buo8uv6d7ogo4" path="res://assets/fonts/FerriteCoreDX-Display.ttf" id="6_ty3ui"]
 [ext_resource type="PackedScene" uid="uid://ch0m8i08wkpak" path="res://UI/pause_menu.tscn" id="9_q3prr"]
+[ext_resource type="PackedScene" uid="uid://byggg6e37f5u2" path="res://particles/explosion_fire_ball.tscn" id="10_tqbr0"]
 [ext_resource type="AudioStream" uid="uid://m7h6cvymxvwc" path="res://assets/sfx/Ovani/MechanicaLoop.ogg" id="10_y8sd2"]
 [ext_resource type="Script" path="res://entities/player_mech/UI.gd" id="11_cmofo"]
 [ext_resource type="Texture2D" uid="uid://derq7j577m4jq" path="res://assets/reticles/crosshair007.png" id="11_kp0kp"]
@@ -60,11 +61,64 @@ _data = {
 "energy_out": SubResource("Animation_s8pc2")
 }
 
+[sub_resource type="Animation" id="Animation_adt85"]
+resource_name = "mission_fail"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/MissionFail:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(2, 2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"finish_death"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_smkgf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/MissionFail:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0xdsu"]
+_data = {
+"RESET": SubResource("Animation_smkgf"),
+"mission_fail": SubResource("Animation_adt85")
+}
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_bxa8a"]
 size = Vector3(0.7, 1.6, 0.7)
 
 [node name="PlayerMech" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_8j82k")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -305,7 +359,7 @@ libraries = {
 "": SubResource("AnimationLibrary_7dyx1")
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI"]
+[node name="SpeedUI" type="MarginContainer" parent="CanvasLayer/UI"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -319,13 +373,91 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_bottom = 100
 
-[node name="SpeedLabel" type="Label" parent="CanvasLayer/UI/MarginContainer"]
+[node name="SpeedLabel" type="Label" parent="CanvasLayer/UI/SpeedUI"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 
+[node name="ObjectivesUI" type="MarginContainer" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/ObjectivesUI"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="TargetsContianer" type="HBoxContainer" parent="CanvasLayer/UI/ObjectivesUI/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="TargetsDestroyed" type="Label" parent="CanvasLayer/UI/ObjectivesUI/VBoxContainer/TargetsContianer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="Label2" type="Label" parent="CanvasLayer/UI/ObjectivesUI/VBoxContainer/TargetsContianer"]
+layout_mode = 2
+text = "/"
+
+[node name="TargetsTotal" type="Label" parent="CanvasLayer/UI/ObjectivesUI/VBoxContainer/TargetsContianer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "3"
+
+[node name="Label4" type="Label" parent="CanvasLayer/UI/ObjectivesUI/VBoxContainer/TargetsContianer"]
+layout_mode = 2
+text = "Targets"
+
+[node name="ContractFufilled" type="Label" parent="CanvasLayer/UI/ObjectivesUI/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Contract Fufilled"
+
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("9_q3prr")]
 visible = false
+
+[node name="MissionFail" type="ColorRect" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/MissionFail"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/MissionFail/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.282353, 0.411765, 1)
+theme_override_fonts/font = ExtResource("3_7cmxb")
+theme_override_font_sizes/font_size = 64
+text = "Critical Failure"
+horizontal_alignment = 1
+
+[node name="LoseAnimation" type="AnimationPlayer" parent="CanvasLayer/MissionFail"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_0xdsu")
+}
 
 [node name="EnergyComponent" parent="." instance=ExtResource("2_g845v")]
 max_energy = 200.0
@@ -345,6 +477,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Neck/Head"]
 fov = 80.0
+
+[node name="Camera Effects" type="Node3D" parent="Neck/Head/Camera3D"]
+
+[node name="ExplosionFireBall" parent="Neck/Head/Camera3D/Camera Effects" instance=ExtResource("10_tqbr0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+one_shot = false
+explosiveness = 0.0
+randomness = 0.5
 
 [node name="LeftArmWeapon" type="Node3D" parent="Neck/Head"]
 unique_name_in_owner = true
@@ -409,3 +549,5 @@ bus = &"sfx"
 [node name="TurnPlayer" type="AudioStreamPlayer3D" parent="AudioPlayers"]
 volume_db = -10.0
 bus = &"sfx"
+
+[connection signal="finished" from="Neck/Head/Camera3D/Camera Effects/ExplosionFireBall" to="." method="_on_explosion_fire_ball_finished"]

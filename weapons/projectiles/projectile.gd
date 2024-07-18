@@ -1,6 +1,7 @@
 class_name Projectile
 extends Node3D
 
+
 @onready var collision_raycast = $CollisionRaycast
 
 @export var max_speed = 300

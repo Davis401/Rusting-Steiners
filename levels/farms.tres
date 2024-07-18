@@ -5,6 +5,8 @@
 
 [resource]
 script = ExtResource("1_hqip2")
+index = 1
 display_name = "Farmers Only"
 level_scene = ExtResource("1_ic5nv")
+reward = 1000
 mission_description = "Some farmers out in the sticks thought they'd get the better of Industritech and disbale the DRM on their equipment, triggering the failsafes that auto generated bounties on the carbonmarket for each one. Head out and collect as many as you can, the contracts they signed also permitted the farmers own voidance "

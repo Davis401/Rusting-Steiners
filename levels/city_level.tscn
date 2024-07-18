@@ -1,24 +1,34 @@
-[gd_scene load_steps=14 format=3 uid="uid://d1cat7d8nm0wb"]
+[gd_scene load_steps=18 format=3 uid="uid://d1cat7d8nm0wb"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_4qitb"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="2_oylqn"]
+[ext_resource type="PackedScene" uid="uid://cie0qj7fbya4q" path="res://entities/building.tscn" id="2_tkpi1"]
+[ext_resource type="PackedScene" uid="uid://crwc2h06x1xsq" path="res://entities/enemies/enemy_mech.tscn" id="3_g5j8f"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="3_ovw0o"]
-[ext_resource type="Material" uid="uid://ceusbnmdmcgsm" path="res://trenchbroom/textures/concete_256.tres" id="4_xp62g"]
+[ext_resource type="PackedScene" uid="uid://bwm1tuo2rw33g" path="res://entities/enemies/walker_enemy.tscn" id="4_invmk"]
+[ext_resource type="Material" uid="uid://ceusbnmdmcgsm" path="res://trenchbroom/textures/Concete_256.tres" id="4_xp62g"]
 [ext_resource type="Texture2D" uid="uid://fsicn4gjrgy0" path="res://trenchbroom/textures/Wall_256.png" id="5_0lkm4"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_423c6"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rin7m"]
+sky_top_color = Color(0.666667, 0.301961, 0.494118, 1)
+sky_horizon_color = Color(0.647059, 0.654902, 0.670588, 1)
+ground_bottom_color = Color(0.301961, 0.0980392, 0.113725, 1)
 
-[sub_resource type="Sky" id="Sky_fmtb6"]
-sky_material = SubResource("ProceduralSkyMaterial_423c6")
+[sub_resource type="Sky" id="Sky_4n2sw"]
+sky_material = SubResource("ProceduralSkyMaterial_rin7m")
 
 [sub_resource type="Environment" id="Environment_bso4y"]
 background_mode = 2
-sky = SubResource("Sky_fmtb6")
-ambient_light_source = 2
-ambient_light_color = Color(0.709804, 0.807843, 1, 1)
+sky = SubResource("Sky_4n2sw")
+ambient_light_source = 1
 fog_enabled = true
-fog_light_color = Color(0.709804, 0.807843, 1, 1)
-fog_light_energy = 0.1
+fog_light_color = Color(0.858824, 1, 0.643137, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_iani4"]
+vertices = PackedVector3Array(-59.5, 11.5, -49.5, -59.5, 11.5, -48.5, 61, 11.5, -48.5, 61, 11.5, -49.5, -59.4, 1, -49.4, -59.4, 1, -48.5, 61, 1, -48.5, 61, 1, -49.4, -60, 1, -47.4, -60, 1, 150.5, 61, 1, 150.5, 61, 1, -47.4)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9)]
+geometry_source_geometry_mode = 1
+cell_size = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_riq7j"]
 albedo_texture = ExtResource("5_0lkm4")
@@ -68,11 +78,1795 @@ script = ExtResource("1_4qitb")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bso4y")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.692162, 0.378092, -0.614783, 0.242319, 0.924099, 0.295504, 0.679848, 0.055563, -0.731245, 0, 40.2247, 0)
+light_color = Color(0.788235, 1, 0.32549, 1)
+shadow_enabled = true
+
 [node name="PlayerSpawn" type="Marker3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.00169754, 2, -41.144)
 
 [node name="Entities" type="Node3D" parent="."]
 
-[node name="LevelTerrain" type="Node3D" parent="."]
+[node name="Buildings" type="Node3D" parent="Entities"]
+
+[node name="Building" parent="Entities/Buildings" groups=["objective"] instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.7088, 12.5873, 129.845)
+size = Vector3(5, 24, 5)
+
+[node name="Building2" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, 0)
+size = Vector3(1, 2, 1)
+
+[node name="Building3" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, 0)
+size = Vector3(1, 2, 1)
+
+[node name="Building4" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building5" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building6" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building7" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building8" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, -19)
+size = Vector3(1, 2, 1)
+
+[node name="Building9" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, -19)
+size = Vector3(1, 2, 1)
+
+[node name="Building10" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building11" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building12" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building13" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building14" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, 36.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building15" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, 36.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building16" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building17" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building18" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building19" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building20" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, 17.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building21" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, 17.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building22" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building23" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building24" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building25" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building26" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, 71.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building27" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, 71.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building28" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building29" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building30" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building31" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building32" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, 52.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building33" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, 52.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building34" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building35" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building36" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building37" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building38" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, 111.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building39" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, 111.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building40" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building41" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building42" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building43" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building44" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, 92.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building45" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, 92.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building46" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building47" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building48" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building49" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building50" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, 0)
+size = Vector3(1, 2, 1)
+
+[node name="Building51" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, 0)
+size = Vector3(1, 2, 1)
+
+[node name="Building52" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building53" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building54" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building55" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building56" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, -19)
+size = Vector3(1, 2, 1)
+
+[node name="Building57" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, -19)
+size = Vector3(1, 2, 1)
+
+[node name="Building58" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building59" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building60" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building61" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building62" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, 36.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building63" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, 36.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building64" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building65" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building66" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building67" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building68" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, 17.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building69" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, 17.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building70" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building71" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building72" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building73" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building74" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, 71.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building75" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, 71.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building76" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building77" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building78" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building79" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building80" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, 52.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building81" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, 52.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building82" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building83" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building84" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building85" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building86" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, 111.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building87" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, 111.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building88" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building89" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building90" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building91" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building92" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, 92.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building93" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, 92.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building94" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building95" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building96" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building97" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building98" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, 0)
+size = Vector3(1, 2, 1)
+
+[node name="Building99" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, 0)
+size = Vector3(1, 2, 1)
+
+[node name="Building100" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building101" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building102" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building103" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building104" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, -19)
+size = Vector3(1, 2, 1)
+
+[node name="Building105" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, -19)
+size = Vector3(1, 2, 1)
+
+[node name="Building106" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building107" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building108" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building109" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building110" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, 36.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building111" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, 36.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building112" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building113" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building114" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building115" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building116" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, 17.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building117" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, 17.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building118" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building119" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building120" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building121" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building122" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, 71.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building123" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, 71.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building124" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building125" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building126" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building127" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building128" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, 52.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building129" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, 52.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building130" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building131" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building132" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building133" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building134" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, 111.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building135" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, 111.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building136" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building137" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building138" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building139" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building140" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, 92.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building141" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, 92.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building142" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building143" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building144" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building145" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building146" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, 0)
+size = Vector3(1, 2, 1)
+
+[node name="Building147" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, 0)
+size = Vector3(1, 2, 1)
+
+[node name="Building148" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building149" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building150" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building151" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building152" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, -19)
+size = Vector3(1, 2, 1)
+
+[node name="Building153" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, -19)
+size = Vector3(1, 2, 1)
+
+[node name="Building154" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building155" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building156" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building157" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building158" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, 36.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building159" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, 36.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building160" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building161" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building162" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building163" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building164" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, 17.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building165" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, 17.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building166" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building167" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building168" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building169" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building170" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, 71.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building171" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, 71.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building172" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building173" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building174" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building175" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building176" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, 52.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building177" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, 52.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building178" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building179" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building180" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building181" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building182" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, 111.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building183" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, 111.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building184" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building185" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building186" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building187" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building188" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, 92.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building189" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, 92.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building190" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building191" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building192" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building193" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building194" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, 0)
+size = Vector3(1, 2, 1)
+
+[node name="Building195" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, 0)
+size = Vector3(1, 2, 1)
+
+[node name="Building196" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building197" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building198" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building199" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building200" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, -19)
+size = Vector3(1, 2, 1)
+
+[node name="Building201" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, -19)
+size = Vector3(1, 2, 1)
+
+[node name="Building202" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building203" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building204" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building205" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building206" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, 36.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building207" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, 36.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building208" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building209" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building210" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building211" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building212" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, 17.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building213" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, 17.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building214" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building215" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building216" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building217" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building218" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, 71.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building219" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, 71.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building220" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building221" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building222" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building223" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building224" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, 52.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building225" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, 52.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building226" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building227" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building228" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building229" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building230" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, 111.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building231" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, 111.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building232" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building233" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building234" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building235" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building236" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, 92.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building237" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, 92.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building238" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building239" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building240" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building241" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building242" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, 0)
+size = Vector3(1, 2, 1)
+
+[node name="Building243" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, 0)
+size = Vector3(1, 2, 1)
+
+[node name="Building244" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building245" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building246" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building247" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building248" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, -19)
+size = Vector3(1, 2, 1)
+
+[node name="Building249" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, -19)
+size = Vector3(1, 2, 1)
+
+[node name="Building250" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building251" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building252" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building253" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building254" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, 36.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building255" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, 36.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building256" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building257" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building258" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building259" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building260" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, 17.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building261" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, 17.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building262" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building263" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building264" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building265" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building266" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, 71.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building267" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, 71.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building268" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building269" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building270" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building271" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building272" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, 52.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building273" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, 52.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building274" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building275" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building276" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building277" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building278" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, 111.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building279" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, 111.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building280" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building281" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building282" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building283" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building284" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, 92.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building285" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, 92.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building286" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building287" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building288" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building289" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building290" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, 0)
+size = Vector3(1, 2, 1)
+
+[node name="Building294" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building302" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, 36.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building307" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building291" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, 0)
+size = Vector3(1, 2, 1)
+
+[node name="Building292" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building293" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building295" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building296" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, -19)
+size = Vector3(1, 2, 1)
+
+[node name="Building297" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, -19)
+size = Vector3(1, 2, 1)
+
+[node name="Building298" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building299" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building300" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building301" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building303" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, 36.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building304" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building305" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building306" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building308" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, 17.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building309" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, 17.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building310" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building311" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building312" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building313" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building314" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, 71.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building315" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, 71.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building316" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building317" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building318" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building319" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building320" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, 52.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building321" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, 52.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building322" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building323" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building324" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building325" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building326" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, 111.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building327" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, 111.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building328" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building329" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building330" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building331" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building332" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, 92.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building333" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, 92.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building334" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building335" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building336" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building337" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building338" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, 0)
+size = Vector3(1, 2, 1)
+
+[node name="Building339" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, 0)
+size = Vector3(1, 2, 1)
+
+[node name="Building340" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building341" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building342" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building343" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building344" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, -19)
+size = Vector3(1, 2, 1)
+
+[node name="Building345" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, -19)
+size = Vector3(1, 2, 1)
+
+[node name="Building346" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building347" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building348" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building349" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building350" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, 36.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building351" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, 36.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building352" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building353" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building354" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building355" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building356" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, 17.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building357" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, 17.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building358" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building359" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building360" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building361" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building362" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, 71.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building363" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, 71.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building364" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building365" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building366" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building367" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building368" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, 52.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building369" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, 52.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building370" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building371" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building372" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building373" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building374" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, 111.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building375" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, 111.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building376" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building377" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building378" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building379" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building380" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, 92.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building381" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, 92.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building382" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building383" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building384" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building385" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building386" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, 0)
+size = Vector3(1, 2, 1)
+
+[node name="Building387" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, 0)
+size = Vector3(1, 2, 1)
+
+[node name="Building388" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building389" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building390" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building391" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, -8)
+size = Vector3(1, 2, 1)
+
+[node name="Building392" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, -19)
+size = Vector3(1, 2, 1)
+
+[node name="Building393" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, -19)
+size = Vector3(1, 2, 1)
+
+[node name="Building394" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building395" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building396" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building397" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, -27)
+size = Vector3(1, 2, 1)
+
+[node name="Building398" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, 36.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building399" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, 36.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building400" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building401" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building402" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building403" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, 28.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building404" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, 17.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building405" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, 17.8925)
+size = Vector3(1, 2, 1)
+
+[node name="Building406" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building407" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building408" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building409" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, 9.89251)
+size = Vector3(1, 2, 1)
+
+[node name="Building410" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, 71.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building411" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, 71.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building412" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building413" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building414" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building415" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, 63.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building416" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, 52.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building417" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, 52.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building418" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building419" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building420" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building421" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, 44.0554)
+size = Vector3(1, 2, 1)
+
+[node name="Building422" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, 111.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building423" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, 111.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building424" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building425" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building426" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building427" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, 103.636)
+size = Vector3(1, 2, 1)
+
+[node name="Building428" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, 92.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building429" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, 92.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building430" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building431" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building432" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Building433" parent="Entities/Buildings" instance=ExtResource("2_tkpi1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.47074, 84.6357)
+size = Vector3(1, 2, 1)
+
+[node name="Enemies" type="Node3D" parent="Entities"]
+
+[node name="EnemyMech" parent="Entities/Enemies" instance=ExtResource("3_g5j8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.705, 3.75, 21.4213)
+
+[node name="EnemyMech2" parent="Entities/Enemies" instance=ExtResource("3_g5j8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.55257, 3.75, 24.278)
+
+[node name="EnemyMech10" parent="Entities/Enemies" instance=ExtResource("3_g5j8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.55257, 3.75, 76.8136)
+
+[node name="EnemyMech3" parent="Entities/Enemies" instance=ExtResource("3_g5j8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.62267, 3.75, 125.286)
+
+[node name="EnemyMech4" parent="Entities/Enemies" instance=ExtResource("3_g5j8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9761, 3.75, 123.58)
+
+[node name="EnemyMech5" parent="Entities/Enemies" instance=ExtResource("3_g5j8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.9197, 3.75, 21.4213)
+
+[node name="EnemyMech6" parent="Entities/Enemies" instance=ExtResource("3_g5j8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.9197, 3.75, -11.4446)
+
+[node name="EnemyMech7" parent="Entities/Enemies" instance=ExtResource("3_g5j8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.5581, 3.75, -11.4446)
+
+[node name="EnemyMech8" parent="Entities/Enemies" instance=ExtResource("3_g5j8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.7359, 3.75, 120.666)
+
+[node name="EnemyMech9" parent="Entities/Enemies" instance=ExtResource("3_g5j8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.1775, 3.75, 125.212)
+
+[node name="WalkerEnemy" parent="Entities/Enemies" instance=ExtResource("4_invmk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.4192, 0.5, 76.6121)
+
+[node name="WalkerEnemy2" parent="Entities/Enemies" instance=ExtResource("4_invmk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.0592, 0.5, 76.6121)
+
+[node name="WalkerEnemy3" parent="Entities/Enemies" instance=ExtResource("4_invmk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.059, 1, 146.944)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_iani4")
+
+[node name="LevelTerrain" type="Node3D" parent="." groups=["navigation_mesh_source_group"]]
 
 [node name="FuncGodotMap" type="Node3D" parent="LevelTerrain"]
 script = ExtResource("2_oylqn")
@@ -94,3 +1888,7 @@ shape = SubResource("ConvexPolygonShape3D_4f1tp")
 
 [node name="entity_0_brush_1_collision_shape" type="CollisionShape3D" parent="LevelTerrain/FuncGodotMap/entity_0_worldspawn"]
 shape = SubResource("ConvexPolygonShape3D_2ojdd")
+
+[node name="EnvParticles" type="Node3D" parent="."]
+
+[editable path="Entities/Buildings/Building"]

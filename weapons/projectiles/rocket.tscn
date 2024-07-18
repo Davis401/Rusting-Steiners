@@ -14,9 +14,7 @@ rings = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m0n0j"]
 albedo_color = Color(0.203922, 0.203922, 0.203922, 1)
-metallic = 1.0
-metallic_specular = 1.0
-roughness = 0.0
+metallic = 0.5
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_gfo36"]
 transparency = 1
@@ -66,6 +64,7 @@ emission_curve = SubResource("CurveTexture_hw564")
 
 [node name="Rocket" type="Node3D"]
 script = ExtResource("1_ihvef")
+initial_speed = 100
 delete_on_hit_after_time = 2.0
 
 [node name="Graphics" type="Node3D" parent="."]
@@ -76,10 +75,10 @@ mesh = SubResource("CapsuleMesh_ynn3t")
 surface_material_override/0 = SubResource("StandardMaterial3D_m0n0j")
 
 [node name="CollisionRaycast" type="RayCast3D" parent="."]
-collision_mask = 12
+collision_mask = 5
 
 [node name="AreaDamageEmitter" parent="." instance=ExtResource("2_ypyrg")]
-attack_radius = 20.0
+attack_radius = 10.0
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_g5mct")

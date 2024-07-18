@@ -17,8 +17,12 @@ var settings_open := false
 
 @onready var store_menu:MarginContainer = $StoreMenu
 @onready var build_menu:MarginContainer = $BuildMenu
+@onready var credits_container:MarginContainer = $CreditsContainer
+
 
 @onready var current_money = %CurrentMoney
+
+
 
 func _enter_tree() -> void:
 	# Create an audio player
@@ -52,6 +56,7 @@ func _play_pressed() -> void:
 
 
 func _ready() ->void:
+	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	settings_menu.back_pressed.connect(on_setting_closed.bind(settings_menu))
 	build_menu.close.connect(restore_main)
@@ -65,6 +70,7 @@ func _ready() ->void:
 	else:
 		start_button.hide()
 		game_menu.show()
+
 	Global.money_changed.connect(update_money)
 	update_money(SaveManager.save_data.money)
 	
@@ -122,10 +128,24 @@ func restore_main() ->void:
 	start_menu.show()
 	
 
-
 func update_money(money_in:int)->void:
 	current_money.text = "¤ "+ str(money_in)
+	
 
+func _on_credits_button_pressed() -> void:
+	credits_container.show()
+	game_menu.hide()
+	start_menu.hide()
+	player_profile.hide()
+	
 
-func _on_credits_button_pressed():
-	pass # Replace with function body.
+func close_credits() -> void:
+	credits_container.hide()
+	start_menu.show()
+	player_profile.show()
+	if Global.need_to_press_start:
+		game_menu.hide()
+	else:
+		start_button.hide()
+		game_menu.show()
+	

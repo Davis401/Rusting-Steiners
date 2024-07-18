@@ -187,5 +187,6 @@ func _on_buy_button_pressed() -> void:
 	if SaveManager.save_data.money >= focused_part.cost && !SaveManager.save_data.owned_parts.has(focused_part.id):
 		SaveManager.save_data.money -= focused_part.cost
 		SaveManager.save_data.owned_parts[focused_part.id] = true
+		SaveManager.save()
 		Global.update_money(SaveManager.save_data.money)
 		focused_part_button.queue_free()

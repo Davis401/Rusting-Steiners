@@ -20,7 +20,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @export var attack_range:float
 
-@export var animation_player:AnimationPlayer
+var _animation_player:AnimationPlayer
+
+@export var minimum_distance_to_player := 1.0
 
 var knockback:Vector3 = Vector3.ZERO
 @onready var player = get_tree().get_first_node_in_group("player") 
@@ -38,7 +40,9 @@ var knockback:Vector3 = Vector3.ZERO
 func _ready()->void:
 	health_component.health_changed.connect(update_label)
 	health_component.death.connect(die)
-	
+	for child in get_children():
+		if child is AttackEmitter:
+			child.set_bodies_to_exclude([self])
 	
 
 func _physics_process(delta)->void:
@@ -59,11 +63,13 @@ func set_state(_state:State)->void:
 	state = _state
 	match state:
 		State.IDLE:
-			animation_player.play("idle")
+			if _animation_player != null && is_instance_valid(_animation_player):
+				_animation_player.play("idle")
 		State.ATTACK:
 			pass
 		State.DEAD:
-			animation_player.play("die")
+			if _animation_player != null && is_instance_valid(_animation_player):
+				_animation_player.play("die")
 			collision_layer = 0
 			collision_mask = 0
 	
@@ -74,7 +80,9 @@ func process_idle_state(delta)->void:
 	
 
 func process_attack_state(delta)->void:
-	var is_attacking = animation_player.current_animation == "attack"
+	var is_attacking = false
+	if _animation_player != null && is_instance_valid(_animation_player):
+		is_attacking = _animation_player.current_animation == "attack"
 	var vec_to_player = player.global_position - global_position
 	
 	if vec_to_player.length() <= attack_range:
@@ -85,8 +93,10 @@ func process_attack_state(delta)->void:
 			movement_component.set_facing_dir(vec_to_player)
 	elif !is_attacking:
 		movement_component.set_facing_dir(movement_component.move_dir)
-		movement_component.move_to_point(player.global_position)
-		animation_player.play("walk")
+		if vec_to_player.length() > minimum_distance_to_player:
+			movement_component.move_to_point(player.global_position)
+			if _animation_player != null && is_instance_valid(_animation_player):
+				_animation_player.play("walk")
 	move_and_slide()
 	
 
@@ -113,20 +123,22 @@ func update_label(current,max,damaged)->void:
 
 func die()->void:
 	set_state(State.DEAD)
-	if is_in_group("objective"):
-		Global.emit_check_objectives()
 	
 
 func finish_die()->void:
+	if is_in_group("objective"):
+		Global.emit_check_objectives()
 	queue_free()
 	
 
 func start_attack()->void:
-	animation_player.play("attack")
+	if _animation_player != null && is_instance_valid(_animation_player):
+		_animation_player.play("attack")
 	
 
 func do_attack()->void:
 	var sfx = AudioManager.play_sound3D(LASER_SOUNDS.pick_random())
+	sfx.volume_db = -20.0
 	sfx.global_position = global_position
 	attack_emitter.attack()
 	

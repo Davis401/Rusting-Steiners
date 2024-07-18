@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmqihira2abkg"]
+[gd_scene load_steps=12 format=3 uid="uid://dmqihira2abkg"]
 
 [ext_resource type="Script" path="res://UI/main_menu.gd" id="1_2qkdf"]
 [ext_resource type="Theme" uid="uid://f4uaqilnvl40" path="res://UI/pause_button.tres" id="1_rha82"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dogkwlr7gdyv6" path="res://UI/store_menu.tscn" id="3_x2x3x"]
 [ext_resource type="AudioStream" uid="uid://du1jnsoyxgdfi" path="res://assets/sfx/ui/select_007.ogg" id="4_tiol6"]
 [ext_resource type="PackedScene" uid="uid://4nptlc4a00nr" path="res://UI/build_menu.tscn" id="4_tmt4e"]
+[ext_resource type="FontFile" uid="uid://dpm4dokao617s" path="res://assets/fonts/FerriteCoreDX-Light.ttf" id="9_e5lia"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1yekq"]
 shader = ExtResource("3_jwyhm")
@@ -19,6 +20,9 @@ shader_parameter/resolution = Vector2(1920, 1080)
 shader_parameter/offset = null
 shader_parameter/anti_aliasing_factor = 0.01
 shader_parameter/stochastic_samples = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qbn5o"]
+bg_color = Color(0.168627, 0.168627, 0.168627, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -133,6 +137,94 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
+[node name="TitleContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 200
+
+[node name="Title" type="Label" parent="TitleContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/line_spacing = 32
+theme_override_fonts/font = ExtResource("9_e5lia")
+theme_override_font_sizes/font_size = 64
+text = "Rusting Steiners"
+horizontal_alignment = 1
+
+[node name="CreditsContainer" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 400
+theme_override_constants/margin_bottom = 200
+
+[node name="PanelContainer" type="PanelContainer" parent="CreditsContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qbn5o")
+
+[node name="MarginContainer" type="MarginContainer" parent="CreditsContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="CreditsContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CreditsContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Game by Captain Magni"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CreditsContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Developed in the Godot engine for the 2024 Mech Jam"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label4" type="Label" parent="CreditsContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Farm equipment and machinery models sourced from Wildenza PSX-Farm and PSX-Machinery and Piping packs"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label5" type="Label" parent="CreditsContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Sound effects sourced from Kenney Assets, Ovani Sound Packs, and Echoes Audio kit by Pizza Doggy"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="CreditsButton" type="Button" parent="CreditsContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Close"
+
 [connection signal="pressed" from="GameMenu/VBoxContainer/StoreButton" to="." method="_on_store_button_pressed"]
 [connection signal="pressed" from="GameMenu/VBoxContainer/BuildButton" to="." method="_on_build_button_pressed"]
 [connection signal="pressed" from="GameMenu/VBoxContainer/MissionsButton" to="." method="_on_missions_button_pressed"]
@@ -140,3 +232,4 @@ layout_mode = 1
 [connection signal="pressed" from="StartMenu/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="StartMenu/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="StartMenu/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CreditsContainer/PanelContainer/MarginContainer/VBoxContainer/CreditsButton" to="." method="close_credits"]

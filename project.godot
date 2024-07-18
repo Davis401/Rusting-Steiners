@@ -10,10 +10,13 @@ config_version=5
 
 [application]
 
-config/name="MechJamVGame"
+config/name="Rusting Steiners"
+config/description="In year 2892 the ultrarare metal \"Iron\" was found in adbundence on the planet Hephaestus, the galaxies megacorps plundered it for all it was worth, leaving now the rusting scraps of better days, and only the lowest class of mercenary, Steiners, to pick up what contacts are left."
 run/main_scene="res://UI/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/image="res://assets/imgs/SplashScreen.png"
+config/icon="res://assets/imgs/icon_large.png"
+config/windows_native_icon="res://assets/imgs/icon_small.ico"
 
 [autoload]
 
@@ -129,6 +132,10 @@ fire_right_shoulder={
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Hurtbox"
 3d_physics/layer_4="Enviroment"
+
+[navigation]
+
+3d/default_cell_size=0.1
 
 [physics]
 

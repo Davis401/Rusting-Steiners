@@ -32,3 +32,8 @@ func on_hold()->void:
 #Called when released
 func on_release()->void:
 	pass
+
+func set_bodies_to_exclude(bodies):
+	for child in get_children():
+		if child is AttackEmitter:
+			child.set_bodies_to_exclude(bodies)

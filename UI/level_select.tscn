@@ -38,7 +38,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_tb3cy")
 script = ExtResource("1_r6t8u")
-levels = Array[Resource("res://resources/level_data.gd")]([ExtResource("4_jp4vj"), ExtResource("4_1cu2h"), ExtResource("6_xeblb"), ExtResource("7_x1m5k"), ExtResource("5_pbn13"), ExtResource("9_0rlp3")])
+levels = Array[Resource("res://resources/level_data.gd")]([ExtResource("4_jp4vj"), ExtResource("6_xeblb"), ExtResource("4_1cu2h"), ExtResource("5_pbn13"), ExtResource("7_x1m5k"), ExtResource("9_0rlp3")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_rpmge")
@@ -109,10 +109,16 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("4_wbrdq")
 theme_override_font_sizes/font_size = 24
-text = "Placeholder Mission info
-You gotta KILL them all dude! Every last one kil kill kill kill kill killkill kill kill kill kill  kill kill kill kill killkill kill kill kill kill kill kill kill kill kill kill kill kill kill kill  kill kill kill kill killkill kill kill kill kill"
 autowrap_mode = 3
 text_overrun_behavior = 2
+
+[node name="Reward" type="Label" parent="MissionInfoContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("4_wbrdq")
+theme_override_font_sizes/font_size = 24
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

@@ -11,10 +11,11 @@ var player_save_file : String = "user://player_save.res"
 	"standard_head":true,
 	"standard_chest":true,
 	"machine_gun_arm":true,
-	"grenade_launcher_arm":true,
 	"missile_shoulder":true,
 	"standard_legs":true
 }
+
+@export var beaten_levels:Array[int] = []
 #Levels beaten
 #Equipment purchased state
 #Save builds(s?)
@@ -24,9 +25,9 @@ func write_save() -> void:
 	ResourceSaver.save(self, player_save_file, ResourceSaver.FLAG_CHANGE_PATH)
 	print("Player data saved at ", player_save_file)
 
-func state_exists() -> bool:
+func save_exists() -> bool:
 	return ResourceLoader.exists(player_save_file)
  
 
-func load_state() -> Resource:
+func load_save() -> Resource:
 	return ResourceLoader.load(player_save_file, "", ResourceLoader.CACHE_MODE_IGNORE)

@@ -55,6 +55,11 @@ var config = ConfigFile.new()
 
 @onready var step_left = $AudioPlayers/StepLeft
 @onready var step_right = $AudioPlayers/StepRight
+
+@onready var lose_animation:AnimationPlayer = $CanvasLayer/MissionFail/LoseAnimation
+@onready var die_fire_ball = $"Neck/Head/Camera3D/Camera Effects/ExplosionFireBall"
+
+
 var step_players = []
 var step_idx = 0
 
@@ -70,7 +75,7 @@ func _ready() ->void:
 	randomize() 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	energy_component.energy_drained.connect(on_energy_drained)
-	
+	health_component.death.connect(on_die)
 	build = Global.current_build
 	if build != null:
 		if build.head != null:
@@ -85,14 +90,18 @@ func _ready() ->void:
 			left_arm_weapon.add_child(left_arm_controller)
 			left_arm_controller.ammo_changed.connect(ui.update_left_arm_ammo)
 			left_arm_controller.starting_ammo = build.left_arm.ammo
+			left_arm_controller.set_bodies_to_exclude([self])
+			
 			if right_arm_weapon.has_method("set_spray_arc"):
 				right_arm_weapon.set_spray_arc(10 - (build.head.accuracy / 10))
+		
 		if build.right_arm != null:
 			var right_arm_controller:WeaponController = build.right_arm.arm_controller.instantiate()
 			right_arm_controller.spawn_point_node = right_arm_weapon_effect_position
 			right_arm_weapon.add_child(right_arm_controller)
 			right_arm_controller.ammo_changed.connect(ui.update_right_arm_ammo)
 			right_arm_controller.starting_ammo = build.right_arm.ammo
+			right_arm_controller.set_bodies_to_exclude([self])
 			if right_arm_weapon.has_method("set_spray_arc"):
 				right_arm_weapon.set_spray_arc(10 - (build.head.accuracy / 10))
 			
@@ -102,6 +111,7 @@ func _ready() ->void:
 			left_shoulder_weapon.add_child(left_shoulder_controller)
 			left_shoulder_controller.ammo_changed.connect(ui.update_left_shoulder_ammo)
 			left_shoulder_controller.starting_ammo = build.left_shoulder.ammo
+			left_shoulder_controller.set_bodies_to_exclude([self])
 			
 		if build.right_shoulder != null:
 			var right_shoulder_controller:WeaponController = build.right_shoulder.shoulder_controller.instantiate()
@@ -109,6 +119,7 @@ func _ready() ->void:
 			right_shoulder_weapon.add_child(right_shoulder_controller)
 			right_shoulder_controller.ammo_changed.connect(ui.update_right_shoulder_ammo)
 			right_shoulder_controller.starting_ammo = build.right_shoulder.ammo
+			right_shoulder_controller.set_bodies_to_exclude([self])
 			
 			
 		if build.legs != null:
@@ -248,7 +259,7 @@ func _process(delta)->void:
 		thruster.play()
 	elif !is_boosting:
 		thruster.stop()
-	ui.set_speed((abs(velocity.x) + abs(velocity.z)) * 1000)
+	ui.set_speed(velocity.length()  * 1000)
 	
 
 func _on_pause_menu_resume() ->void:
@@ -281,3 +292,17 @@ func on_energy_drained(ce,me)->void:
 
 func hurt(damage_data:DamageData)->void:
 	health_component.subtract(damage_data.amount)
+
+
+func on_die()->void:
+	die_fire_ball.emitting = true
+	lose_animation.play("mission_fail")
+	
+	
+func finish_death()->void:
+	get_tree().change_scene_to_file("res://UI/main_menu.tscn")
+
+
+func _on_explosion_fire_ball_finished():
+	var player = AudioManager.play_sound3D(load("res://assets/sfx/EchoesAudioPack/explosion_1.mp3"), true, 0.8, 1.2)
+	player.global_position = die_fire_ball.global_position

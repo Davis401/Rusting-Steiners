@@ -17,6 +17,7 @@ func _ready() ->void:
 	player.global_position = player_spawn.global_position
 	for node in get_tree().get_nodes_in_group("objective"):
 		objectives.append(node)
+	Global.emit_update_targets_max(str(objectives.size()))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,11 +34,20 @@ func complete_level()->void:
 	#Displayer Victory thing
 	#Fade out
 	#Change Scene
+	Global.emit_level_complete()
+	await get_tree().create_timer(2.0).timeout
 	get_tree().change_scene_to_file("res://UI/main_menu.tscn")
 	
 func check_objectives()->void:
-	print("check_objectives")
+	var targets_destroyed = 0
+	var targets_left = 0
+	await get_tree().create_timer(0.1).timeout
 	for objective in objectives:
-		if objective != null:
-			return
-	complete_level()
+		if is_instance_valid(objective) && objective != null:
+			targets_left += 1
+		else:
+			targets_destroyed += 1
+			
+	Global.emit_update_targets_defeated(str(targets_destroyed))
+	if targets_left == 0:
+		complete_level()

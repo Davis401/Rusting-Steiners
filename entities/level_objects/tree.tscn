@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://b7ceiwp5klwfx"]
+
+[ext_resource type="Script" path="res://entities/level_objects/tree.gd" id="1_1bch0"]
+[ext_resource type="PackedScene" uid="uid://c08n456hikpba" path="res://components/health_component.tscn" id="1_p7xao"]
+[ext_resource type="ArrayMesh" uid="uid://cl36w6qca5io1" path="res://assets/models/Trees/fir.res" id="2_0p40l"]
+[ext_resource type="Shader" path="res://assets/shaders/psx.gdshader" id="3_wct64"]
+[ext_resource type="Texture2D" uid="uid://chmbuglaum8fm" path="res://assets/models/Trees/textures/TreeBark2.png" id="4_l4kq8"]
+[ext_resource type="Texture2D" uid="uid://cbqtmiy2gql76" path="res://assets/models/Trees/textures/Leaves_4.png" id="5_4tt4r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_klvp2"]
+render_priority = 0
+shader = ExtResource("3_wct64")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture_as_primary_color = true
+shader_parameter/mix_factor = 1.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll_speed = Vector2(0, 0)
+shader_parameter/cull_distance_override = 0.0
+shader_parameter/albedo_texture = ExtResource("4_l4kq8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lxc6u"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("5_4tt4r")
+metallic_specular = 0.0
+texture_filter = 2
+billboard_mode = 2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0ppor"]
+height = 4.0
+
+[node name="Tree" type="StaticBody3D"]
+collision_layer = 13
+collision_mask = 13
+script = ExtResource("1_1bch0")
+
+[node name="HealthComponent" parent="." instance=ExtResource("1_p7xao")]
+max_health = 20.0
+
+[node name="Graphics" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Graphics"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.144761, 0)
+mesh = ExtResource("2_0p40l")
+surface_material_override/0 = SubResource("ShaderMaterial_klvp2")
+surface_material_override/1 = SubResource("StandardMaterial3D_lxc6u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("CylinderShape3D_0ppor")
