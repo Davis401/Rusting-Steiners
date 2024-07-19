@@ -8,5 +8,5 @@ script = ExtResource("1_aeky3")
 index = 4
 display_name = "Diplomat"
 level_scene = ExtResource("1_l1j7u")
-reward = 4000
-mission_description = "A hit for a diplomat from Neo Calgary just hit the carbon market this morning, doesn't have a name it, he'll be held up in his penthouse. We'll drop you off a few miles south, should be a simple hit and run."
+reward = 10000
+mission_description = "One of the slum lords of the abandoned cities has been trying to play our benefactors againt eachother for a higher cut of his dues, they've pooled together funds to handle things using a third party, us. He'll be held out in the tallest building in the back of the slum block, just take the whole building down."

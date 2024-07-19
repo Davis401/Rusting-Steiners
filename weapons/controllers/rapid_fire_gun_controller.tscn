@@ -15,5 +15,5 @@ script = ExtResource("1_ib0p2")
 [node name="HitscanAttackEmitter" parent="AttackEmitter/SprayEmiiter" instance=ExtResource("4_7nofc")]
 
 [node name="FireTimer" type="Timer" parent="."]
-wait_time = 0.05
+wait_time = 0.01
 one_shot = true

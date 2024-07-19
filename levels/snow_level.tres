@@ -8,5 +8,5 @@ script = ExtResource("2_imw6u")
 index = 3
 display_name = "Alpine"
 level_scene = ExtResource("1_nlgn7")
-reward = 3000
-mission_description = "Destory radio towers in a blizzard"
+reward = 3200
+mission_description = "FamilyAV has been pumping purfied frozen air from the caps northern caps of planet, a large facility up in the frozen forests. This doesnt sit well with Industritrech whose line of synthetic air has largely been funding its ventures since the wars. Theyre paying us to put the facility out of work. Just target the vital equipment once you find it."

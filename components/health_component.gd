@@ -52,3 +52,7 @@ func subtract(amount)->void:
 		health_reached_zero.emit(current_health,max_health)
 		
 	health_changed.emit(current_health,max_health,false)
+
+
+func force_emit():
+	health_changed.emit(current_health,max_health,true)

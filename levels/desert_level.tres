@@ -8,5 +8,5 @@ script = ExtResource("2_8ry4t")
 index = 2
 display_name = "Shifting Sands"
 level_scene = ExtResource("1_oa5yj")
-reward = 2000
-mission_description = null
+reward = 3200
+mission_description = "Rybotoo has been sending drones through the desert sending out known cracked pass keys to any bots on open channels. Recently they lucked onto some old rocket bots. They're keeping them in a facility deep in the sands and Indsutritech is commissioning us to take them out."

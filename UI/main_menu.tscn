@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmqihira2abkg"]
+[gd_scene load_steps=13 format=3 uid="uid://dmqihira2abkg"]
 
 [ext_resource type="Script" path="res://UI/main_menu.gd" id="1_2qkdf"]
 [ext_resource type="Theme" uid="uid://f4uaqilnvl40" path="res://UI/pause_button.tres" id="1_rha82"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://du1jnsoyxgdfi" path="res://assets/sfx/ui/select_007.ogg" id="4_tiol6"]
 [ext_resource type="PackedScene" uid="uid://4nptlc4a00nr" path="res://UI/build_menu.tscn" id="4_tmt4e"]
 [ext_resource type="FontFile" uid="uid://dpm4dokao617s" path="res://assets/fonts/FerriteCoreDX-Light.ttf" id="9_e5lia"]
+[ext_resource type="Script" path="res://UI/Congrats.gd" id="10_ulbha"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1yekq"]
 shader = ExtResource("3_jwyhm")
@@ -212,6 +213,14 @@ text = "Farm equipment and machinery models sourced from Wildenza PSX-Farm and P
 horizontal_alignment = 1
 autowrap_mode = 3
 
+[node name="Label6" type="Label" parent="CreditsContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Trees from MCSTEEG PSX Nature Pack"
+horizontal_alignment = 1
+autowrap_mode = 3
+
 [node name="Label5" type="Label" parent="CreditsContainer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
@@ -225,6 +234,46 @@ layout_mode = 2
 size_flags_vertical = 10
 text = "Close"
 
+[node name="Congrats" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 100
+script = ExtResource("10_ulbha")
+
+[node name="PanelContainer" type="PanelContainer" parent="Congrats"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Congrats/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Congrats/PanelContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Congrats/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Congrats 
+You've beaten all there currently is in 
+Rusting Steiners"
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="Congrats/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "K"
+
 [connection signal="pressed" from="GameMenu/VBoxContainer/StoreButton" to="." method="_on_store_button_pressed"]
 [connection signal="pressed" from="GameMenu/VBoxContainer/BuildButton" to="." method="_on_build_button_pressed"]
 [connection signal="pressed" from="GameMenu/VBoxContainer/MissionsButton" to="." method="_on_missions_button_pressed"]
@@ -233,3 +282,4 @@ text = "Close"
 [connection signal="pressed" from="StartMenu/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="StartMenu/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="CreditsContainer/PanelContainer/MarginContainer/VBoxContainer/CreditsButton" to="." method="close_credits"]
+[connection signal="pressed" from="Congrats/PanelContainer/MarginContainer/VBoxContainer/CloseButton" to="Congrats" method="_on_close_button_pressed"]

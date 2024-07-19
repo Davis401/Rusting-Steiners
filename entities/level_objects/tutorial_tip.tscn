@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1gsmb2dbgy0w"]
+
+[ext_resource type="Script" path="res://entities/level_objects/tutorial_tip.gd" id="1_3xxly"]
+[ext_resource type="FontFile" uid="uid://qbx01chfj1qi" path="res://assets/fonts/TROGLO__.ttf" id="2_vaid6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c245n"]
+size = Vector3(2, 1, 2)
+
+[node name="TutorialTip" type="Area3D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_3xxly")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.168627, 0.168627, 0.168627, 1)
+theme_override_colors/font_outline_color = Color(0.168627, 0.168627, 0.168627, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("2_vaid6")
+theme_override_font_sizes/font_size = 32
+text = "Press W to Move
+Duh"
+horizontal_alignment = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_c245n")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

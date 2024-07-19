@@ -132,7 +132,7 @@ func _ready() ->void:
 	if pause_menu != null:
 		pause_menu.resume.connect(_on_pause_menu_resume) # Hookup resume signal from Pause Menu
 		pause_menu.close_pause_menu()
-
+	health_component.force_emit()
 
 func _input(event) ->void:
 	if event is InputEventMouseMotion and !is_movement_paused:

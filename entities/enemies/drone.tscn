@@ -1,8 +1,7 @@
-[gd_scene load_steps=29 format=3 uid="uid://cmcj471u42voy"]
+[gd_scene load_steps=28 format=3 uid="uid://cmcj471u42voy"]
 
 [ext_resource type="PackedScene" uid="uid://cyclv70ecyeu4" path="res://entities/enemies/enemy.tscn" id="1_jvhui"]
 [ext_resource type="ArrayMesh" uid="uid://bn5xlfir5yhui" path="res://assets/models/drone.res" id="2_gtu8p"]
-[ext_resource type="Script" path="res://entities/enemies/drone.gd" id="2_hpdef"]
 [ext_resource type="Texture2D" uid="uid://c0bmus3twmnpy" path="res://assets/models/mech_enemies_drone_texture_atlas.png" id="3_v0uag"]
 [ext_resource type="PackedScene" uid="uid://cgybn240lo2v2" path="res://particles/smoke_particles.tscn" id="4_s377j"]
 [ext_resource type="Texture2D" uid="uid://dtc8y6k8e6drf" path="res://assets/particle_sprites/smoke_08.png" id="4_xy4ti"]
@@ -194,7 +193,7 @@ alpha_curve = SubResource("CurveTexture_6myk0")
 [node name="Drone" instance=ExtResource("1_jvhui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 motion_mode = 1
-script = ExtResource("2_hpdef")
+script = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
 libraries = {
@@ -253,3 +252,6 @@ process_material = SubResource("ParticleProcessMaterial_m52tn")
 draw_pass_1 = SubResource("QuadMesh_4daae")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Graphics" index="6"]
+
+[node name="Label3D" parent="." index="8"]
+visible = false

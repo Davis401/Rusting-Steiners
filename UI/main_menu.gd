@@ -56,7 +56,7 @@ func _play_pressed() -> void:
 
 
 func _ready() ->void:
-	get_tree().paused = false
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	settings_menu.back_pressed.connect(on_setting_closed.bind(settings_menu))
 	build_menu.close.connect(restore_main)

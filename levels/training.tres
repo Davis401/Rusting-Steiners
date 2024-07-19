@@ -5,6 +5,8 @@
 
 [resource]
 script = ExtResource("1_y5j52")
+index = 0
 display_name = "VR Training"
 level_scene = ExtResource("1_5a3uv")
-mission_description = "Get familar with the "
+reward = 0
+mission_description = "Hop into a quick VR to remind yourself how to pilot a Steiner"

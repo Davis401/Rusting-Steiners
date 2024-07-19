@@ -1,8 +1,9 @@
-[gd_scene load_steps=44 format=3 uid="uid://d4mcxbu01sbix"]
+[gd_scene load_steps=45 format=3 uid="uid://d4mcxbu01sbix"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_1ineo"]
 [ext_resource type="PackedScene" uid="uid://bwm1tuo2rw33g" path="res://entities/enemies/walker_enemy.tscn" id="2_h53nt"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="2_jvq3n"]
+[ext_resource type="PackedScene" uid="uid://c1gsmb2dbgy0w" path="res://entities/level_objects/tutorial_tip.tscn" id="3_ux5lr"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="3_xpip2"]
 [ext_resource type="Texture2D" uid="uid://c8iwa8q14osji" path="res://trenchbroom/textures/Prototype_checkers_01_32x32px.png" id="4_852rd"]
 [ext_resource type="Texture2D" uid="uid://xvpqosb84py7" path="res://trenchbroom/textures/Prototype_grey_dark_32x32px.png" id="5_slg84"]
@@ -177,6 +178,7 @@ points = PackedVector3Array(23, 6, -17, 23, 0, -17, 23.5, 0, -17, 23.5, 6, -17, 
 script = ExtResource("1_1ineo")
 
 [node name="PlayerSpawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Entities" type="Node3D" parent="." groups=["entities_layer"]]
 
@@ -187,6 +189,20 @@ transform = Transform3D(-0.5, 0, 4.37114e-08, 0, 0.5, 0, -4.37114e-08, 0, -0.5, 
 
 [node name="WalkerEnemy2" parent="Entities/Enemies" groups=["objective"] instance=ExtResource("2_h53nt")]
 transform = Transform3D(-0.5, 0, 4.37114e-08, 0, 0.5, 0, -4.37114e-08, 0, -0.5, 39.7255, 6.79376, -55.2726)
+
+[node name="TutorialTip" parent="Entities" instance=ExtResource("3_ux5lr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+tip = "Use the mouse to look around and WASD to move"
+
+[node name="TutorialTip2" parent="Entities" instance=ExtResource("3_ux5lr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.370552, 3.74034, -15.5556)
+tip = "Use shift to boost to move faster
+Press space to jump, hold after to boost"
+
+[node name="TutorialTip3" parent="Entities" instance=ExtResource("3_ux5lr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.3234, 7.30943, -15.8167)
+tip = "LMB and RMB for arm weapons
+Q and E for  shoulder weapons"
 
 [node name="LevelTerrain" type="Node3D" parent="."]
 

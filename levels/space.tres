@@ -8,5 +8,5 @@ script = ExtResource("1_lfpi5")
 index = 5
 display_name = "Cosmonaut"
 level_scene = ExtResource("1_l08wg")
-reward = 5000
-mission_description = "Defense the Space Base"
+reward = 9999
+mission_description = "The Final Frontier"

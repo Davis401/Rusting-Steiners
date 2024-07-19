@@ -3,6 +3,7 @@ extends Resource
 
 var player_save_file : String = "user://player_save.res"
 
+@export var shown_congrats_message = false
 
 @export var money:int = 10000
 

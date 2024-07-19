@@ -1,10 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://v2b55h11rppm"]
+[gd_scene load_steps=23 format=3 uid="uid://v2b55h11rppm"]
 
 [ext_resource type="Script" path="res://entities/player_mech/player_mech.gd" id="1_8j82k"]
 [ext_resource type="PackedScene" uid="uid://snw1ev62d7aw" path="res://components/energy_component.tscn" id="2_g845v"]
 [ext_resource type="PackedScene" uid="uid://c08n456hikpba" path="res://components/health_component.tscn" id="2_pdrve"]
 [ext_resource type="FontFile" uid="uid://dgm2v7yghigh" path="res://assets/fonts/FerriteCoreDX-Regular.ttf" id="3_7cmxb"]
-[ext_resource type="Script" path="res://UI/DebugUI.gd" id="4_xbcny"]
 [ext_resource type="FontFile" uid="uid://buo8uv6d7ogo4" path="res://assets/fonts/FerriteCoreDX-Display.ttf" id="6_ty3ui"]
 [ext_resource type="PackedScene" uid="uid://ch0m8i08wkpak" path="res://UI/pause_menu.tscn" id="9_q3prr"]
 [ext_resource type="PackedScene" uid="uid://byggg6e37f5u2" path="res://particles/explosion_fire_ball.tscn" id="10_tqbr0"]
@@ -61,6 +60,21 @@ _data = {
 "energy_out": SubResource("Animation_s8pc2")
 }
 
+[sub_resource type="Animation" id="Animation_smkgf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/MissionFail:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_adt85"]
 resource_name = "mission_fail"
 length = 3.0
@@ -91,21 +105,6 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_smkgf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/MissionFail:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0xdsu"]
 _data = {
 "RESET": SubResource("Animation_smkgf"),
@@ -122,25 +121,6 @@ collision_mask = 7
 script = ExtResource("1_8j82k")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="DebugUI" type="MarginContainer" parent="CanvasLayer"]
-visible = false
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
-theme_override_constants/margin_top = 22
-theme_override_constants/margin_right = 22
-script = ExtResource("4_xbcny")
-
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/DebugUI"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DebugUI/PanelContainer"]
-layout_mode = 2
-theme_override_constants/separation = 8
 
 [node name="UI" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("health_component", "energy_component")]
 unique_name_in_owner = true
@@ -424,9 +404,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Contract Fufilled"
 
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("9_q3prr")]
-visible = false
-
 [node name="MissionFail" type="ColorRect" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
@@ -458,6 +435,9 @@ root_node = NodePath("../../..")
 libraries = {
 "": SubResource("AnimationLibrary_0xdsu")
 }
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("9_q3prr")]
+visible = false
 
 [node name="EnergyComponent" parent="." instance=ExtResource("2_g845v")]
 max_energy = 200.0

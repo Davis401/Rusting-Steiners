@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dy558xptangkv"]
+[gd_scene load_steps=12 format=3 uid="uid://dy558xptangkv"]
 
 [ext_resource type="FontFile" uid="uid://dpm4dokao617s" path="res://assets/fonts/FerriteCoreDX-Light.ttf" id="1_8nvp5"]
 [ext_resource type="Script" path="res://UI/level_select.gd" id="1_r6t8u"]
@@ -9,7 +9,6 @@
 [ext_resource type="Shader" path="res://assets/shaders/dots.gdshader" id="6_b8wlq"]
 [ext_resource type="Resource" uid="uid://b8unlktmq5rb" path="res://levels/farms.tres" id="6_xeblb"]
 [ext_resource type="Resource" uid="uid://oxh5sde7k0dq" path="res://levels/city.tres" id="7_x1m5k"]
-[ext_resource type="Resource" uid="uid://dnn8dpgby7unx" path="res://levels/space.tres" id="9_0rlp3"]
 
 [sub_resource type="Theme" id="Theme_tb3cy"]
 Button/colors/font_color = Color(0.890196, 0.890196, 0.890196, 1)
@@ -38,7 +37,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_tb3cy")
 script = ExtResource("1_r6t8u")
-levels = Array[Resource("res://resources/level_data.gd")]([ExtResource("4_jp4vj"), ExtResource("6_xeblb"), ExtResource("4_1cu2h"), ExtResource("5_pbn13"), ExtResource("7_x1m5k"), ExtResource("9_0rlp3")])
+levels = Array[Resource("res://resources/level_data.gd")]([ExtResource("4_jp4vj"), ExtResource("6_xeblb"), ExtResource("4_1cu2h"), ExtResource("5_pbn13"), ExtResource("7_x1m5k")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_rpmge")

@@ -16,3 +16,6 @@ projectile_type = 1
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_tm0i1")
 volume_db = -30.0
+
+[node name="FireTimer" type="Timer" parent="."]
+one_shot = true

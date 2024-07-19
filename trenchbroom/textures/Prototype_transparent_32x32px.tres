@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cbopd6ciu8oc2"]
+
+[ext_resource type="Texture2D" uid="uid://4qurlsx1b12u" path="res://trenchbroom/textures/Prototype_transparent_32x32px.png" id="1_5phkw"]
+
+[resource]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.196078)
+albedo_texture = ExtResource("1_5phkw")
+metallic_specular = 0.0
+texture_filter = 2

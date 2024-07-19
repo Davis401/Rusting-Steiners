@@ -15,6 +15,7 @@ func _ready() ->void:
 	player = PLAYER_MECH.instantiate()
 	entities.add_child(player)
 	player.global_position = player_spawn.global_position
+	player.rotate_y(PI)
 	for node in get_tree().get_nodes_in_group("objective"):
 		objectives.append(node)
 	Global.emit_update_targets_max(str(objectives.size()))
