@@ -46,3 +46,5 @@ explosiveness = 0.8
 trail_lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_ett83")
 draw_pass_1 = SubResource("SphereMesh_a5tnh")
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]

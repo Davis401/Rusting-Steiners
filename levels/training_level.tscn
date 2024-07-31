@@ -202,7 +202,8 @@ Press space to jump, hold after to boost"
 [node name="TutorialTip3" parent="Entities" instance=ExtResource("3_ux5lr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.3234, 7.30943, -15.8167)
 tip = "LMB and RMB for arm weapons
-Q and E for  shoulder weapons"
+Q and E for  shoulder weapons
+Shoulder weapons need to lock on before firing"
 
 [node name="LevelTerrain" type="Node3D" parent="."]
 

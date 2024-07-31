@@ -15,6 +15,7 @@ func set_bodies_to_exclude(bodies:Array)->void:
 		
 		
 func attack(params = null) ->void:
+	ray_cast_3d.force_raycast_update()
 	if ray_cast_3d.is_colliding():
 		var hit_pos = ray_cast_3d.get_collision_point()
 		var hit_normal: Vector3 = ray_cast_3d.get_collision_normal()

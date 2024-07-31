@@ -30,9 +30,9 @@ const PARTS = [
 	preload("res://resources/mech_parts/shoulders/large_missile_launcher_shoulder.tres"),
 	preload("res://resources/mech_parts/shoulders/medium_missile_shoudlers.tres"),
 	#Arms
-	#preload("res://resources/mech_parts/arms/shotgun_arm.tres"),
+	preload("res://resources/mech_parts/arms/shotgun_arm.tres"),
 	preload("res://resources/mech_parts/arms/rocket_launcher_arm.tres"),
-	#preload("res://resources/mech_parts/arms/minigun.tres"),
+	preload("res://resources/mech_parts/arms/minigun.tres"),
 	preload("res://resources/mech_parts/arms/grenade_launcher_arm.tres"),
 	#Legs
 	preload("res://resources/mech_parts/legs/fast_legs.tres"),
@@ -40,7 +40,7 @@ const PARTS = [
 	preload("res://resources/mech_parts/legs/jumping_legs.tres"),
 ]
 
-func _ready():
+func _ready() ->void:
 	if current_build == null:
 		current_build = MechaBuild.new()
 		current_build.head = PARTS[0]
@@ -50,26 +50,26 @@ func _ready():
 		current_build.left_arm = PARTS[3]
 		current_build.right_arm = PARTS[3]
 		current_build.legs = PARTS[4]
+	
 
 
-
-func update_money(money:int):
+func update_money(money:int)->void:
 	money_changed.emit(money)
 	
 
-func emit_check_objectives():
+func emit_check_objectives()->void:
 	check_objectives.emit()
 	
 	
-func emit_update_targets_defeated(str:String):
+func emit_update_targets_defeated(str:String)->void:
 	update_targets_defeated.emit(str)
 	
 
-func emit_update_targets_max(str:String):
+func emit_update_targets_max(str:String)->void:
 	update_targets_max.emit(str)
 	
 
-func emit_level_complete():
+func emit_level_complete()->void:
 	if current_level != null:
 		SaveManager.save_data.money += current_level.reward
 		if !SaveManager.save_data.beaten_levels.has(current_level.index):

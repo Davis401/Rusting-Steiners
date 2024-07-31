@@ -1,5 +1,9 @@
 extends WeaponController
 
+signal locking_on_target
+signal max_lock_ons
+signal release
+
 const PROTON_HEAVY_GUN_A = preload("res://assets/sfx/Ovani/Proton Heavy Gun A.wav")
 
 @export var ammo_count:int
@@ -39,12 +43,14 @@ func on_press()->void:
 				lock_on_target = node
 	
 	if lock_on_target != null:
+		locking_on_target.emit()
 		charging = true
 		charge_timer.start(charge_time)
 	
 
 #Called when released
 func on_release()->void:
+	release.emit()
 	if fully_locked:
 		current_ammo -= 1
 		attack_emitter.attack()
@@ -58,6 +64,7 @@ func on_release()->void:
 
 func _on_charge_timer_timeout()->void:
 	if charging:
+		max_lock_ons.emit()
 		fully_locked = true
 		lock_on_target.locked_on = true
 		

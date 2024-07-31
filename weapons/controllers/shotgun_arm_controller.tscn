@@ -14,7 +14,6 @@ script = ExtResource("1_yn353")
 [node name="BurstEmitter" parent="AttackEmitter" instance=ExtResource("3_yhnfg")]
 
 [node name="SprayEmiiter" parent="AttackEmitter/BurstEmitter" instance=ExtResource("4_y0wkl")]
-spray_arc = 15.0
 
 [node name="HitscanAttackEmitter" parent="AttackEmitter/BurstEmitter/SprayEmiiter" instance=ExtResource("3_er8a3")]
 

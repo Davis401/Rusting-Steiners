@@ -112,6 +112,9 @@ func _ready() ->void:
 			left_shoulder_controller.ammo_changed.connect(ui.update_left_shoulder_ammo)
 			left_shoulder_controller.starting_ammo = build.left_shoulder.ammo
 			left_shoulder_controller.set_bodies_to_exclude([self])
+			left_shoulder_controller.locking_on_target.connect(ui.show_locking_on_left)
+			left_shoulder_controller.max_lock_ons.connect(ui.show_max_lock_left)
+			left_shoulder_controller.release.connect(ui.reset_lockon_label_left)
 			
 		if build.right_shoulder != null:
 			var right_shoulder_controller:WeaponController = build.right_shoulder.shoulder_controller.instantiate()
@@ -120,6 +123,9 @@ func _ready() ->void:
 			right_shoulder_controller.ammo_changed.connect(ui.update_right_shoulder_ammo)
 			right_shoulder_controller.starting_ammo = build.right_shoulder.ammo
 			right_shoulder_controller.set_bodies_to_exclude([self])
+			right_shoulder_controller.locking_on_target.connect(ui.show_locking_on_right)
+			right_shoulder_controller.max_lock_ons.connect(ui.show_max_lock_right)
+			right_shoulder_controller.release.connect(ui.reset_lockon_label_right)
 			
 			
 		if build.legs != null:
@@ -166,8 +172,10 @@ func _input(event) ->void:
 	if event.is_action_pressed("boost"):
 		if !is_boosting and energy_component and energy_component.current_energy > 0:
 			is_boosting = true
+			thruster.play()
 		else:
 			is_boosting = false
+			thruster.stop()
 			
 	if is_on_floor() && event.is_action_pressed("jump"):
 		wish_jump = true
@@ -192,8 +200,11 @@ func _physics_process(delta) ->void:
 	if is_boosting and energy_component and energy_component.current_energy > 0:
 		current_speed = lerp(current_speed, boosting_speed, delta * acceleration)
 		is_boosting = true
+	elif is_boosting and energy_component and energy_component.current_energy <= 0:
+		is_boosting = false
+		thruster.stop()
 	else:
-		current_speed = lerp(current_speed, normal_speed, delta * acceleration)
+		current_speed = lerp(current_speed, normal_speed, delta)
 		is_boosting = false
 		
 		#Lean on strafe
@@ -255,10 +266,7 @@ func _process(delta)->void:
 		left_shoulder_weapon.get_child(0).on_hold()
 	if Input.is_action_pressed("fire_right_shoulder") && right_shoulder_weapon.get_child(0) != null && right_shoulder_weapon.get_child(0) is WeaponController:
 		right_shoulder_weapon.get_child(0).on_hold()
-	if is_boosting && !thruster.playing:
-		thruster.play()
-	elif !is_boosting:
-		thruster.stop()
+		
 	ui.set_speed(velocity.length()  * 1000)
 	
 
@@ -287,6 +295,7 @@ func _reload_options()->void:
 
 func on_energy_drained(ce,me)->void:
 	is_boosting = false
+	thruster.stop()
 	is_jump_jetting = false
 	
 
@@ -303,6 +312,6 @@ func finish_death()->void:
 	get_tree().change_scene_to_file("res://UI/main_menu.tscn")
 
 
-func _on_explosion_fire_ball_finished():
+func _on_explosion_fire_ball_finished()->void:
 	var player = AudioManager.play_sound3D(load("res://assets/sfx/EchoesAudioPack/explosion_1.mp3"), true, 0.8, 1.2)
 	player.global_position = die_fire_ball.global_position

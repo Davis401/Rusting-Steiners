@@ -16,7 +16,10 @@ extends Control
 @onready var speed_label = %SpeedLabel
 @onready var targets_destroyed = %TargetsDestroyed
 @onready var targets_total = %TargetsTotal
-@onready var contract_fufilled = %ContractFufilled
+@onready var contract_fufilled:Label = %ContractFufilled
+@onready var left_shoulder_lock_on_label:Label = %LeftShoulderLockOnLabel
+@onready var right_shoulder_lock_on_label:Label = %RightShoulderLockOnLabel
+
 
 
 func _ready() ->void:
@@ -65,11 +68,47 @@ func on_energy_depleted(_1,_2) ->void:
 	animation_player.play("energy_out")
 	
 
-func update_targets_defeated(str:String):
+func update_targets_defeated(str:String)->void:
 	targets_destroyed.text = str
 	
-func update_targets_max(str:String):
+
+func update_targets_max(str:String)->void:
 	targets_total.text = str
 	
-func update_contract_fufilled():
+
+func update_contract_fufilled()->void:
 	contract_fufilled.show()
+	
+
+func set_left_shoulder_lock_on_label(str:String)->void:
+	left_shoulder_lock_on_label.text = str
+	
+
+func set_right_shoulder_lock_on_label(str:String)->void:
+	right_shoulder_lock_on_label.text = str
+	
+
+func show_locking_on_right()->void:
+	set_right_shoulder_lock_on_label("LOCKING ON")
+	
+
+func show_max_lock_right()->void:
+	set_right_shoulder_lock_on_label("MAX LOCK")
+	
+
+func reset_lockon_label_right()->void:
+	set_right_shoulder_lock_on_label("")
+	
+
+func show_locking_on_left()->void:
+	set_left_shoulder_lock_on_label("LOCKING ON")
+	
+
+func show_max_lock_left()->void:
+	set_left_shoulder_lock_on_label("MAX LOCK")
+	
+
+func reset_lockon_label_left()->void:
+	set_left_shoulder_lock_on_label("")
+
+

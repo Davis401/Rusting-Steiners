@@ -1,6 +1,10 @@
 class_name MissleLauncher
 extends WeaponController
 
+signal locking_on_target
+signal max_lock_ons
+signal release
+
 const MAX_TARGETS_NOISE = preload("res://assets/sfx/EchoesAudioPack/analog_computer_beep_1.mp3")
 const TARGET_LOCK_NOISE = preload("res://assets/sfx/EchoesAudioPack/analog_computer_beep_2.mp3")
 const OUT_OF_AMMO_NOISE = preload("res://assets/sfx/EchoesAudioPack/analog_computer_beep_3.mp3")
@@ -49,11 +53,13 @@ func on_hold()->void:
 	
 	if lock_on_target != null:
 		locking_on = true
+		locking_on_target.emit()
 		lock_on_timer.start(lock_on_time)
 	
 
 #Called when released
 func on_release()->void:
+	release.emit()
 	if firing:
 		return
 	if !lock_on_timer.paused:
@@ -85,5 +91,6 @@ func _on_lock_on_timer_timeout()->void:
 			audio_stream_player.stream = TARGET_LOCK_NOISE
 			audio_stream_player.play()
 		else:
+			max_lock_ons.emit()
 			audio_stream_player.stream = MAX_TARGETS_NOISE
 			audio_stream_player.play()
