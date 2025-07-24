@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://4nptlc4a00nr"]
 
 [ext_resource type="Theme" uid="uid://f4uaqilnvl40" path="res://UI/pause_button.tres" id="1_lr7wi"]
-[ext_resource type="Script" path="res://UI/build_menu.gd" id="2_vflq2"]
+[ext_resource type="Script" uid="uid://2w5n5ppj28u0" path="res://UI/build_menu.gd" id="2_vflq2"]
 
 [node name="BuildMenu" type="MarginContainer"]
 anchors_preset = 15

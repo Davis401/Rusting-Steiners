@@ -77,4 +77,3 @@ func emit_level_complete()->void:
 		SaveManager.save()
 		current_level = null
 	level_complete.emit()
-

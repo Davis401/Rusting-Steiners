@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://o3w6firf8oyf"]
 
 [ext_resource type="PackedScene" uid="uid://c08n456hikpba" path="res://components/health_component.tscn" id="1_1m1eg"]
-[ext_resource type="Script" path="res://entities/destuctable.gd" id="1_wajvi"]
+[ext_resource type="Script" uid="uid://bxcasr43pdqgm" path="res://entities/destuctable.gd" id="1_wajvi"]
 [ext_resource type="PackedScene" uid="uid://byggg6e37f5u2" path="res://particles/explosion_fire_ball.tscn" id="2_ronn6"]
 
 [node name="Destuctable" type="StaticBody3D"]

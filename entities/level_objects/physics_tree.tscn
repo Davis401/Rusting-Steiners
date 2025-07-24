@@ -1,20 +1,20 @@
 [gd_scene load_steps=6 format=3 uid="uid://b06u52n1xo733"]
 
 [ext_resource type="ArrayMesh" uid="uid://cn2v2f7nk2ti" path="res://assets/models/Trees/fir_log.res" id="1_yic1l"]
-[ext_resource type="Shader" path="res://assets/shaders/psx.gdshader" id="2_xhcx8"]
+[ext_resource type="Shader" uid="uid://bwux3j1yguk62" path="res://assets/shaders/psx.gdshader" id="2_xhcx8"]
 [ext_resource type="Texture2D" uid="uid://chmbuglaum8fm" path="res://assets/models/Trees/textures/TreeBark2.png" id="3_o5a33"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ui7lu"]
 render_priority = 0
 shader = ExtResource("2_xhcx8")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_o5a33")
 shader_parameter/albedo_texture_as_primary_color = true
 shader_parameter/mix_factor = 1.0
 shader_parameter/uv_offset = Vector2(0, 0)
 shader_parameter/uv_scale = Vector2(1, 1)
 shader_parameter/uv_scroll_speed = Vector2(0, 0)
 shader_parameter/cull_distance_override = 0.0
-shader_parameter/albedo_texture = ExtResource("3_o5a33")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8m4i7"]
 points = PackedVector3Array(-0.379932, -0.37409, -0.404899, 0.364314, 0.494877, 0.298502, 0.364314, 0.494877, 0.215711, -1.45599, 0.0810631, 0.0087331, 1.19229, -0.249903, 0.133001, 1.02664, -0.0015296, -0.48769, -1.04174, -0.0429535, 0.298502, 1.10908, -0.249903, -0.48769, -1.33156, -0.16714, 0.0916052, 1.19229, 0.0398093, 0.133001, 0.488484, 0.0810631, 0.339898, -1.33156, 0.0810631, -0.073896, -0.379932, -0.37409, -0.48769, -1.24887, 0.122402, 0.257107, -0.338455, -0.125801, -0.404899, 0.819778, 0.0810631, -0.404899, 1.19229, 0.0398093, -0.11513, -1.33156, -0.16714, -0.073896, 0.943949, -0.291327, -0.11513, 0.281879, 0.494877, 0.215711, -1.16617, 0.0810631, 0.298502, 0.0817342, -0.242418, 0.0685911, 1.19229, -0.0429535, 0.174315, -1.33156, -0.0015296, -0.11513, 0.943949, 0.0810631, -0.404899, 1.02664, -0.208479, 0.174315, 1.19229, -0.249903, -0.11513, 0.281879, 0.494877, 0.298502, -1.41451, -0.0015296, 0.133001, 0.902472, -0.0015296, -0.48769, 0.488484, 0.122402, 0.339898, -0.297238, -0.37409, -0.48769)

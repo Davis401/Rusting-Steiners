@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://hmdtp3du4m8k"]
 
-[ext_resource type="Script" path="res://components/vision_component.gd" id="1_ifxxq"]
+[ext_resource type="Script" uid="uid://b87xac0uyvgxu" path="res://components/vision_component.gd" id="1_ifxxq"]
 
 [node name="VisionComponent" type="Node3D"]
 script = ExtResource("1_ifxxq")

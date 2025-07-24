@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c3hgr0dwenuv3"]
 
-[ext_resource type="Script" path="res://weapons/controllers/railgun_controller.gd" id="1_e07a7"]
-[ext_resource type="Script" path="res://weapons/emitters/attack_emitter.gd" id="2_pyhdf"]
+[ext_resource type="Script" uid="uid://ia8wattv8pl5" path="res://weapons/controllers/railgun_controller.gd" id="1_e07a7"]
+[ext_resource type="Script" uid="uid://cyv4lfd7jwulg" path="res://weapons/emitters/attack_emitter.gd" id="2_pyhdf"]
 [ext_resource type="PackedScene" uid="uid://chl5r0kyfbyaj" path="res://weapons/emitters/hitscan_attack_emitter.tscn" id="3_mgs88"]
 
 [node name="RailgunController" type="Node3D"]

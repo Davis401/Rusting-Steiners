@@ -110,5 +110,3 @@ func show_max_lock_left()->void:
 
 func reset_lockon_label_left()->void:
 	set_left_shoulder_lock_on_label("")
-
-

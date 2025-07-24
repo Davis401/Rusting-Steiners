@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c1gsmb2dbgy0w"]
 
-[ext_resource type="Script" path="res://entities/level_objects/tutorial_tip.gd" id="1_3xxly"]
+[ext_resource type="Script" uid="uid://bkq5f00ak6jb6" path="res://entities/level_objects/tutorial_tip.gd" id="1_3xxly"]
 [ext_resource type="FontFile" uid="uid://qbx01chfj1qi" path="res://assets/fonts/TROGLO__.ttf" id="2_vaid6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c245n"]

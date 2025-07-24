@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://ccuosqjnwdwth"]
 
-[ext_resource type="Script" path="res://particles/hitspark.gd" id="1_22s40"]
+[ext_resource type="Script" uid="uid://cyl87u5o2qx1f" path="res://particles/hitspark.gd" id="1_22s40"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8snhi"]
 transparency = 1

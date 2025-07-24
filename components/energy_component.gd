@@ -39,7 +39,7 @@ func _process(delta) ->void:
 		if current_energy >= max_energy:
 			is_regenerating = false
 	
-	if player.is_boosting and player.velocity.length() > 0.1 || player.is_jump_jetting:
+	if (player.is_boosting and player.velocity.length() > 0.1) || player.is_jump_jetting:
 		regen_timer.stop()
 		is_regenerating = false
 		subtract(boost_drain_speed * delta)

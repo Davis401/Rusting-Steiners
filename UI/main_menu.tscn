@@ -1,15 +1,15 @@
 [gd_scene load_steps=13 format=3 uid="uid://dmqihira2abkg"]
 
-[ext_resource type="Script" path="res://UI/main_menu.gd" id="1_2qkdf"]
+[ext_resource type="Script" uid="uid://be1rl3l30q4wi" path="res://UI/main_menu.gd" id="1_2qkdf"]
 [ext_resource type="Theme" uid="uid://f4uaqilnvl40" path="res://UI/pause_button.tres" id="1_rha82"]
-[ext_resource type="Shader" path="res://assets/shaders/dots.gdshader" id="3_jwyhm"]
+[ext_resource type="Shader" uid="uid://cmby2jrn5buu1" path="res://assets/shaders/dots.gdshader" id="3_jwyhm"]
 [ext_resource type="AudioStream" uid="uid://df4iv0bfw2244" path="res://assets/sfx/ui/click_002.ogg" id="3_kj8q6"]
 [ext_resource type="PackedScene" uid="uid://cuqp5236hm4c2" path="res://UI/settings_menu.tscn" id="3_l2xha"]
 [ext_resource type="PackedScene" uid="uid://dogkwlr7gdyv6" path="res://UI/store_menu.tscn" id="3_x2x3x"]
 [ext_resource type="AudioStream" uid="uid://du1jnsoyxgdfi" path="res://assets/sfx/ui/select_007.ogg" id="4_tiol6"]
 [ext_resource type="PackedScene" uid="uid://4nptlc4a00nr" path="res://UI/build_menu.tscn" id="4_tmt4e"]
 [ext_resource type="FontFile" uid="uid://dpm4dokao617s" path="res://assets/fonts/FerriteCoreDX-Light.ttf" id="9_e5lia"]
-[ext_resource type="Script" path="res://UI/Congrats.gd" id="10_ulbha"]
+[ext_resource type="Script" uid="uid://ofel1ebxsxd2" path="res://UI/Congrats.gd" id="10_ulbha"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1yekq"]
 shader = ExtResource("3_jwyhm")
@@ -18,7 +18,7 @@ shader_parameter/dot_size = 0.2
 shader_parameter/background_color = Color(0.1176, 0.1176, 0.1176, 1)
 shader_parameter/dot_color = Color(0.168627, 0.168627, 0.168627, 1)
 shader_parameter/resolution = Vector2(1920, 1080)
-shader_parameter/offset = null
+shader_parameter/offset = Vector2(0, 0)
 shader_parameter/anti_aliasing_factor = 0.01
 shader_parameter/stochastic_samples = 16
 

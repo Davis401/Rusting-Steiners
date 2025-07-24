@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="MechaArm" load_steps=3 format=3 uid="uid://vbsvkx0fjtom"]
 
 [ext_resource type="PackedScene" uid="uid://cfe66txe6booh" path="res://weapons/controllers/rocket_launcher_controller.tscn" id="1_7srfg"]
-[ext_resource type="Script" path="res://resources/mech_parts/mecha_arm.gd" id="2_58ou3"]
+[ext_resource type="Script" uid="uid://dfvl1nyymwby7" path="res://resources/mech_parts/mecha_arm.gd" id="2_58ou3"]
 
 [resource]
 script = ExtResource("2_58ou3")

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="MechaChest" load_steps=2 format=3 uid="uid://cx82xnrvhq870"]
 
-[ext_resource type="Script" path="res://resources/mech_parts/mecha_chest.gd" id="1_ysjbo"]
+[ext_resource type="Script" uid="uid://bi3cn7edltdls" path="res://resources/mech_parts/mecha_chest.gd" id="1_ysjbo"]
 
 [resource]
 script = ExtResource("1_ysjbo")

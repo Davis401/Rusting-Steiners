@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="MechaArm" load_steps=3 format=3 uid="uid://5l02mj26gn4r"]
 
-[ext_resource type="Script" path="res://resources/mech_parts/mecha_arm.gd" id="1_0dohb"]
+[ext_resource type="Script" uid="uid://dfvl1nyymwby7" path="res://resources/mech_parts/mecha_arm.gd" id="1_0dohb"]
 [ext_resource type="PackedScene" uid="uid://bntqdsjv54dhe" path="res://weapons/controllers/grenade_launcher_controller.tscn" id="1_t73xy"]
 
 [resource]

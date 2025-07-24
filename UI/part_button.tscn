@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dnx4w8obpamxl"]
 
 [ext_resource type="Theme" uid="uid://dgtifvgd4dmm0" path="res://UI/part_button.tres" id="1_cwuvl"]
-[ext_resource type="Script" path="res://UI/part_button.gd" id="2_3j4cs"]
+[ext_resource type="Script" uid="uid://bouhcmw13nnq" path="res://UI/part_button.gd" id="2_3j4cs"]
 [ext_resource type="FontFile" uid="uid://dgm2v7yghigh" path="res://assets/fonts/FerriteCoreDX-Regular.ttf" id="2_yg8wo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f50xa"]

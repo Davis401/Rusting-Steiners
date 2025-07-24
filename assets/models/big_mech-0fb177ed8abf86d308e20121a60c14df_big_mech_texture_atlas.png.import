@@ -2,13 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7iomhtrxvihr"
+uid="uid://dry5jrt4ppql1"
 path.s3tc="res://.godot/imported/big_mech-0fb177ed8abf86d308e20121a60c14df_big_mech_texture_atlas.png-7f49a9f21ec4c22063be82ad93f15b65.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 

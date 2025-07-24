@@ -142,4 +142,3 @@ func do_attack()->void:
 	sfx.global_position = global_position
 	attack_emitter.attack()
 	
-

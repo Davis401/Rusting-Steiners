@@ -266,8 +266,8 @@ func equip_legs(legs_part:MechaLegs, btn:Button)->void:
 func _on_quit_button_pressed()->void:
 	if working_build.total_weight <= working_build.legs.weight_capacity:
 		Global.current_build = working_build
-	close.emit()
-	hide()
+		close.emit()
+		hide()
 
 
 func update_stats_labels() ->void:

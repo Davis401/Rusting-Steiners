@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bbulksqjfy61e"]
 
-[ext_resource type="Script" path="res://weapons/controllers/machine_gun_controller.gd" id="1_gcoa7"]
+[ext_resource type="Script" uid="uid://srnax2jf5uoc" path="res://weapons/controllers/machine_gun_controller.gd" id="1_gcoa7"]
 [ext_resource type="PackedScene" uid="uid://dn3ibgxlrn2d7" path="res://weapons/emitters/attack_emitter.tscn" id="2_d0bcx"]
 [ext_resource type="PackedScene" uid="uid://chl5r0kyfbyaj" path="res://weapons/emitters/hitscan_attack_emitter.tscn" id="3_e8re5"]
 [ext_resource type="PackedScene" uid="uid://dpqmcfp3vlojh" path="res://weapons/emitters/spray_emiiter.tscn" id="3_ok4oe"]

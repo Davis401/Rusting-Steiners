@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cfe66txe6booh"]
 
-[ext_resource type="Script" path="res://weapons/controllers/grenade_launcher_controller.gd" id="1_f2007"]
+[ext_resource type="Script" uid="uid://b6ws6poo80ur0" path="res://weapons/controllers/grenade_launcher_controller.gd" id="1_f2007"]
 [ext_resource type="PackedScene" uid="uid://dn3ibgxlrn2d7" path="res://weapons/emitters/attack_emitter.tscn" id="2_pvo3f"]
 [ext_resource type="PackedScene" uid="uid://5dsokgcjwj2d" path="res://weapons/emitters/projectile_emitter.tscn" id="3_svwd6"]
 [ext_resource type="AudioStream" uid="uid://lhfmh8px5h0n" path="res://assets/sfx/Ovani/Missile Launch A.wav" id="4_tm0i1"]

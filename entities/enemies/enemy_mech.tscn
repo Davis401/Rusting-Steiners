@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://cyclv70ecyeu4" path="res://entities/enemies/enemy.tscn" id="1_fjlok"]
 [ext_resource type="ArrayMesh" uid="uid://dn3uy61w75ot" path="res://assets/models/big_mech.res" id="2_krpeb"]
-[ext_resource type="Script" path="res://entities/enemies/enemy_mech.gd" id="2_ku8d5"]
-[ext_resource type="Script" path="res://weapons/emitters/attack_emitter.gd" id="4_x6jnj"]
+[ext_resource type="Script" uid="uid://bkaaw28judqbj" path="res://entities/enemies/enemy_mech.gd" id="2_ku8d5"]
+[ext_resource type="Script" uid="uid://cyv4lfd7jwulg" path="res://weapons/emitters/attack_emitter.gd" id="4_x6jnj"]
 [ext_resource type="PackedScene" uid="uid://byggg6e37f5u2" path="res://particles/explosion_fire_ball.tscn" id="5_pp8hb"]
 [ext_resource type="PackedScene" uid="uid://5dsokgcjwj2d" path="res://weapons/emitters/projectile_emitter.tscn" id="5_yc7n0"]
-[ext_resource type="Shader" path="res://assets/shaders/psx.gdshader" id="6_tnpox"]
-[ext_resource type="Texture2D" uid="uid://c7iomhtrxvihr" path="res://assets/models/big_mech-0fb177ed8abf86d308e20121a60c14df_big_mech_texture_atlas.png" id="7_uqni0"]
+[ext_resource type="Shader" uid="uid://bwux3j1yguk62" path="res://assets/shaders/psx.gdshader" id="6_tnpox"]
+[ext_resource type="Texture2D" uid="uid://dry5jrt4ppql1" path="res://assets/models/big_mech-0fb177ed8abf86d308e20121a60c14df_big_mech_texture_atlas.png" id="7_uqni0"]
 
 [sub_resource type="Animation" id="Animation_gj4eq"]
 length = 0.001
@@ -162,10 +162,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_16sa0"]
 _data = {
-"RESET": SubResource("Animation_gj4eq"),
-"attack": SubResource("Animation_olgy5"),
-"die": SubResource("Animation_vyteo"),
-"walk": SubResource("Animation_ybax2")
+&"RESET": SubResource("Animation_gj4eq"),
+&"attack": SubResource("Animation_olgy5"),
+&"die": SubResource("Animation_vyteo"),
+&"walk": SubResource("Animation_ybax2")
 }
 
 [sub_resource type="Animation" id="Animation_lmb2l"]
@@ -225,8 +225,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7t2hx"]
 _data = {
-"RESET": SubResource("Animation_lmb2l"),
-"hitflash": SubResource("Animation_xlb8h")
+&"RESET": SubResource("Animation_lmb2l"),
+&"hitflash": SubResource("Animation_xlb8h")
 }
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_8crfg"]
@@ -237,13 +237,13 @@ resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("6_tnpox")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("7_uqni0")
 shader_parameter/albedo_texture_as_primary_color = true
 shader_parameter/mix_factor = 1.0
 shader_parameter/uv_offset = Vector2(0, 0)
 shader_parameter/uv_scale = Vector2(1, 1)
 shader_parameter/uv_scroll_speed = Vector2(0, 0)
 shader_parameter/cull_distance_override = 0.0
-shader_parameter/albedo_texture = ExtResource("7_uqni0")
 
 [node name="EnemyMech" instance=ExtResource("1_fjlok")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2, 0)

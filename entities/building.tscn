@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cie0qj7fbya4q"]
 
 [ext_resource type="Texture2D" uid="uid://bm0qh4a06ar6s" path="res://assets/textures/Windows_256.png" id="1_c26uv"]
-[ext_resource type="Script" path="res://entities/building.gd" id="2_32prx"]
+[ext_resource type="Script" uid="uid://c0e12om81p3rw" path="res://entities/building.gd" id="2_32prx"]
 [ext_resource type="PackedScene" uid="uid://c08n456hikpba" path="res://components/health_component.tscn" id="3_t1wyk"]
 [ext_resource type="PackedScene" uid="uid://byggg6e37f5u2" path="res://particles/explosion_fire_ball.tscn" id="4_x5pj4"]
 

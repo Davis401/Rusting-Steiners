@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bntqdsjv54dhe"]
 
-[ext_resource type="Script" path="res://weapons/controllers/grenade_launcher_controller.gd" id="1_rhgqj"]
+[ext_resource type="Script" uid="uid://b6ws6poo80ur0" path="res://weapons/controllers/grenade_launcher_controller.gd" id="1_rhgqj"]
 [ext_resource type="PackedScene" uid="uid://dn3ibgxlrn2d7" path="res://weapons/emitters/attack_emitter.tscn" id="2_eoyhd"]
 [ext_resource type="PackedScene" uid="uid://5dsokgcjwj2d" path="res://weapons/emitters/projectile_emitter.tscn" id="3_00p11"]
 [ext_resource type="AudioStream" uid="uid://bfpfj80tb3kwl" path="res://assets/sfx/Bluezone_BC0271_tank_artillery_cannon_shot_004.wav" id="4_i3wf4"]

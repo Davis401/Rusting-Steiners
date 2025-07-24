@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://c4o0ajmnokr7c"]
 
-[ext_resource type="Script" path="res://weapons/projectiles/missile.gd" id="1_2l0kb"]
+[ext_resource type="Script" uid="uid://71asxoh0ql2r" path="res://weapons/projectiles/missile.gd" id="1_2l0kb"]
 [ext_resource type="PackedScene" uid="uid://chwf2tp4m80n0" path="res://weapons/emitters/area_damage_emitter.tscn" id="2_o1dpk"]
 [ext_resource type="AudioStream" uid="uid://ce05kjcdkypra" path="res://assets/sfx/Ovani/Missile Trail Loop 003.wav" id="3_0p6h4"]
 [ext_resource type="Texture2D" uid="uid://invx7wy20aw7" path="res://assets/particle_sprites/smoke_07.png" id="4_r67r8"]

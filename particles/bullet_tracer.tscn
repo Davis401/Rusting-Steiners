@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cryuqx5awh84g"]
 
 [ext_resource type="Texture2D" uid="uid://dp3hqdv6fm6fy" path="res://assets/particle_sprites/trace_01.png" id="1_kfxjk"]
-[ext_resource type="Script" path="res://particles/bullet_tracer.gd" id="1_u0pmu"]
+[ext_resource type="Script" uid="uid://d28mgrq5jo4hu" path="res://particles/bullet_tracer.gd" id="1_u0pmu"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_7qyke"]
 

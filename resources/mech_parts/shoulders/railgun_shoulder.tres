@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="MechaShoulder" load_steps=3 format=3 uid="uid://bhi84ouhofkp4"]
 
-[ext_resource type="Script" path="res://resources/mech_parts/mecha_shoulder.gd" id="1_gna7f"]
+[ext_resource type="Script" uid="uid://mmxl64yil1s1" path="res://resources/mech_parts/mecha_shoulder.gd" id="1_gna7f"]
 [ext_resource type="PackedScene" uid="uid://c3hgr0dwenuv3" path="res://weapons/controllers/railgun_controller.tscn" id="2_pfk5d"]
 
 [resource]

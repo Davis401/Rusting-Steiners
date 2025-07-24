@@ -223,16 +223,11 @@ func _physics_process(delta) ->void:
 		velocity.y = jump_power
 		wish_jump = false
 	if is_jump_jetting:
-		if !is_on_floor() and energy_component and energy_component.current_energy > 0:
+		if !is_on_floor() and energy_component and energy_component.current_energy > 0 and Input.is_action_pressed("jump"):
 			velocity.y = jump_power
 		else:
 			is_jump_jetting = false
 		
-	
-	if is_on_floor():
-		gravity_vec = Vector3.ZERO
-	else:
-		gravity_vec = Vector3.DOWN * gravity * delta
 		
 	#current_speed = clamp(current_speed, 3.0, 12.0)
 	
@@ -243,9 +238,10 @@ func _physics_process(delta) ->void:
 		velocity.x = move_toward(velocity.x, 0, current_speed)
 		velocity.z = move_toward(velocity.z, 0, current_speed)
 	
-	last_velocity = velocity
-	
+	gravity_vec = Vector3.DOWN * gravity * delta
 	velocity += gravity_vec
+	
+	last_velocity = velocity
 	move_and_slide()
 	
 	if is_on_floor() and !is_boosting and velocity.length() >= 0.2:

@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://cyclv70ecyeu4" path="res://entities/enemies/enemy.tscn" id="1_5ok7u"]
 [ext_resource type="ArrayMesh" uid="uid://b5tbs565fnneq" path="res://assets/models/walker.res" id="2_67htn"]
-[ext_resource type="Script" path="res://entities/enemies/walker_enemy.gd" id="2_j6kob"]
+[ext_resource type="Script" uid="uid://c3vjltot5ityg" path="res://entities/enemies/walker_enemy.gd" id="2_j6kob"]
 [ext_resource type="PackedScene" uid="uid://dn3ibgxlrn2d7" path="res://weapons/emitters/attack_emitter.tscn" id="4_4i0wy"]
 [ext_resource type="PackedScene" uid="uid://cgybn240lo2v2" path="res://particles/smoke_particles.tscn" id="4_eq0jq"]
 [ext_resource type="Texture2D" uid="uid://cj74bh1mhjmn8" path="res://assets/models/mech_enemies_walker_texture_atlas.png" id="4_u0lbs"]
-[ext_resource type="Shader" path="res://assets/shaders/psx.gdshader" id="4_uhe32"]
+[ext_resource type="Shader" uid="uid://bwux3j1yguk62" path="res://assets/shaders/psx.gdshader" id="4_uhe32"]
 [ext_resource type="PackedScene" uid="uid://5dsokgcjwj2d" path="res://weapons/emitters/projectile_emitter.tscn" id="5_4kwoc"]
 [ext_resource type="PackedScene" uid="uid://byggg6e37f5u2" path="res://particles/explosion_fire_ball.tscn" id="8_me70i"]
 
@@ -67,8 +67,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_atmyp"]
 _data = {
-"RESET": SubResource("Animation_0nn51"),
-"hitflash": SubResource("Animation_wlht2")
+&"RESET": SubResource("Animation_0nn51"),
+&"hitflash": SubResource("Animation_wlht2")
 }
 
 [sub_resource type="Animation" id="Animation_tso4k"]
@@ -265,11 +265,11 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2shr4"]
 _data = {
-"RESET": SubResource("Animation_tso4k"),
-"attack": SubResource("Animation_v5v6n"),
-"die": SubResource("Animation_5elyi"),
-"idle": SubResource("Animation_req50"),
-"walk": SubResource("Animation_0efxk")
+&"RESET": SubResource("Animation_tso4k"),
+&"attack": SubResource("Animation_v5v6n"),
+&"die": SubResource("Animation_5elyi"),
+&"idle": SubResource("Animation_req50"),
+&"walk": SubResource("Animation_0efxk")
 }
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_tqyha"]
@@ -280,13 +280,13 @@ resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_uhe32")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("4_u0lbs")
 shader_parameter/albedo_texture_as_primary_color = true
 shader_parameter/mix_factor = 1.0
 shader_parameter/uv_offset = Vector2(0, 0)
 shader_parameter/uv_scale = Vector2(1, 1)
 shader_parameter/uv_scroll_speed = Vector2(0, 0)
 shader_parameter/cull_distance_override = 0.0
-shader_parameter/albedo_texture = ExtResource("4_u0lbs")
 
 [node name="WalkerEnemy" instance=ExtResource("1_5ok7u")]
 script = ExtResource("2_j6kob")

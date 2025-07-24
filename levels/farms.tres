@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="LevelData" load_steps=3 format=3 uid="uid://b8unlktmq5rb"]
 
-[ext_resource type="Script" path="res://resources/level_data.gd" id="1_hqip2"]
+[ext_resource type="Script" uid="uid://ckj46jmb6gw3a" path="res://resources/level_data.gd" id="1_hqip2"]
 [ext_resource type="PackedScene" uid="uid://4h3rkge8tyy7" path="res://levels/farm_level.tscn" id="1_ic5nv"]
 
 [resource]
@@ -9,4 +9,4 @@ index = 1
 display_name = "Farmers Only"
 level_scene = ExtResource("1_ic5nv")
 reward = 1000
-mission_description = "Some farmers out in the sticks thought they'd get the better of Industritech and disbale the DRM on their tractors, triggering the failsafes that auto generated bounties on the carbonmarket for each one. Head out and collect as many as you can, the contracts they signed also permit the farmers own voidance "
+mission_description = "Some farmers out in the sticks thought they'd get the better of Industritech and disbale the DRM on their Tractors, triggering the failsafes that auto generated bounties on the carbonmarket for each one. Head out and collect as many as you can by destorying the Tractors, the contracts they signed also permit the farmers own voidance "

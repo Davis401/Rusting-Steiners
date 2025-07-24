@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="MechaArm" load_steps=3 format=3 uid="uid://cpg28wwrhivqi"]
 
 [ext_resource type="PackedScene" uid="uid://ubwmerrww8n2" path="res://weapons/controllers/shotgun_arm_controller.tscn" id="1_gj43v"]
-[ext_resource type="Script" path="res://resources/mech_parts/mecha_arm.gd" id="2_tidcl"]
+[ext_resource type="Script" uid="uid://dfvl1nyymwby7" path="res://resources/mech_parts/mecha_arm.gd" id="2_tidcl"]
 
 [resource]
 script = ExtResource("2_tidcl")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b2pdyqn1g8alf"]
 
-[ext_resource type="Script" path="res://weapons/controllers/missle_launcher_controller.gd" id="1_j4t82"]
+[ext_resource type="Script" uid="uid://unjxi3jm1qd3" path="res://weapons/controllers/missle_launcher_controller.gd" id="1_j4t82"]
 [ext_resource type="PackedScene" uid="uid://dn3ibgxlrn2d7" path="res://weapons/emitters/attack_emitter.tscn" id="2_m6a2r"]
 [ext_resource type="PackedScene" uid="uid://5dsokgcjwj2d" path="res://weapons/emitters/projectile_emitter.tscn" id="3_ju68m"]
 

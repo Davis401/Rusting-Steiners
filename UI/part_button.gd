@@ -27,5 +27,3 @@ extends Button
 			remove_theme_stylebox_override("hover")
 			remove_theme_stylebox_override("pressed")
 			remove_theme_stylebox_override("focus")
-
-

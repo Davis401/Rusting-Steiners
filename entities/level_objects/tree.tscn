@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://b7ceiwp5klwfx"]
 
-[ext_resource type="Script" path="res://entities/level_objects/tree.gd" id="1_1bch0"]
+[ext_resource type="Script" uid="uid://bjuoi4csket51" path="res://entities/level_objects/tree.gd" id="1_1bch0"]
 [ext_resource type="PackedScene" uid="uid://c08n456hikpba" path="res://components/health_component.tscn" id="1_p7xao"]
 [ext_resource type="ArrayMesh" uid="uid://cl36w6qca5io1" path="res://assets/models/Trees/fir.res" id="2_0p40l"]
-[ext_resource type="Shader" path="res://assets/shaders/psx.gdshader" id="3_wct64"]
+[ext_resource type="Shader" uid="uid://bwux3j1yguk62" path="res://assets/shaders/psx.gdshader" id="3_wct64"]
 [ext_resource type="Texture2D" uid="uid://chmbuglaum8fm" path="res://assets/models/Trees/textures/TreeBark2.png" id="4_l4kq8"]
 [ext_resource type="Texture2D" uid="uid://cbqtmiy2gql76" path="res://assets/models/Trees/textures/Leaves_4.png" id="5_4tt4r"]
 
@@ -11,13 +11,13 @@
 render_priority = 0
 shader = ExtResource("3_wct64")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("4_l4kq8")
 shader_parameter/albedo_texture_as_primary_color = true
 shader_parameter/mix_factor = 1.0
 shader_parameter/uv_offset = Vector2(0, 0)
 shader_parameter/uv_scale = Vector2(1, 1)
 shader_parameter/uv_scroll_speed = Vector2(0, 0)
 shader_parameter/cull_distance_override = 0.0
-shader_parameter/albedo_texture = ExtResource("4_l4kq8")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lxc6u"]
 transparency = 1

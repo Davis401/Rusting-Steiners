@@ -1,12 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://dy558xptangkv"]
+[gd_scene load_steps=13 format=3 uid="uid://dy558xptangkv"]
 
 [ext_resource type="FontFile" uid="uid://dpm4dokao617s" path="res://assets/fonts/FerriteCoreDX-Light.ttf" id="1_8nvp5"]
-[ext_resource type="Script" path="res://UI/level_select.gd" id="1_r6t8u"]
+[ext_resource type="Script" uid="uid://bdgihwqa60nom" path="res://UI/level_select.gd" id="1_r6t8u"]
+[ext_resource type="Script" uid="uid://ckj46jmb6gw3a" path="res://resources/level_data.gd" id="3_qldn0"]
 [ext_resource type="Resource" uid="uid://b83qndivqqn27" path="res://levels/desert_level.tres" id="4_1cu2h"]
 [ext_resource type="Resource" uid="uid://dhu0ja1kb8h6" path="res://levels/training.tres" id="4_jp4vj"]
 [ext_resource type="FontFile" uid="uid://dgm2v7yghigh" path="res://assets/fonts/FerriteCoreDX-Regular.ttf" id="4_wbrdq"]
 [ext_resource type="Resource" uid="uid://q6wmm4kd71b" path="res://levels/snow_level.tres" id="5_pbn13"]
-[ext_resource type="Shader" path="res://assets/shaders/dots.gdshader" id="6_b8wlq"]
+[ext_resource type="Shader" uid="uid://cmby2jrn5buu1" path="res://assets/shaders/dots.gdshader" id="6_b8wlq"]
 [ext_resource type="Resource" uid="uid://b8unlktmq5rb" path="res://levels/farms.tres" id="6_xeblb"]
 [ext_resource type="Resource" uid="uid://oxh5sde7k0dq" path="res://levels/city.tres" id="7_x1m5k"]
 
@@ -24,7 +25,7 @@ shader_parameter/dot_size = 0.2
 shader_parameter/background_color = Color(0.1176, 0.1176, 0.1176, 1)
 shader_parameter/dot_color = Color(0.168627, 0.168627, 0.168627, 1)
 shader_parameter/resolution = Vector2(1920, 1080)
-shader_parameter/offset = null
+shader_parameter/offset = Vector2(0, 0)
 shader_parameter/anti_aliasing_factor = 0.01
 shader_parameter/stochastic_samples = 16
 
@@ -37,7 +38,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_tb3cy")
 script = ExtResource("1_r6t8u")
-levels = Array[Resource("res://resources/level_data.gd")]([ExtResource("4_jp4vj"), ExtResource("6_xeblb"), ExtResource("4_1cu2h"), ExtResource("5_pbn13"), ExtResource("7_x1m5k")])
+levels = Array[ExtResource("3_qldn0")]([ExtResource("4_jp4vj"), ExtResource("6_xeblb"), ExtResource("4_1cu2h"), ExtResource("5_pbn13"), ExtResource("7_x1m5k")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_rpmge")

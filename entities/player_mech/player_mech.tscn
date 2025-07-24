@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://v2b55h11rppm"]
 
-[ext_resource type="Script" path="res://entities/player_mech/player_mech.gd" id="1_8j82k"]
+[ext_resource type="Script" uid="uid://b8mvx8q5igwbj" path="res://entities/player_mech/player_mech.gd" id="1_8j82k"]
 [ext_resource type="PackedScene" uid="uid://snw1ev62d7aw" path="res://components/energy_component.tscn" id="2_g845v"]
 [ext_resource type="PackedScene" uid="uid://c08n456hikpba" path="res://components/health_component.tscn" id="2_pdrve"]
 [ext_resource type="FontFile" uid="uid://dgm2v7yghigh" path="res://assets/fonts/FerriteCoreDX-Regular.ttf" id="3_7cmxb"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ch0m8i08wkpak" path="res://UI/pause_menu.tscn" id="9_q3prr"]
 [ext_resource type="PackedScene" uid="uid://byggg6e37f5u2" path="res://particles/explosion_fire_ball.tscn" id="10_tqbr0"]
 [ext_resource type="AudioStream" uid="uid://m7h6cvymxvwc" path="res://assets/sfx/Ovani/MechanicaLoop.ogg" id="10_y8sd2"]
-[ext_resource type="Script" path="res://entities/player_mech/UI.gd" id="11_cmofo"]
+[ext_resource type="Script" uid="uid://3fpu5oyhyfcm" path="res://entities/player_mech/UI.gd" id="11_cmofo"]
 [ext_resource type="Texture2D" uid="uid://derq7j577m4jq" path="res://assets/reticles/crosshair007.png" id="11_kp0kp"]
 [ext_resource type="AudioStream" uid="uid://dn1tptaapfmg8" path="res://assets/sfx/Ovani/MechStep1.mp3" id="16_roaqu"]
 [ext_resource type="AudioStream" uid="uid://cj6hvdniaij6x" path="res://assets/sfx/JetLoop.ogg" id="17_0b104"]
@@ -56,8 +56,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7dyx1"]
 _data = {
-"RESET": SubResource("Animation_l5egq"),
-"energy_out": SubResource("Animation_s8pc2")
+&"RESET": SubResource("Animation_l5egq"),
+&"energy_out": SubResource("Animation_s8pc2")
 }
 
 [sub_resource type="Animation" id="Animation_smkgf"]
@@ -107,15 +107,14 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0xdsu"]
 _data = {
-"RESET": SubResource("Animation_smkgf"),
-"mission_fail": SubResource("Animation_adt85")
+&"RESET": SubResource("Animation_smkgf"),
+&"mission_fail": SubResource("Animation_adt85")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bxa8a"]
 size = Vector3(0.7, 1.6, 0.7)
 
 [node name="PlayerMech" type="CharacterBody3D" groups=["player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 collision_layer = 7
 collision_mask = 7
 script = ExtResource("1_8j82k")
@@ -336,7 +335,7 @@ horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/Crosshair/Control"]
 libraries = {
-"": SubResource("AnimationLibrary_7dyx1")
+&"": SubResource("AnimationLibrary_7dyx1")
 }
 
 [node name="SpeedUI" type="MarginContainer" parent="CanvasLayer/UI"]
@@ -467,7 +466,7 @@ horizontal_alignment = 1
 [node name="LoseAnimation" type="AnimationPlayer" parent="CanvasLayer/MissionFail"]
 root_node = NodePath("../../..")
 libraries = {
-"": SubResource("AnimationLibrary_0xdsu")
+&"": SubResource("AnimationLibrary_0xdsu")
 }
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("9_q3prr")]

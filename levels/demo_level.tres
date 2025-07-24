@@ -1,10 +1,12 @@
 [gd_resource type="Resource" script_class="LevelData" load_steps=3 format=3 uid="uid://bcfb61g34lkbl"]
 
-[ext_resource type="Script" path="res://resources/level_data.gd" id="1_iwcnu"]
+[ext_resource type="Script" uid="uid://ckj46jmb6gw3a" path="res://resources/level_data.gd" id="1_iwcnu"]
 [ext_resource type="PackedScene" uid="uid://354y0re3jbp8" path="res://levels/demo_level.tscn" id="1_vab1g"]
 
 [resource]
 script = ExtResource("1_iwcnu")
+index = 0
 display_name = "Demo"
 level_scene = ExtResource("1_vab1g")
+reward = 0
 mission_description = "Killlllll"
